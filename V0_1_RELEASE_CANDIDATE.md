@@ -80,8 +80,9 @@ Retirement requires a separate, reviewed compatibility change.
 
 - Package `0.3.0` and migration `v0.1` have a documented naming ambiguity.
 - No dependency lockfile guarantees exact transitive dependency resolution.
-- A clean-clone installation test remains pending; the repository-local
-  `.venv` was not provisioned during the submission identity refresh.
+- The clean-clone installation test passed at commit
+  `3f1329e2708d6e8ab24eecfeefb5c8f5ccaa9e70`; see
+  [`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md).
 - Quarantined artifacts still require later review.
 - Quarantined Kalshi captures still mix raw archives and normalized tables.
 - Kalshi venue configuration remains embedded.

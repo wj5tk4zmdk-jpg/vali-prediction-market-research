@@ -59,7 +59,8 @@ decision to stop when the empirical data are not yet sufficient.
 - Submission validation baseline: `0493e9a` on `main`.
 - Full deterministic suite: **186 passed, 0 failed**.
 - Submission status: **research-engine submission artifact**.
-- Clean-clone installation test: **pending**.
+- Clean-clone installation test: **verified** at commit `3f1329e`; see
+  [`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md).
 
 The repository contains substantial public Kalshi price history, but historical
 order-book depth is unavailable and the only local Google Trends observations
@@ -109,6 +110,7 @@ For a 2–5 minute review, start with:
 4. [`docs/submission/ARCHITECTURE_MAP.md`](docs/submission/ARCHITECTURE_MAP.md)
 5. [`V0_1_RELEASE_CANDIDATE.md`](V0_1_RELEASE_CANDIDATE.md)
 6. [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)
+7. [`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md)
 
 ## Repository tour
 

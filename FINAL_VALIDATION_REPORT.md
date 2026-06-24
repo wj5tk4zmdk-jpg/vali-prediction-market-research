@@ -23,10 +23,13 @@ Reviewer reproduction command after completing the fresh-clone installation in
 Result: **186 passed, 0 failed**.
 
 The repository-local `.venv` was not provisioned when this identity was
-refreshed, so the passing result was produced in an established ignored Python
-3.12.13 environment with VALI and its declared development dependencies already
-installed. A clean-clone installation test remains pending. The machine-local
-interpreter path is intentionally omitted from reviewer-facing documentation.
+refreshed, so the passing result above was produced in an established ignored
+Python 3.12.13 environment with VALI and its declared development dependencies
+already installed. A subsequent clean-clone installation test passed at commit
+`3f1329e2708d6e8ab24eecfeefb5c8f5ccaa9e70`; see
+[`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md).
+The machine-local interpreter path is intentionally omitted from reviewer-facing
+documentation.
 
 ## CLI smoke validation
 
@@ -72,7 +75,8 @@ python -m vali trends status --help
 ## Known caveats
 
 The migration label/package version ambiguity remains documented. No dependency
-lockfile exists, and the clean-clone installation test remains pending.
+lockfile exists. The clean-clone installation test passed; see
+[`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md).
 Quarantined artifacts and mixed Kalshi captures require later review. Canonical
 empirical validation remains blocked pending documented point-in-time attention
 history. Kalshi historical depth is unobserved, so capacity and tradability

@@ -41,7 +41,8 @@ For environment assumptions, see [`../../ENVIRONMENT.md`](../../ENVIRONMENT.md).
 - Validated baseline: `0493e9a358e59a491116d3bdf4af529a2ee44e79`
 - Full deterministic suite: **186 passed, 0 failed**
 - Status: **research-engine submission artifact**
-- Clean-clone installation test: **pending**
+- Clean-clone installation test: **verified** at commit `3f1329e`; see
+  [`CLEAN_CLONE_INSTALL_TEST.md`](CLEAN_CLONE_INSTALL_TEST.md)
 
 Canonical empirical validation remains blocked pending documented point-in-time
 attention history. Capacity and tradability claims remain disabled because

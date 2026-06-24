@@ -133,7 +133,8 @@ def test_explorer_preserves_claim_boundaries_and_current_blocker():
     assert VALIDATION_BASELINE in text
     assert VALIDATION_RESULT in text
     assert REPOSITORY_NAME in text
-    assert "clean-clone installation remains pending" in folded
+    assert "clean-clone installation: verified" in folded
+    assert "3f1329e" in text
     for boundary in (
         "no empirical alpha claim",
         "no trading-readiness claim",

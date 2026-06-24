@@ -20,8 +20,10 @@ ARCHITECTURE = SUBMISSION / "ARCHITECTURE_MAP.md"
 VALIDATION_REPORT = ROOT / "FINAL_VALIDATION_REPORT.md"
 RELEASE_CANDIDATE = ROOT / "V0_1_RELEASE_CANDIDATE.md"
 EXPLORER = SUBMISSION / "VALI_EXPLORER.html"
+CLEAN_CLONE_RECORD = SUBMISSION / "CLEAN_CLONE_INSTALL_TEST.md"
 VALIDATION_BASELINE = "0493e9a358e59a491116d3bdf4af529a2ee44e79"
 VALIDATION_RESULT = "186 passed, 0 failed"
+CLEAN_CLONE_COMMIT = "3f1329e2708d6e8ab24eecfeefb5c8f5ccaa9e70"
 REPOSITORY_NAME = "vali-prediction-market-research"
 FROZEN_HASH = (
     "f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a"
@@ -37,6 +39,7 @@ def test_submission_documents_exist():
     assert GUIDE.is_file()
     assert BLURBS.is_file()
     assert ARCHITECTURE.is_file()
+    assert CLEAN_CLONE_RECORD.is_file()
 
 
 def test_readme_exposes_status_quickstart_and_canonical_experiment():
@@ -123,6 +126,19 @@ def test_submission_pack_makes_no_affirmative_operational_claims():
     assert VALIDATION_BASELINE in _read(VALIDATION_REPORT)
     assert VALIDATION_BASELINE in _read(RELEASE_CANDIDATE)
     assert REPOSITORY_NAME in _read(README)
+    clean_clone = _read(CLEAN_CLONE_RECORD)
+    clean_clone_folded = clean_clone.casefold()
+    assert CLEAN_CLONE_COMMIT in clean_clone
+    assert "installation: **passed**" in clean_clone_folded
+    assert VALIDATION_RESULT in clean_clone
+    assert "cli smoke checks: **15 passed**" in clean_clone_folded
+    assert "reviewer artifacts: **9/9 present**" in clean_clone_folded
+    assert "no leaked `work/.venv`" in clean_clone_folded
+    assert "does not prove empirical alpha" in clean_clone_folded
+    assert "does not prove trading readiness" in clean_clone_folded
+    assert "docs/submission/CLEAN_CLONE_INSTALL_TEST.md" in _read(README)
+    assert "CLEAN_CLONE_INSTALL_TEST.md" in _read(GUIDE)
+    assert "sdfas" not in clean_clone_folded
     for stale in (
         "149 passed",
         "155 passed",
