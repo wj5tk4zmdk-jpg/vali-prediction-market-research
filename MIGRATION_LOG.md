@@ -507,3 +507,54 @@ Completed 2026-06-23.
   `P_flow` was introduced.
 - Full result after Step 4G-2: **118 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Created local commit `8c2ab104cd48409994c514f11006ec64447f2f2c`
+  with subject `migration: decompose Google Trends provider boundary`.
+
+## Step 4H - Application and CLI boundary
+
+Completed 2026-06-23.
+
+- Created `src/vali/application/` for command registration and dispatch,
+  research-run orchestration, read-only public-data collection, report
+  reconstruction, and configuration/input validation commands.
+- Moved the existing argparse command tree into `application/commands.py`
+  without changing command names, subcommands, flags, types, defaults, choices,
+  required arguments, descriptions, or help text.
+- Moved sample-data, signal, and backtest command handlers into
+  `application/research.py`, delegating to the existing sample and research
+  pipeline APIs.
+- Moved Kalshi and Google Trends command handlers into
+  `application/collection.py`, retaining the existing public read-only provider
+  facades, printed JSON, failure behavior, and explicit no-live-access Trends
+  gate.
+- Moved report reconstruction into `application/reporting.py` and validation
+  command orchestration into `application/validation.py` without changing
+  output paths, artifacts, report content, configuration loading, or validation
+  output.
+- Preserved `vali.cli._iso_date`, `vali.cli._parser`, and `vali.cli.main` as
+  compatibility wrappers. `vali.__main__` and the `vali` console-script entry
+  point remain unchanged.
+- Added deterministic compatibility tests for application imports, parser/help
+  parity, exact command and argument surfaces, parsed namespaces, validation and
+  signal outputs, artifact sets, report delegation, `python -m vali`, and the
+  absence of trading, credential, private-input, and `P_flow` commands.
+- Files created:
+  - `src/vali/application/__init__.py`
+  - `src/vali/application/commands.py`
+  - `src/vali/application/research.py`
+  - `src/vali/application/collection.py`
+  - `src/vali/application/reporting.py`
+  - `src/vali/application/validation.py`
+  - `tests/test_application_cli_compatibility.py`
+- Existing source file modified only as the compatibility facade:
+  - `src/vali/cli.py`
+- Governance file modified:
+  - `MIGRATION_LOG.md`
+- No command, argument, output, config/TOML behavior, provider behavior,
+  formula, execution policy, report text, artifact name, manifest field,
+  schema, or test layout changed. No data artifact was moved or deleted.
+- No credentialed trading endpoint, order-submission logic, private input,
+  proprietary order flow, live trading, live API assumption, or `P_flow` was
+  introduced.
+- Full result after Step 4H: **125 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
