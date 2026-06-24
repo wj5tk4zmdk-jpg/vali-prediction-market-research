@@ -34,6 +34,20 @@ python3.12 -m venv .venv
 
 For environment assumptions, see [`../../ENVIRONMENT.md`](../../ENVIRONMENT.md).
 
+## Current validation identity
+
+- Branch: `main`
+- Validated baseline: `0493e9a358e59a491116d3bdf4af529a2ee44e79`
+- Full deterministic suite: **186 passed, 0 failed**
+- Status: **research-engine submission artifact**
+- Clean-clone installation test: **pending**
+
+Canonical empirical validation remains blocked pending documented point-in-time
+attention history. Capacity and tradability claims remain disabled because
+historical observed depth is unavailable. These validation results establish
+software and research-contract integrity. They establish no empirical alpha
+claim and no trading-readiness claim.
+
 ## What to evaluate
 
 - Does the project prevent label, vintage, normalization, and fold leakage?

@@ -42,39 +42,42 @@
         <div class="hero-meta"><span class="meta-pill">4-series pass</span><span class="meta-pill">Public-data-only</span><span class="meta-pill">Research, not a trading claim</span></div>
       </header>
       <section class="doc-section" id="validation-identity" data-doc-section><div class="section-heading"><span class="section-index">Section 01</span><h2>Validation identity</h2><button class="section-toggle" type="button" aria-controls="validation-identity-body" aria-expanded="true" aria-label="Collapse Validation identity" data-section-title="Validation identity">⌄</button></div><div class="section-body" id="validation-identity-body">
-<ul><li>Validation date: <code>2026-06-23</code></li><li>Branch: <code>main</code></li><li>Commit under validation: <code>3639580d81d4b6b2e7039f36771b7e6f785c74b5</code></li><li>Python: <code>3.12.13</code></li><li>Package version: <code>0.3.0</code></li><li>Migration release-candidate label: <code>v0.1</code></li></ul>
+<ul><li>Validation date: <code>2026-06-24</code></li><li>Branch: <code>main</code></li><li>Commit under validation: <code>0493e9a358e59a491116d3bdf4af529a2ee44e79</code></li><li>Python: <code>3.12.13</code></li><li>Package version: <code>0.3.0</code></li><li>Migration release-candidate label: <code>v0.1</code></li><li>Submission status: <strong>research-engine submission artifact</strong></li></ul>
 </div></section>
 <section class="doc-section" id="automated-test-validation" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>Automated test validation</h2><button class="section-toggle" type="button" aria-controls="automated-test-validation-body" aria-expanded="true" aria-label="Collapse Automated test validation" data-section-title="Automated test validation">⌄</button></div><div class="section-body" id="automated-test-validation-body">
-<p>Command:</p>
-<pre><code class="language-powershell">&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m pytest -q</code></pre>
-<p>Result: <strong>149 passed, 0 failed</strong>.</p>
+<p>Reviewer reproduction command after completing the fresh-clone installation in <code>README.md</code>:</p>
+<pre><code class="language-powershell">&amp; &#x27;.\.venv\Scripts\python.exe&#x27; -m pytest -q</code></pre>
+<p>Result: <strong>186 passed, 0 failed</strong>.</p>
+<p>The repository-local <code>.venv</code> was not provisioned when this identity was refreshed, so the passing result was produced in an established ignored Python 3.12.13 environment with VALI and its declared development dependencies already installed. A clean-clone installation test remains pending. The machine-local interpreter path is intentionally omitted from reviewer-facing documentation.</p>
 </div></section>
 <section class="doc-section" id="cli-smoke-validation" data-doc-section><div class="section-heading"><span class="section-index">Section 03</span><h2>CLI smoke validation</h2><button class="section-toggle" type="button" aria-controls="cli-smoke-validation-body" aria-expanded="true" aria-label="Collapse CLI smoke validation" data-section-title="CLI smoke validation">⌄</button></div><div class="section-body" id="cli-smoke-validation-body">
-<p>The following deterministic, help-only commands returned exit code 0. They did not contact live APIs, require credentials, or write research data:</p>
-<pre><code class="language-powershell">&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali validate --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali signal --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali backtest --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali report --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali sample-data --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi discover --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi backfill --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi snapshot --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends plan --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends backfill --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends collect --help
-&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends status --help</code></pre>
+<p>The following 15 deterministic, help-only command surfaces returned exit code</p>
+<ol><li>They did not contact live APIs, require credentials, or write research data.</li></ol>
+<p>After installation, they may be reproduced as:</p>
+<pre><code class="language-powershell">python -m vali --help
+python -m vali validate --help
+python -m vali signal --help
+python -m vali backtest --help
+python -m vali report --help
+python -m vali sample-data --help
+python -m vali kalshi --help
+python -m vali kalshi discover --help
+python -m vali kalshi backfill --help
+python -m vali kalshi snapshot --help
+python -m vali trends --help
+python -m vali trends plan --help
+python -m vali trends backfill --help
+python -m vali trends collect --help
+python -m vali trends status --help</code></pre>
 </div></section>
 <section class="doc-section" id="contract-validation" data-doc-section><div class="section-heading"><span class="section-index">Section 04</span><h2>Contract validation</h2><button class="section-toggle" type="button" aria-controls="contract-validation-body" aria-expanded="true" aria-label="Collapse Contract validation" data-section-title="Contract validation">⌄</button></div><div class="section-body" id="contract-validation-body">
 <ul><li>Frozen Google Trends manifest hash: <code>f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a</code></li><li>Import-source validation: <strong>pass</strong>. Public, boundary, and compatibility modules resolve from <code>src/vali</code>, not quarantined build artifacts.</li><li>Prohibited-surface validation: <strong>pass</strong>. Repository search occurrences are confined to prohibition documentation, input-rejection contracts, and tests; no executable or public API implements <code>P_flow</code>, private client data, proprietary order flow, order submission, credentialed trading, or live trading.</li><li>Config-path validation: <strong>pass</strong>. Both <code>configs/experiments/fed_easing_v1.toml</code> and <code>examples/config.toml</code> load while preserving their established relative-path resolution behavior.</li><li>Fixture-path validation: <strong>pass</strong>. Canonical provider fixtures and the old Google Trends compatibility fixture remain present and deterministic.</li></ul>
 </div></section>
 <section class="doc-section" id="known-caveats" data-doc-section><div class="section-heading"><span class="section-index">Section 05</span><h2>Known caveats</h2><button class="section-toggle" type="button" aria-controls="known-caveats-body" aria-expanded="true" aria-label="Collapse Known caveats" data-section-title="Known caveats">⌄</button></div><div class="section-body" id="known-caveats-body">
-<p>The migration label/package version ambiguity remains documented. No dependency lockfile exists. Quarantined artifacts and mixed Kalshi captures require later review. Kalshi historical depth is unobserved, venue configuration is embedded, and the fee model is provisional. Google has not supplied an implemented official alpha protocol or documented revision guarantees. No empirical alpha claim has been validated.</p>
+<p>The migration label/package version ambiguity remains documented. No dependency lockfile exists, and the clean-clone installation test remains pending. Quarantined artifacts and mixed Kalshi captures require later review. Canonical empirical validation remains blocked pending documented point-in-time attention history. Kalshi historical depth is unobserved, so capacity and tradability claims remain disabled; venue configuration is embedded and the fee model is provisional. Google has not supplied an implemented official alpha protocol or documented revision guarantees. No empirical alpha claim or trading-readiness claim has been validated. No trading-readiness claim is made.</p>
 </div></section>
 <section class="doc-section" id="conclusion" data-doc-section><div class="section-heading"><span class="section-index">Section 06</span><h2>Conclusion</h2><button class="section-toggle" type="button" aria-controls="conclusion-body" aria-expanded="true" aria-label="Collapse Conclusion" data-section-title="Conclusion">⌄</button></div><div class="section-body" id="conclusion-body">
-<p><strong>Pass.</strong> The repository is ready to exit 4-series migration and enter 5-series operational research readiness, subject to the caveats listed. This conclusion does not mean VALI alpha is proven, trading-ready, or production investment infrastructure.</p>
+<p><strong>Pass as a research-engine submission artifact.</strong> The repository passes its deterministic test and CLI contracts at the stated commit, subject to the caveats above. Canonical empirical validation is not authorized. This conclusion does not mean VALI alpha is proven, trading-ready, or production investment infrastructure.</p>
 </div></section>
       <nav class="page-neighbors" aria-label="Adjacent library pages">
         <a class="neighbor previous" href="KALSHI_RECONSTRUCTION_LEDGER.html"><small>Previous</small><b>← Kalshi ledger</b></a>

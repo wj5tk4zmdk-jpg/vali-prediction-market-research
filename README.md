@@ -54,6 +54,10 @@ decision to stop when the empirical data are not yet sufficient.
 - Step 5B data-availability audit: complete.
 - Step 5B-1 remediation protocol: complete.
 - Step 5C empirical validation: **not authorized**.
+- Submission validation baseline: `0493e9a` on `main`.
+- Full deterministic suite: **186 passed, 0 failed**.
+- Submission status: **research-engine submission artifact**.
+- Clean-clone installation test: **pending**.
 
 The repository contains substantial public Kalshi price history, but historical
 order-book depth is unavailable and the only local Google Trends observations

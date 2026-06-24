@@ -12,6 +12,8 @@ EXPLORER = ROOT / "docs" / "submission" / "VALI_EXPLORER.html"
 FROZEN_HASH = (
     "f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a"
 )
+VALIDATION_BASELINE = "0493e9a"
+VALIDATION_RESULT = "186 passed, 0 failed"
 REQUIRED_SECTIONS = {
     "intro",
     "signal-lab",
@@ -127,6 +129,9 @@ def test_explorer_preserves_claim_boundaries_and_current_blocker():
     assert FROZEN_HASH in text
     assert "point-in-time attention history is missing" in folded
     assert "may_proceed_to_5c" in folded
+    assert VALIDATION_BASELINE in text
+    assert VALIDATION_RESULT in text
+    assert "clean-clone installation remains pending" in folded
     for boundary in (
         "no empirical alpha claim",
         "no trading-readiness claim",

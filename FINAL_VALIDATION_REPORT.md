@@ -2,44 +2,53 @@
 
 ## Validation identity
 
-- Validation date: `2026-06-23`
+- Validation date: `2026-06-24`
 - Branch: `main`
-- Commit under validation: `3639580d81d4b6b2e7039f36771b7e6f785c74b5`
+- Commit under validation: `0493e9a358e59a491116d3bdf4af529a2ee44e79`
 - Python: `3.12.13`
 - Package version: `0.3.0`
 - Migration release-candidate label: `v0.1`
+- Submission status: **research-engine submission artifact**
 
 ## Automated test validation
 
-Command:
+Reviewer reproduction command after completing the fresh-clone installation in
+`README.md`:
 
 ```powershell
-& '.\work\.venv\Scripts\python.exe' -m pytest -q
+& '.\.venv\Scripts\python.exe' -m pytest -q
 ```
 
-Result: **149 passed, 0 failed**.
+Result: **186 passed, 0 failed**.
+
+The repository-local `.venv` was not provisioned when this identity was
+refreshed, so the passing result was produced in an established ignored Python
+3.12.13 environment with VALI and its declared development dependencies already
+installed. A clean-clone installation test remains pending. The machine-local
+interpreter path is intentionally omitted from reviewer-facing documentation.
 
 ## CLI smoke validation
 
-The following deterministic, help-only commands returned exit code 0. They did
-not contact live APIs, require credentials, or write research data:
+The following 15 deterministic, help-only command surfaces returned exit code
+0. They did not contact live APIs, require credentials, or write research data.
+After installation, they may be reproduced as:
 
 ```powershell
-& '.\work\.venv\Scripts\python.exe' -m vali --help
-& '.\work\.venv\Scripts\python.exe' -m vali validate --help
-& '.\work\.venv\Scripts\python.exe' -m vali signal --help
-& '.\work\.venv\Scripts\python.exe' -m vali backtest --help
-& '.\work\.venv\Scripts\python.exe' -m vali report --help
-& '.\work\.venv\Scripts\python.exe' -m vali sample-data --help
-& '.\work\.venv\Scripts\python.exe' -m vali kalshi --help
-& '.\work\.venv\Scripts\python.exe' -m vali kalshi discover --help
-& '.\work\.venv\Scripts\python.exe' -m vali kalshi backfill --help
-& '.\work\.venv\Scripts\python.exe' -m vali kalshi snapshot --help
-& '.\work\.venv\Scripts\python.exe' -m vali trends --help
-& '.\work\.venv\Scripts\python.exe' -m vali trends plan --help
-& '.\work\.venv\Scripts\python.exe' -m vali trends backfill --help
-& '.\work\.venv\Scripts\python.exe' -m vali trends collect --help
-& '.\work\.venv\Scripts\python.exe' -m vali trends status --help
+python -m vali --help
+python -m vali validate --help
+python -m vali signal --help
+python -m vali backtest --help
+python -m vali report --help
+python -m vali sample-data --help
+python -m vali kalshi --help
+python -m vali kalshi discover --help
+python -m vali kalshi backfill --help
+python -m vali kalshi snapshot --help
+python -m vali trends --help
+python -m vali trends plan --help
+python -m vali trends backfill --help
+python -m vali trends collect --help
+python -m vali trends status --help
 ```
 
 ## Contract validation
@@ -62,15 +71,19 @@ not contact live APIs, require credentials, or write research data:
 ## Known caveats
 
 The migration label/package version ambiguity remains documented. No dependency
-lockfile exists. Quarantined artifacts and mixed Kalshi captures require later
-review. Kalshi historical depth is unobserved, venue configuration is embedded,
-and the fee model is provisional. Google has not supplied an implemented
-official alpha protocol or documented revision guarantees. No empirical alpha
-claim has been validated.
+lockfile exists, and the clean-clone installation test remains pending.
+Quarantined artifacts and mixed Kalshi captures require later review. Canonical
+empirical validation remains blocked pending documented point-in-time attention
+history. Kalshi historical depth is unobserved, so capacity and tradability
+claims remain disabled; venue configuration is embedded and the fee model is
+provisional. Google has not supplied an implemented official alpha protocol or
+documented revision guarantees. No empirical alpha claim or trading-readiness
+claim has been validated. No trading-readiness claim is made.
 
 ## Conclusion
 
-**Pass.** The repository is ready to exit 4-series migration and enter 5-series
-operational research readiness, subject to the caveats listed. This conclusion
+**Pass as a research-engine submission artifact.** The repository passes its
+deterministic test and CLI contracts at the stated commit, subject to the
+caveats above. Canonical empirical validation is not authorized. This conclusion
 does not mean VALI alpha is proven, trading-ready, or production investment
 infrastructure.

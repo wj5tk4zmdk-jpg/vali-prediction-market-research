@@ -4,7 +4,9 @@
 
 - Release label: **VALI v0.1 migration release candidate**
 - Repository branch: `main`
-- Base commit: `3639580d81d4b6b2e7039f36771b7e6f785c74b5`
+- Submission validation baseline: `0493e9a358e59a491116d3bdf4af529a2ee44e79`
+- Full-suite result: **186 passed, 0 failed**
+- Submission status: **research-engine submission artifact**
 - Package version: `0.3.0`
 
 The labels serve different purposes. `v0.1` identifies the migration and
@@ -77,15 +79,20 @@ Retirement requires a separate, reviewed compatibility change.
 
 - Package `0.3.0` and migration `v0.1` have a documented naming ambiguity.
 - No dependency lockfile guarantees exact transitive dependency resolution.
+- A clean-clone installation test remains pending; the repository-local
+  `.venv` was not provisioned during the submission identity refresh.
 - Quarantined artifacts still require later review.
 - Quarantined Kalshi captures still mix raw archives and normalized tables.
 - Kalshi venue configuration remains embedded.
 - Historical Kalshi data lacks observed order-book depth, limiting capacity and
-  tradability claims.
+  tradability claims; those claims remain disabled.
 - The fee model remains provisional.
 - The official Google Trends alpha protocol and revision guarantees remain
   unpublished and unimplemented.
+- Canonical empirical validation remains blocked pending documented
+  point-in-time attention history.
 - No empirical alpha claim has been validated.
+- No trading-readiness claim has been validated.
 
 ## H. Acceptance gates
 
