@@ -17,6 +17,8 @@ normalization, meeting-grouped walk-forward evaluation, read-only provider
 adapters, execution constraints, reproducible artifacts, and an explicit
 decision to stop when the empirical data are not yet sufficient.
 
+**[Open the interactive VALI Research Explorer →](docs/submission/VALI_EXPLORER.html)**
+
 ## What is complete
 
 - Public-data-only Python research engine and CLI.
@@ -83,11 +85,12 @@ Environment and dependency guidance:
 
 For a 2–5 minute review, start with:
 
-1. [`docs/submission/REVIEWER_GUIDE.md`](docs/submission/REVIEWER_GUIDE.md)
-2. [`docs/submission/KALSHI_QUANT_RESEARCHER_CASE_STUDY.md`](docs/submission/KALSHI_QUANT_RESEARCHER_CASE_STUDY.md)
-3. [`docs/submission/ARCHITECTURE_MAP.md`](docs/submission/ARCHITECTURE_MAP.md)
-4. [`V0_1_RELEASE_CANDIDATE.md`](V0_1_RELEASE_CANDIDATE.md)
-5. [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)
+1. [`docs/submission/VALI_EXPLORER.html`](docs/submission/VALI_EXPLORER.html)
+2. [`docs/submission/REVIEWER_GUIDE.md`](docs/submission/REVIEWER_GUIDE.md)
+3. [`docs/submission/KALSHI_QUANT_RESEARCHER_CASE_STUDY.md`](docs/submission/KALSHI_QUANT_RESEARCHER_CASE_STUDY.md)
+4. [`docs/submission/ARCHITECTURE_MAP.md`](docs/submission/ARCHITECTURE_MAP.md)
+5. [`V0_1_RELEASE_CANDIDATE.md`](V0_1_RELEASE_CANDIDATE.md)
+6. [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)
 
 ## Repository tour
 

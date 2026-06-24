@@ -2,11 +2,12 @@
 
 ## Read this first
 
-1. [`../../README.md`](../../README.md) — thesis, status, and quickstart.
-2. [`KALSHI_QUANT_RESEARCHER_CASE_STUDY.md`](KALSHI_QUANT_RESEARCHER_CASE_STUDY.md) — concise project narrative.
-3. [`ARCHITECTURE_MAP.md`](ARCHITECTURE_MAP.md) — code and responsibility map.
-4. [`../operational/5A_EMPIRICAL_VALIDATION_PLAN.md`](../operational/5A_EMPIRICAL_VALIDATION_PLAN.md) — predeclared hypotheses and falsification gates.
-5. [`../../experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md`](../../experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md) — evidence for the current stop decision.
+1. [`VALI_EXPLORER.html`](VALI_EXPLORER.html) — interactive visual tour of the thesis, safeguards, architecture, and current gate.
+2. [`../../README.md`](../../README.md) — thesis, status, and quickstart.
+3. [`KALSHI_QUANT_RESEARCHER_CASE_STUDY.md`](KALSHI_QUANT_RESEARCHER_CASE_STUDY.md) — concise project narrative.
+4. [`ARCHITECTURE_MAP.md`](ARCHITECTURE_MAP.md) — code and responsibility map.
+5. [`../operational/5A_EMPIRICAL_VALIDATION_PLAN.md`](../operational/5A_EMPIRICAL_VALIDATION_PLAN.md) — predeclared hypotheses and falsification gates.
+6. [`../../experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md`](../../experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md) — evidence for the current stop decision.
 
 ## Run this command
 
