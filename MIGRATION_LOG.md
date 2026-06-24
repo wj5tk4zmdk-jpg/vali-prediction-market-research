@@ -739,3 +739,55 @@ Completed 2026-06-23.
   flow, order submission, live trading, or `P_flow` was introduced.
 - Full result after Step 4K: **143 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Files created:
+  - `REPOSITORY_POLICY.md`
+  - `ENVIRONMENT.md`
+  - `tests/contract/test_repository_hygiene.py`
+- Files modified:
+  - `README.md`
+  - `MIGRATION_LOG.md`
+- Created local commit `3639580d81d4b6b2e7039f36771b7e6f785c74b5`
+  with subject `migration: harden package and repository hygiene`.
+- At that checkpoint, imports resolved exclusively from `src/vali`; package
+  version `0.3.0` remained internally consistent; and configs, fixtures,
+  manifests, CLI, providers, outputs, reports, artifacts, schemas, execution,
+  and methodology were unchanged.
+
+## Step 4L - Final validation and v0.1 migration release candidate
+
+Completed 2026-06-23.
+
+- Validated a clean `main` branch at Step 4K commit
+  `3639580d81d4b6b2e7039f36771b7e6f785c74b5` before editing.
+- Added `V0_1_RELEASE_CANDIDATE.md`, documenting the migration release label,
+  package-version distinction, completed boundaries, data/artifact tiers,
+  compatibility commitments, known risks, and 4-series acceptance gates.
+- Added `FINAL_VALIDATION_REPORT.md` with the validation identity, exact test
+  and CLI smoke commands, manifest/import/prohibited-surface/config/fixture
+  results, caveats, and a bounded readiness conclusion.
+- Added `tests/contract/test_final_release_candidate.py` with six deterministic
+  release-candidate checks. No live API, credentials, or mutable empirical data
+  were used.
+- Ran help-only smoke checks for the root CLI; `validate`, `signal`,
+  `backtest`, `report`, and `sample-data`; all Kalshi subcommands; and all
+  Google Trends subcommands. All returned exit code 0 without network access or
+  output creation.
+- Searched for `P_flow`, order-submission terms, credentialed/live trading,
+  private-client data, proprietary order flow, and pending orders. Matches were
+  confined to prohibition documentation, input-rejection contracts, and tests;
+  no executable or public operational API was found.
+- Confirmed `pyproject.toml`, `vali.__version__`, and run-manifest metadata
+  remain consistent at package version `0.3.0`. `v0.1` is only the migration
+  release-candidate label; no package version was changed.
+- Confirmed imports resolve from `src/vali`, never quarantined build artifacts;
+  canonical and compatibility configs and fixtures remain available; and the
+  frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No source logic, formula, methodology, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, existing test behavior,
+  report output, artifact, manifest field, schema, execution policy, fee model,
+  or legacy compatibility surface changed.
+- No live API behavior, dependency, credential use, private input, proprietary
+  flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 4L: **149 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
