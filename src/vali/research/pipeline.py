@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -11,6 +10,16 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from ..artifacts.manifests import build_run_manifest, sha256_file
+from ..artifacts.metrics import (
+    divergence_half_lives,
+    forecast_metrics,
+    regime_confusion,
+    trade_metrics,
+)
+from ..artifacts.reports import rebuild_report as _artifact_rebuild_report
+from ..artifacts.reports import render_html_report
+from ..artifacts.serialization import write_dataframe
 from ..backtest import BacktestResult, run_backtest
 from ..configuration.contracts import ValiConfig
 from ..data.contracts import InputBundle
@@ -19,15 +28,6 @@ from ..features import build_attention_index
 from ..io import load_inputs
 from ..market import select_daily_market
 from ..regimes import add_realized_regime, classify_regimes
-from ..reporting import (
-    WARNING,
-    divergence_half_lives,
-    forecast_metrics,
-    regime_confusion,
-    render_html_report,
-    trade_metrics,
-    write_dataframe,
-)
 from ..signals import compute_vali_signals
 from .sensitivity import run_sensitivity
 
@@ -129,31 +129,11 @@ def execution_validation_summary(signals: pd.DataFrame) -> dict[str, Any]:
 
 
 def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    return sha256_file(path)
 
 
 def _manifest(config: ValiConfig) -> dict[str, Any]:
-    paths = {
-        "events": config.data.events,
-        "quotes": config.data.quotes,
-        "features": config.data.features,
-        "feature_manifest": config.data.feature_manifest,
-    }
-    if config.data.trades:
-        paths["trades"] = config.data.trades
-    return {
-        "package_version": "0.3.0",
-        "methodology_version": config.methodology_version,
-        "parameter_freeze_date": config.parameter_freeze_date,
-        "config_path": str(config.source_path) if config.source_path else None,
-        "config_sha256": _sha256(config.source_path) if config.source_path else None,
-        "input_sha256": {name: _sha256(path) for name, path in paths.items()},
-        "research_warning": WARNING,
-    }
+    return build_run_manifest(config)
 
 
 def _build_signals(
@@ -370,38 +350,4 @@ def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> Pipelin
 
 
 def rebuild_report(run_dir: str | Path) -> Path:
-    directory = Path(run_dir).resolve()
-    required = [
-        "metrics",
-        "forecasts",
-        "trades",
-        "sensitivity",
-        "exclusions",
-        "calibration",
-        "regime_confusion",
-    ]
-    frames: dict[str, pd.DataFrame] = {}
-    for name in required:
-        path = directory / f"{name}.csv"
-        if not path.exists():
-            raise FileNotFoundError(f"Missing run output: {path}")
-        try:
-            frames[name] = pd.read_csv(path)
-        except pd.errors.EmptyDataError:
-            frames[name] = pd.DataFrame()
-    manifest = json.loads(
-        (directory / "run_manifest.json").read_text(encoding="utf-8")
-    )
-    report = directory / "report.html"
-    render_html_report(
-        report,
-        metrics=frames["metrics"],
-        forecasts=frames["forecasts"],
-        trades=frames["trades"],
-        sensitivity=frames["sensitivity"],
-        exclusions=frames["exclusions"],
-        calibration=frames["calibration"],
-        regime_table=frames["regime_confusion"],
-        run_manifest=manifest,
-    )
-    return report
+    return _artifact_rebuild_report(run_dir)

@@ -317,3 +317,41 @@ Completed 2026-06-23.
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
 - Step 4E reporting extraction is cleared to proceed from the valid `main`
   branch checkpoint. A GitHub remote is optional and has not been configured.
+
+## Step 4E - Artifact and reporting boundary
+
+Completed 2026-06-23.
+
+- Created `src/vali/artifacts/` for deterministic metrics and diagnostics,
+  reproducibility hashes and run-manifest construction, stable DataFrame
+  serialization, dependency-light HTML assembly, and report reconstruction.
+- Preserved `vali.reporting` as a compatibility facade with unchanged public
+  names, signatures, return values, warning text, and rendered report text.
+- Updated research orchestration and the fixed sensitivity panel to consume the
+  artifact boundary. Preserved the private pipeline hash and manifest wrappers
+  used by existing compatibility surfaces.
+- Preserved the exact run-manifest keys, package/methodology metadata, artifact
+  base names, CSV/Parquet behavior, report section names, execution-validation
+  warning, and research-only warning.
+- Added deterministic compatibility tests covering old/new imports, forecast
+  and trade metrics, divergence and regime diagnostics, serialization names and
+  CSV content, hashes and manifest keys, HTML rendering, and report rebuilding.
+- Files created:
+  - `src/vali/artifacts/__init__.py`
+  - `src/vali/artifacts/metrics.py`
+  - `src/vali/artifacts/manifests.py`
+  - `src/vali/artifacts/serialization.py`
+  - `src/vali/artifacts/reports.py`
+  - `tests/test_artifact_reporting_compatibility.py`
+- Existing source files modified only for delegation:
+  - `src/vali/reporting.py`
+  - `src/vali/research/pipeline.py`
+  - `src/vali/research/sensitivity.py`
+- Governance file modified:
+  - `MIGRATION_LOG.md`
+- No formulas, output schemas, provider behavior, execution mechanics,
+  backtest decisions, metric definitions, warning text, report text,
+  configuration behavior, TOML handling, test layout, or artifact locations
+  changed. No source file or data artifact was moved or deleted.
+- Full result after Step 4E: **96 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.

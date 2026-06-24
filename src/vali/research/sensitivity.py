@@ -7,10 +7,10 @@ from typing import Callable
 import numpy as np
 import pandas as pd
 
+from ..artifacts.metrics import forecast_metrics
 from ..backtest import run_backtest
 from ..configuration.contracts import ValiConfig
 from ..data.contracts import InputBundle
-from ..reporting import forecast_metrics
 
 
 BuildSignals = Callable[
