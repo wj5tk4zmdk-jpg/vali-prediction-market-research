@@ -113,7 +113,6 @@ def test_boundaries_and_legacy_facades_resolve_from_source_tree():
     quarantined_build = (
         ROOT / "artifacts" / "quarantine" / "build" / "lib"
     ).resolve()
-    assert quarantined_build.exists()
     for module_name in BOUNDARIES + FACADES:
         module = importlib.import_module(module_name)
         module_path = Path(module.__file__).resolve()

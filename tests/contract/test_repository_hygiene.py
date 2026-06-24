@@ -41,11 +41,18 @@ def test_package_metadata_and_authoritative_source_are_consistent():
     quarantined_build = (
         ROOT / "artifacts" / "quarantine" / "build" / "lib"
     ).resolve()
-    assert quarantined_build.exists()
     assert all(
         not Path(entry or ".").resolve().is_relative_to(quarantined_build)
         for entry in sys.path
     )
+
+    ignore_policy = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    assert "artifacts/quarantine/*" in ignore_policy
+    assert "!artifacts/quarantine/.gitkeep" in ignore_policy
+    assert (ROOT / "artifacts" / "quarantine" / ".gitkeep").is_file()
+
+    attributes = (ROOT / ".gitattributes").read_text(encoding="utf-8")
+    assert "*.json text eol=lf" in attributes
 
 
 def test_new_boundaries_and_legacy_facades_remain_importable():

@@ -135,7 +135,6 @@ class ArtifactLayoutCompatibilityTests(unittest.TestCase):
             self.assertNotIn("quarantine", module_path.parts)
 
         self.assertFalse((ROOT / "build").exists())
-        self.assertTrue((ROOT / "artifacts" / "quarantine" / "build").exists())
         quarantined_build = str(
             (ROOT / "artifacts" / "quarantine" / "build").resolve()
         ).casefold()
