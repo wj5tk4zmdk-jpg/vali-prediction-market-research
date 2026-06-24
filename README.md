@@ -63,17 +63,29 @@ are valid research results here.
 
 ## Quickstart
 
-From the repository root, run the complete test suite:
+From a fresh clone with Python 3.12 or newer, create an isolated environment,
+install the declared development dependencies, run the complete test suite,
+and inspect the CLI.
+
+PowerShell:
 
 ```powershell
-.\work\.venv\Scripts\python.exe -m pytest -q
+python -m venv .venv
+& '.\.venv\Scripts\python.exe' -m pip install -e ".[dev]"
+& '.\.venv\Scripts\python.exe' -m pytest -q
+& '.\.venv\Scripts\python.exe' -m vali --help
 ```
 
-Inspect the CLI without contacting a provider:
+POSIX shells:
 
-```powershell
-.\work\.venv\Scripts\python.exe -m vali --help
+```sh
+python3.12 -m venv .venv
+./.venv/bin/python -m pip install -e '.[dev]'
+./.venv/bin/python -m pytest -q
+./.venv/bin/python -m vali --help
 ```
+
+The help command does not contact a provider.
 
 Canonical experiment config:
 [`configs/experiments/fed_easing_v1.toml`](configs/experiments/fed_easing_v1.toml)

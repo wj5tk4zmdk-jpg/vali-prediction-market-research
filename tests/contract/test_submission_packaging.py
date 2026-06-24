@@ -39,7 +39,10 @@ def test_readme_exposes_status_quickstart_and_canonical_experiment():
     assert "no empirical alpha claim" in folded
     assert "no trading-readiness claim" in folded
     assert "configs/experiments/fed_easing_v1.toml" in readme
-    assert ".\\work\\.venv\\Scripts\\python.exe -m pytest -q" in readme
+    assert "python -m venv .venv" in readme
+    assert ".\\.venv\\Scripts\\python.exe' -m pip install -e \".[dev]\"" in readme
+    assert ".\\.venv\\Scripts\\python.exe' -m pytest -q" in readme
+    assert "./.venv/bin/python -m pytest -q" in readme
     assert FROZEN_HASH in readme
     assert "docs/submission/REVIEWER_GUIDE.md" in readme
 

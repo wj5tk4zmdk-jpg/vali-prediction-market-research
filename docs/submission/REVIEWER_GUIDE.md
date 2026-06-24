@@ -9,12 +9,27 @@
 5. [`EMPIRICAL_VALIDATION_PLAN.html`](EMPIRICAL_VALIDATION_PLAN.html) — interactive predeclared hypotheses and falsification gates.
 6. [`DATA_AVAILABILITY_AUDIT.html`](DATA_AVAILABILITY_AUDIT.html) — interactive evidence for the current stop decision.
 
-## Run this command
+## Reproduce the checks
 
-From the repository root:
+From a fresh clone with Python 3.12 or newer, run the following from the
+repository root.
+
+PowerShell:
 
 ```powershell
-.\work\.venv\Scripts\python.exe -m pytest -q
+python -m venv .venv
+& '.\.venv\Scripts\python.exe' -m pip install -e ".[dev]"
+& '.\.venv\Scripts\python.exe' -m pytest -q
+& '.\.venv\Scripts\python.exe' -m vali --help
+```
+
+POSIX shells:
+
+```sh
+python3.12 -m venv .venv
+./.venv/bin/python -m pip install -e '.[dev]'
+./.venv/bin/python -m pytest -q
+./.venv/bin/python -m vali --help
 ```
 
 For environment assumptions, see [`../../ENVIRONMENT.md`](../../ENVIRONMENT.md).

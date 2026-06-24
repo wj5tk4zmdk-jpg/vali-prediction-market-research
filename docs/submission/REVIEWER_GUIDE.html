@@ -28,7 +28,7 @@
       <input class="section-search" id="section-search" type="search" placeholder="Try “leakage” or “depth”">
       <p class="search-result" id="search-result">6 sections</p>
       <p class="toc-heading">On this page</p>
-      <nav class="toc" aria-label="Document sections"><a href="#read-this-first">Read this first</a><a href="#run-this-command">Run this command</a><a href="#what-to-evaluate">What to evaluate</a><a href="#what-not-to-infer">What not to infer</a><a href="#known-caveats">Known caveats</a><a href="#next-research-step">Next research step</a></nav>
+      <nav class="toc" aria-label="Document sections"><a href="#read-this-first">Read this first</a><a href="#reproduce-the-checks">Reproduce the checks</a><a href="#what-to-evaluate">What to evaluate</a><a href="#what-not-to-infer">What not to infer</a><a href="#known-caveats">Known caveats</a><a href="#next-research-step">Next research step</a></nav>
       <div class="sidebar-actions">
         <button class="small-button" id="collapse-all" type="button">Collapse all</button>
         <a class="small-button" href="REVIEWER_GUIDE.md">View source .md</a>
@@ -44,9 +44,18 @@
       <section class="doc-section" id="read-this-first" data-doc-section><div class="section-heading"><span class="section-index">Section 01</span><h2>Read this first</h2><button class="section-toggle" type="button" aria-controls="read-this-first-body" aria-expanded="true" aria-label="Collapse Read this first" data-section-title="Read this first">⌄</button></div><div class="section-body" id="read-this-first-body">
 <ol><li><a href="VALI_EXPLORER.html"><code>VALI_EXPLORER.html</code></a> — interactive visual tour of the thesis, safeguards, architecture, and current gate.</li><li><a href="../../README.md"><code>../../README.md</code></a> — thesis, status, and quickstart.</li><li><a href="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html"><code>KALSHI_QUANT_RESEARCHER_CASE_STUDY.html</code></a> — interactive project narrative.</li><li><a href="ARCHITECTURE_MAP.md"><code>ARCHITECTURE_MAP.md</code></a> — code and responsibility map.</li><li><a href="EMPIRICAL_VALIDATION_PLAN.html"><code>EMPIRICAL_VALIDATION_PLAN.html</code></a> — interactive predeclared hypotheses and falsification gates.</li><li><a href="DATA_AVAILABILITY_AUDIT.html"><code>DATA_AVAILABILITY_AUDIT.html</code></a> — interactive evidence for the current stop decision.</li></ol>
 </div></section>
-<section class="doc-section" id="run-this-command" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>Run this command</h2><button class="section-toggle" type="button" aria-controls="run-this-command-body" aria-expanded="true" aria-label="Collapse Run this command" data-section-title="Run this command">⌄</button></div><div class="section-body" id="run-this-command-body">
-<p>From the repository root:</p>
-<pre><code class="language-powershell">.\work\.venv\Scripts\python.exe -m pytest -q</code></pre>
+<section class="doc-section" id="reproduce-the-checks" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>Reproduce the checks</h2><button class="section-toggle" type="button" aria-controls="reproduce-the-checks-body" aria-expanded="true" aria-label="Collapse Reproduce the checks" data-section-title="Reproduce the checks">⌄</button></div><div class="section-body" id="reproduce-the-checks-body">
+<p>From a fresh clone with Python 3.12 or newer, run the following from the repository root.</p>
+<p>PowerShell:</p>
+<pre><code class="language-powershell">python -m venv .venv
+&amp; &#x27;.\.venv\Scripts\python.exe&#x27; -m pip install -e &quot;.[dev]&quot;
+&amp; &#x27;.\.venv\Scripts\python.exe&#x27; -m pytest -q
+&amp; &#x27;.\.venv\Scripts\python.exe&#x27; -m vali --help</code></pre>
+<p>POSIX shells:</p>
+<pre><code class="language-sh">python3.12 -m venv .venv
+./.venv/bin/python -m pip install -e &#x27;.[dev]&#x27;
+./.venv/bin/python -m pytest -q
+./.venv/bin/python -m vali --help</code></pre>
 <p>For environment assumptions, see <a href="../../ENVIRONMENT.md"><code>../../ENVIRONMENT.md</code></a>.</p>
 </div></section>
 <section class="doc-section" id="what-to-evaluate" data-doc-section><div class="section-heading"><span class="section-index">Section 03</span><h2>What to evaluate</h2><button class="section-toggle" type="button" aria-controls="what-to-evaluate-body" aria-expanded="true" aria-label="Collapse What to evaluate" data-section-title="What to evaluate">⌄</button></div><div class="section-body" id="what-to-evaluate-body">

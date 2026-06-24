@@ -11,6 +11,12 @@ ROOT = Path(__file__).parents[2]
 SUBMISSION = ROOT / "docs" / "submission"
 EXPLORER = SUBMISSION / "VALI_EXPLORER.html"
 ASSETS = (SUBMISSION / "library.css", SUBMISSION / "library.js")
+PUBLIC_FRESH_CLONE_DOCS = (
+    ROOT / "README.md",
+    ROOT / "ENVIRONMENT.md",
+    SUBMISSION / "REVIEWER_GUIDE.md",
+    SUBMISSION / "REVIEWER_GUIDE.html",
+)
 PAGES = {
     "KALSHI_QUANT_RESEARCHER_CASE_STUDY.html": "KALSHI_QUANT_RESEARCHER_CASE_STUDY.md",
     "EMPIRICAL_VALIDATION_PLAN.html": "../operational/5A_EMPIRICAL_VALIDATION_PLAN.md",
@@ -159,3 +165,16 @@ def test_shared_assets_exist_and_include_offline_accessibility_contracts():
     assert "IntersectionObserver" in javascript
     assert "aria-expanded" in javascript
     assert "window.location.href" in javascript
+
+
+def test_public_landing_documents_use_reproducible_fresh_clone_commands():
+    for path in PUBLIC_FRESH_CLONE_DOCS:
+        text = path.read_text(encoding="utf-8")
+        assert "work\\.venv" not in text
+        assert "work/.venv" not in text
+        assert ".[dev]" in text
+        assert "-m pytest -q" in text
+        assert "-m vali --help" in text
+
+    project = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    assert 'dev = ["pytest>=8", "pytest-cov>=5"]' in project
