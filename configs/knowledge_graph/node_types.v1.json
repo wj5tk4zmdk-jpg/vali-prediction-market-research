@@ -1,0 +1,162 @@
+{
+  "registry": "vali_knowledge_graph_node_types",
+  "version": "v1",
+  "status": "draft_schema_registry",
+  "documentation_only": true,
+  "runtime_parsing_supported": false,
+  "description": "Lightweight node-type registry for representing reviewed Kalshi market and attention hypotheses as versioned VALI research objects.",
+  "node_types": [
+    {
+      "type": "KalshiCategory",
+      "description": "Venue-supplied broad category used for discovery and lineage context.",
+      "required_fields": ["id", "type", "version", "name", "source", "observed_at"],
+      "human_review_required": false,
+      "freezable": true,
+      "claim_sensitive": false
+    },
+    {
+      "type": "KalshiTag",
+      "description": "Venue-supplied tag or subcategory preserved independently from category.",
+      "required_fields": ["id", "type", "version", "label", "source", "observed_at"],
+      "human_review_required": false,
+      "freezable": true,
+      "claim_sensitive": false
+    },
+    {
+      "type": "KalshiSeries",
+      "description": "Recurring Kalshi series identity and public lineage.",
+      "required_fields": ["id", "type", "version", "series_ticker", "title", "category_id", "source"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "KalshiEvent",
+      "description": "One resolution occasion within a Kalshi series.",
+      "required_fields": ["id", "type", "version", "event_ticker", "series_ticker", "title", "source"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "KalshiMarket",
+      "description": "Specific listed binary contract and public market metadata.",
+      "required_fields": ["id", "type", "version", "market_ticker", "event_ticker", "title", "rules_source"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "ContractTemplate",
+      "description": "Reusable reviewed rule structure, such as POLITICALSTAT, before any market-specific mapping.",
+      "required_fields": ["id", "type", "version", "template_type", "rule_source", "human_review_status", "evidence_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "NormalizedContract",
+      "description": "A reviewed mapping from a venue market to common VALI research primitives.",
+      "required_fields": ["id", "type", "version", "market_ticker", "template_type", "terminal_measure_id", "human_review_status", "evidence_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "TerminalMeasure",
+      "description": "The measurable condition that resolves an event family or market.",
+      "required_fields": ["id", "type", "version", "name", "human_review_status", "evidence_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "SourceAgency",
+      "description": "Official or contract-defined source hierarchy used for terminal labels.",
+      "required_fields": ["id", "type", "version", "name", "source_role", "priority", "human_review_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "ComparisonOperator",
+      "description": "Machine-readable semantics for contract language such as above, below, exactly, at least, and between.",
+      "required_fields": ["id", "type", "version", "symbol", "boundary_semantics", "human_review_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "TimePeriod",
+      "description": "Measurement, publication, event, capture, or relative time window for a contract.",
+      "required_fields": ["id", "type", "version", "basis", "boundary_semantics", "timezone", "human_review_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "ClearHorizon",
+      "description": "Predeclared resolution window that determines when divergence is evaluated.",
+      "required_fields": ["id", "type", "version", "anchor", "start_rule", "end_rule", "human_review_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "EventFamily",
+      "description": "Group of contracts sharing terminal mechanism and research logic.",
+      "required_fields": ["id", "type", "version", "name", "human_review_status", "evidence_status", "claim_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "AttentionConcept",
+      "description": "Theory-level public behavior mapped to an event family before any query wording is frozen.",
+      "required_fields": ["id", "type", "version", "event_family_id", "rationale", "human_review_status", "evidence_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "AttentionQuery",
+      "description": "Candidate public attention query mapped to a reviewed attention concept.",
+      "required_fields": ["id", "type", "version", "concept_id", "query_text", "source", "human_review_status", "evidence_status"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "AttentionSource",
+      "description": "Public attention provider and point-in-time availability contract.",
+      "required_fields": ["id", "type", "version", "name", "public_access", "availability_semantics", "revision_semantics"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "ValidationEvidence",
+      "description": "Post-run evidence object appended after testing without mutating frozen theory.",
+      "required_fields": ["id", "type", "version", "target_ids", "experiment_id", "status", "metrics", "artifact_hashes"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "FalsificationGate",
+      "description": "Predeclared condition that fails, limits, or quarantines a hypothesis.",
+      "required_fields": ["id", "type", "version", "event_family_id", "criterion", "decision", "frozen_at"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    },
+    {
+      "type": "ClaimBoundary",
+      "description": "Evidence and scope boundary that prevents registry presence from becoming an alpha or trading claim.",
+      "required_fields": ["id", "type", "version", "scope", "allowed_claims", "prohibited_claims", "evidence_requirements"],
+      "human_review_required": true,
+      "freezable": true,
+      "claim_sensitive": true
+    }
+  ]
+}

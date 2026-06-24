@@ -1,0 +1,10 @@
+query_id,concept_id,query,source,geo,time_window,search_type,evidence_status,human_review_status,claim_status,notes
+q_oil_supply_disruption_001,oil_supply_disruption,oil supply disruption,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_oil_supply_disruption_002,oil_supply_disruption,Hormuz oil supply,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_maritime_traffic_disruption_001,maritime_traffic_disruption,Strait of Hormuz shipping,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_maritime_traffic_disruption_002,maritime_traffic_disruption,Hormuz vessel traffic,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_military_escalation_001,military_escalation,Hormuz military escalation,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_military_escalation_002,military_escalation,Iran Strait conflict,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_deescalation_or_reopening_001,deescalation_or_reopening,Hormuz reopening,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_deescalation_or_reopening_002,deescalation_or_reopening,Strait deescalation,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Illustrative candidate only; not frozen or validated.
+q_settlement_source_awareness_001,settlement_source_awareness,Strait of Hormuz traffic source,Google Trends official API,TBD,TBD,web_search,hypothesized,review_required,research_only,Placeholder only; actual query requires settlement-source review.

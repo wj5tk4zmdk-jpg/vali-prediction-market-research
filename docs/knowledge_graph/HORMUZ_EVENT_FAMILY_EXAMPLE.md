@@ -3,6 +3,18 @@
 Status: `draft`, `hypothesized`, `not_validated`,
 `human_review_required`. This is a conceptual example, not empirical evidence.
 
+KG-2 provides a machine-readable, non-validated version of this example under
+`configs/knowledge_graph/examples/hormuz_normalization/`, including:
+
+- `event_family.v1.json`
+- `attention_concepts.v1.csv`
+- `attention_queries.v1.csv`
+- `relationship_edges.v1.csv`
+- `graph_manifest.v1.json`
+
+These files are not a frozen attention manifest, not canonical validation
+inputs, and not trading signals.
+
 ## Family identity
 
 | Field | Draft value |
@@ -108,4 +120,3 @@ claim and no trading-readiness claim. The graph does not prove alpha and does
 not authorize trading. It uses no private data, proprietary order flow,
 credentials, live trading, order submission, or `P_flow`. All contract and
 attention mappings remain `human_review_required`.
-

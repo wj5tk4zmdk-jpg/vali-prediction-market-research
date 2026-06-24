@@ -3,6 +3,11 @@
 Status: reviewed documentation example based on the supplied POLITICALSTAT rule
 document. This is not automated legal interpretation or runtime support.
 
+KG-2 adds the corresponding lightweight machine-readable registry artifact at
+`configs/knowledge_graph/politicalstat_template.v1.json`. It remains a reviewed
+template reference only; it does not imply that POLITICALSTAT applies to any
+other series, including Hormuz, without separate contract review.
+
 | POLITICALSTAT rule element | Normalized VALI field | Research significance |
 |---|---|---|
 | Scope | `template_type: POLITICALSTAT`; `template_version`; `rule_source` | Limits the mapping to contracts governed by this reviewed template version. |
@@ -56,4 +61,3 @@ Ambiguity sets `human_review_required: true` and blocks validation/trading claim
 This mapping makes no empirical alpha claim and no trading-readiness claim. It
 does not prove alpha or authorize trading. It uses no private data, proprietary
 order flow, credentials, live trading, order submission, or `P_flow`.
-

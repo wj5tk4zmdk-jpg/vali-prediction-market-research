@@ -1,0 +1,46 @@
+{
+  "registry": "vali_knowledge_graph_status_values",
+  "version": "v1",
+  "status": "draft_schema_registry",
+  "documentation_only": true,
+  "runtime_parsing_supported": false,
+  "approved_values": {
+    "human_review_status": [
+      "not_reviewed",
+      "review_required",
+      "reviewed",
+      "approved",
+      "rejected"
+    ],
+    "mapping_status": [
+      "draft",
+      "human_review_required",
+      "frozen",
+      "retired"
+    ],
+    "evidence_status": [
+      "hypothesized",
+      "candidate",
+      "not_validated",
+      "validated_exploratory",
+      "validated_out_of_sample",
+      "failed",
+      "quarantined",
+      "retired"
+    ],
+    "claim_status": [
+      "no_alpha_claim",
+      "no_trading_readiness_claim",
+      "research_only",
+      "fixture_only",
+      "exploratory",
+      "eligible_for_validation"
+    ],
+    "data_boundary_status": [
+      "public_only",
+      "private_prohibited",
+      "proprietary_prohibited",
+      "credentialed_prohibited"
+    ]
+  }
+}

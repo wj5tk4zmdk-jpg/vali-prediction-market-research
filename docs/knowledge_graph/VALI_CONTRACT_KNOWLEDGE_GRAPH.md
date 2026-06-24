@@ -238,21 +238,26 @@ worked example document for the corresponding exclusions and claim boundaries.
 
 ## K. Proposed storage layout
 
-Future reviewed files may include:
+KG-2 adds a lightweight, documentation-only schema registry under
+`configs/knowledge_graph/`. These files are plain JSON/CSV review artifacts, not
+runtime graph infrastructure:
 
 ```text
 configs/knowledge_graph/node_types.v1.json
 configs/knowledge_graph/edge_types.v1.json
-configs/event_families/maritime_chokepoint_normalization.v1.json
-configs/contracts/templates/politicalstat.v1.json
-configs/contracts/mappings/kxhormuznorm.v1.json
-configs/attention_concepts/maritime_chokepoint_normalization.v1.csv
-configs/relationships/maritime_chokepoint_normalization_edges.v1.csv
-experiments/hormuz_normalization_v1/EVENT_FAMILY_GRAPH.md
+configs/knowledge_graph/status_values.v1.json
+configs/knowledge_graph/politicalstat_template.v1.json
+configs/knowledge_graph/examples/hormuz_normalization/event_family.v1.json
+configs/knowledge_graph/examples/hormuz_normalization/attention_concepts.v1.csv
+configs/knowledge_graph/examples/hormuz_normalization/attention_queries.v1.csv
+configs/knowledge_graph/examples/hormuz_normalization/relationship_edges.v1.csv
+configs/knowledge_graph/examples/hormuz_normalization/graph_manifest.v1.json
 ```
 
 KG-1 documents these paths only. It creates no runtime config or authoritative
-mapping file.
+mapping file. KG-2 converts the design into reviewable registry artifacts, but
+still creates no parser, provider behavior, empirical input, CLI behavior, or
+trading capability.
 
 ## L. Review and freeze workflow
 
@@ -332,4 +337,3 @@ paper trading under a separately approved plan.
 - No automated legal interpretation without review.
 - All ambiguous contract mappings require human review and default to
   exclusion/no trade until resolved.
-

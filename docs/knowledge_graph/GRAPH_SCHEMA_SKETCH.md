@@ -3,6 +3,18 @@
 Status: documentation-only sketches. These examples are not runtime schemas and
 do not imply empirical validation.
 
+KG-2 converts these sketches into a lightweight registry at:
+
+- `configs/knowledge_graph/node_types.v1.json`
+- `configs/knowledge_graph/edge_types.v1.json`
+- `configs/knowledge_graph/status_values.v1.json`
+- `configs/knowledge_graph/politicalstat_template.v1.json`
+- `configs/knowledge_graph/examples/hormuz_normalization/graph_manifest.v1.json`
+
+Those registry files are machine-readable review artifacts only. They do not
+implement graph parsing, contract parsing, provider ingestion, attention
+collection, empirical validation, or trading behavior.
+
 ## Common node schema
 
 ```json
@@ -169,4 +181,3 @@ Evidence is appended after testing. It must not mutate the hash of the frozen
 pre-validation theory. No schema object proves alpha or authorizes trading.
 Ambiguous fields require human review. No private data, proprietary order flow,
 credentials, live trading, order submission, or `P_flow` is permitted.
-

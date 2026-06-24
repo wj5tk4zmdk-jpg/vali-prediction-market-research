@@ -1,0 +1,32 @@
+{
+  "graph_id": "example_graph:hormuz_normalization:v1",
+  "version": "v1",
+  "status": "draft",
+  "documentation_only": true,
+  "runtime_parsing_supported": false,
+  "evidence_status": "not_validated",
+  "human_review_status": "review_required",
+  "files_included": [
+    "event_family.v1.json",
+    "attention_concepts.v1.csv",
+    "attention_queries.v1.csv",
+    "relationship_edges.v1.csv"
+  ],
+  "claim_boundaries": [
+    "no alpha claim",
+    "no trading-readiness claim",
+    "no order submission",
+    "no private data",
+    "no proprietary order flow",
+    "no P_flow",
+    "no live trading",
+    "no credentials"
+  ],
+  "notes": [
+    "This is not a frozen attention manifest.",
+    "This is not a canonical validation input.",
+    "This is not a trading signal.",
+    "All relationships remain hypothesized and non-validated.",
+    "Human review is required before any empirical use."
+  ]
+}

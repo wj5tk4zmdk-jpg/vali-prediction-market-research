@@ -1,0 +1,38 @@
+{
+  "id": "maritime_chokepoint_normalization",
+  "type": "EventFamily",
+  "version": "v1",
+  "name": "Maritime chokepoint normalization",
+  "documentation_only": true,
+  "kalshi": {
+    "category": "Politics",
+    "tags": ["International"],
+    "series_ticker": "KXHORMUZNORM"
+  },
+  "terminal_measure": {
+    "id": "hormuz_traffic_normalization",
+    "name": "Strait of Hormuz traffic normalization",
+    "source": "contract_defined_settlement_source",
+    "human_review_status": "review_required"
+  },
+  "contract_template_status": "unresolved_do_not_assume_politicalstat",
+  "clear_horizon_status": "draft_review_required",
+  "mapping_status": "draft",
+  "evidence_status": "not_validated",
+  "claim_status": [
+    "no_alpha_claim",
+    "no_trading_readiness_claim",
+    "research_only"
+  ],
+  "data_boundary_status": [
+    "public_only",
+    "private_prohibited",
+    "proprietary_prohibited",
+    "credentialed_prohibited"
+  ],
+  "human_review_status": "review_required",
+  "review_notes": [
+    "No event ticker, market ticker, threshold, operator, source hierarchy, or settlement rule is inferred from the series name.",
+    "This example is not a frozen attention manifest, not a canonical validation input, and not a trading signal."
+  ]
+}

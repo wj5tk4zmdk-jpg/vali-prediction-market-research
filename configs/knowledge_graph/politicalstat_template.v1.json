@@ -1,0 +1,78 @@
+{
+  "id": "contract_template:politicalstat:v1",
+  "type": "ContractTemplate",
+  "template_type": "POLITICALSTAT",
+  "version": "v1",
+  "source_document_status": "uploaded_template_reference",
+  "human_review_required": true,
+  "documentation_only": true,
+  "runtime_parsing_supported": false,
+  "operator_semantics": {
+    "above": {
+      "symbol": ">",
+      "description": "Observed terminal value must be greater than the stated value."
+    },
+    "below": {
+      "symbol": "<",
+      "description": "Observed terminal value must be less than the stated value."
+    },
+    "exactly": {
+      "symbol": "=",
+      "description": "Observed terminal value must equal the stated value, rounded to two decimals unless contract or source convention specifies otherwise."
+    },
+    "at_least": {
+      "symbol": ">=",
+      "description": "Observed terminal value must be greater than or equal to the stated value."
+    },
+    "between": {
+      "symbol": "[lower, upper)",
+      "description": "Lower bound inclusive and upper bound exclusive unless otherwise specified."
+    }
+  },
+  "normalized_fields": [
+    "underlying",
+    "political_stat",
+    "value",
+    "source_agencies",
+    "time_period",
+    "comparison_operator",
+    "payout_criterion",
+    "first_release_rule",
+    "revision_rule",
+    "no_data_fallback",
+    "last_trading_rule",
+    "expiration_rule",
+    "settlement_value",
+    "expiration_value",
+    "position_accountability_level",
+    "contingency_review_rule"
+  ],
+  "field_notes": {
+    "underlying": "Combines value, political stat, and time period.",
+    "political_stat": "Exact metric, entity, organization, population, unit, and qualifications.",
+    "value": "Numeric, text, range, or None as stated in the contract.",
+    "source_agencies": "Ordered official or contract-defined source hierarchy.",
+    "time_period": "Measurement, publication, distribution, event, relative, or exact capture window.",
+    "first_release_rule": "First official or non-preliminary release resolves unless contract says otherwise.",
+    "revision_rule": "Revisions after expiration are ignored.",
+    "no_data_fallback": "If no data is released by expiration, last fair price is determined solely by the Exchange.",
+    "last_trading_rule": "One minute before expected release or capture when specified; otherwise expiration date/time.",
+    "expiration_rule": "Latest default three months after scheduled release or period end unless venue rules alter timing.",
+    "settlement_value": "YES pays 1.0; this is not a probability or alpha statement.",
+    "position_accountability_level": "Venue risk constraint, not executable depth.",
+    "contingency_review_rule": "Rule 7.1 review or indeterminate expiration value requires human review."
+  },
+  "claim_boundaries": [
+    "no automated legal interpretation",
+    "human review required",
+    "no alpha claim",
+    "no trading-readiness claim",
+    "no order submission",
+    "no live trading",
+    "no credentials",
+    "no private data",
+    "no proprietary order flow",
+    "no P_flow"
+  ],
+  "non_applicability_note": "Do not claim POLITICALSTAT applies to Hormuz or any other series unless specifically verified by contract review."
+}
