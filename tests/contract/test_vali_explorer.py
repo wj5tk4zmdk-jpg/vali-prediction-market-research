@@ -9,6 +9,8 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).parents[2]
 EXPLORER = ROOT / "docs" / "submission" / "VALI_EXPLORER.html"
+PAGES_INDEX = ROOT / "docs" / "index.html"
+NOJEKYLL = ROOT / "docs" / ".nojekyll"
 FROZEN_HASH = (
     "f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a"
 )
@@ -78,6 +80,13 @@ def _parse() -> tuple[str, ExplorerParser]:
 
 def test_explorer_exists_with_required_sections_and_unique_ids():
     assert EXPLORER.is_file()
+    assert PAGES_INDEX.is_file()
+    assert NOJEKYLL.is_file()
+    pages_index = PAGES_INDEX.read_text(encoding="utf-8")
+    assert 'url=submission/VALI_EXPLORER.html' in pages_index
+    assert 'href="submission/VALI_EXPLORER.html"' in pages_index
+    assert "http://" not in pages_index
+    assert "https://" not in pages_index
     _, parser = _parse()
     assert REQUIRED_SECTIONS.issubset(set(parser.ids))
     assert len(parser.ids) == len(set(parser.ids))

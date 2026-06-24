@@ -158,6 +158,7 @@ def test_submission_pack_makes_no_affirmative_operational_claims():
     assert "no order submission" in final_package_folded
     assert "no `p_flow`" in final_package_folded
     assert "point-in-time attention" in final_package_folded
+    assert "github pages is enabled" in final_package_folded
     assert "sdfas" not in final_package_folded
     assert "C:\\Users\\" not in final_package
     assert "C:/Users/" not in final_package

@@ -36,8 +36,8 @@ Verified on `2026-06-24` for repository
 
 - [x] Repository visibility is public; no visibility change was required in
   Submission Step 5.
-- [x] GitHub Pages was intentionally not enabled without explicit
-  authorization; reviewers can open the committed Explorer directly.
+- [x] GitHub Pages is enabled from `main/docs`, with the site root forwarding
+  to the committed Explorer.
 - [x] No open-source license was added without explicit authorization.
 - [ ] Submit the repository URL and adapted application note with the job
   application.

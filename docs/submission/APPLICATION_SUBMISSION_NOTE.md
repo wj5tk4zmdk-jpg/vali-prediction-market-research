@@ -24,6 +24,9 @@ than manufacturing a claim from incomplete evidence.
 Repository:
 `https://github.com/wj5tk4zmdk-jpg/vali-prediction-market-research`
 
+Live Explorer:
+`https://wj5tk4zmdk-jpg.github.io/vali-prediction-market-research/`
+
 Recommended review path:
 
 1. [`VALI_EXPLORER.html`](VALI_EXPLORER.html)
