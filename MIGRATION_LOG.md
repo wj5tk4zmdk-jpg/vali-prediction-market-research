@@ -899,3 +899,60 @@ Completed 2026-06-24.
   trading, or `P_flow` was introduced.
 - Full result after Step 5B: **161 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Files created:
+  - `experiments/fed_easing_kxfed_v1/EXPERIMENT_MANIFEST.md`
+  - `experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md`
+  - `experiments/fed_easing_kxfed_v1/data_availability_manifest.json`
+  - `tests/contract/test_data_availability_manifest.py`
+- Files modified:
+  - `MIGRATION_LOG.md`
+  - `docs/operational/EXPERIMENT_REGISTRY.md`
+- Created local commit `6468f598646fc3012eafd48d9f220a305beac813`
+  with subject `research: audit data availability for fed easing experiment`.
+- Step 5B concluded `insufficient_due_to_missing_attention_history`; 5C
+  cannot proceed honestly until remediation is complete and availability is
+  audited again.
+
+## Step 5B-1 - Controlled data remediation protocol
+
+Completed 2026-06-24.
+
+- Added
+  `experiments/fed_easing_kxfed_v1/ATTENTION_DATA_ACQUISITION_PROTOCOL.md`
+  defining the frozen feature universe, acquisition/provenance fields, current
+  normalized field mappings, acceptable and quarantine-only sources,
+  prohibited private/proprietary sources, revision semantics, minimum coverage,
+  and status `not_acquired`.
+- Added `experiments/fed_easing_kxfed_v1/KALSHI_RECONSTRUCTION_LEDGER.md`
+  classifying fixtures, raw captures, normalized quotes, trades, discovery,
+  depth snapshots, reports, and mixed/uncertain local material without moving,
+  deleting, combining, or re-normalizing any data.
+- Added machine-readable
+  `experiments/fed_easing_kxfed_v1/data_remediation_manifest.json`. It records
+  66,465 hourly quotes, 42,168 trades, one incomplete observed-depth snapshot,
+  no historical depth, four non-ready canonical input families, and
+  `may_proceed_to_5C=false`.
+- Updated `docs/operational/EXPERIMENT_REGISTRY.md` with remediation paths and
+  the status `Registered, not yet empirically validated; data remediation
+  required before 5C`, preserving the existing compatibility wording.
+- Added `tests/contract/test_data_remediation_plan.py` with six deterministic
+  existence, identity/freeze, acquisition-status, 5C/capacity, claim-boundary,
+  and prohibited-source checks.
+- Attention history remains `not_acquired`; the three fixture days cannot
+  support empirical validation. Acceptable source requirements are documented,
+  but no live acquisition was executed or authorized.
+- Kalshi quotes and trades may become market-probability and secondary-activity
+  inputs only after manual provenance review, tier separation, lineage hashing,
+  outcome eligibility verification, and a repeated Step 5B audit. Capacity and
+  tradability remain disabled without historical depth.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No source logic, methodology, formula, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, existing test behavior,
+  report output, artifact, manifest field, schema, execution policy, or fee
+  model changed.
+- No alpha or trading-readiness claim, empirical validation, backtest, live API
+  behavior, network dependency, credential use, private input, proprietary
+  flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 5B-1: **167 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.

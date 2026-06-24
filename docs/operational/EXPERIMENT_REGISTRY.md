@@ -15,13 +15,20 @@ not authorize silent changes to a registered experiment.
   `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`
 - **Venue/market family:** Kalshi KXFED / Fed easing-style contracts, as
   currently implemented.
-- **Status:** Registered, not yet empirically validated.
+- **Status:** Registered, not yet empirically validated; data remediation
+  required before 5C.
 - **Experiment manifest:**
   `experiments/fed_easing_kxfed_v1/EXPERIMENT_MANIFEST.md`
 - **Data availability audit:**
   `experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md`
 - **Machine-readable availability manifest:**
   `experiments/fed_easing_kxfed_v1/data_availability_manifest.json`
+- **Attention acquisition protocol:**
+  `experiments/fed_easing_kxfed_v1/ATTENTION_DATA_ACQUISITION_PROTOCOL.md`
+- **Kalshi reconstruction ledger:**
+  `experiments/fed_easing_kxfed_v1/KALSHI_RECONSTRUCTION_LEDGER.md`
+- **Machine-readable remediation manifest:**
+  `experiments/fed_easing_kxfed_v1/data_remediation_manifest.json`
 - **Current 5B decision:** `insufficient_due_to_missing_attention_history`
 - **Allowed claims:** Methodology readiness only.
 - **Prohibited claims:** Alpha proven; trading-ready; capacity-validated; live
@@ -30,4 +37,6 @@ not authorize silent changes to a registered experiment.
 Evaluation is governed by `5A_EMPIRICAL_VALIDATION_PLAN.md` and
 `FALSIFICATION_GATES.md`. Registration does not authorize live collection,
 credentials, order submission, or trading. Empirical validation has not yet
-been run.
+been run. Step 5C cannot proceed until point-in-time attention history is
+acquired, Kalshi captures are reviewed/tiered, and the data availability audit
+is repeated.
