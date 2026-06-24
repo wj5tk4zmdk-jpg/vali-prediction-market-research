@@ -689,3 +689,53 @@ Completed 2026-06-23.
   flow, order submission, live trading, or `P_flow` was introduced.
 - Full result after Step 4J: **137 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Created local commit `195a2e33202b834f5f4b560f2c1abc4078d2ad27`
+  with subject `migration: quarantine artifacts and establish data tiers`.
+
+## Step 4K - Package and repository hygiene
+
+Completed 2026-06-23.
+
+- Confirmed Step 4J created `data/{raw,interim,processed,quarantine}/`,
+  `reports/{archive,runs,quarantine}/`, and `artifacts/quarantine/`, together
+  with `ARTIFACT_INVENTORY.md`.
+- Confirmed stale builds, wheels, archives, egg metadata, mixed Kalshi
+  captures, Trends acceptance outputs, synthetic and legacy runs, and the
+  reviewed Kalshi verification report were quarantined or tiered without
+  deleting public data.
+- Confirmed imports resolve from `src/vali`, never from the quarantined
+  `build/lib` source copy.
+- Step 4J baseline before hygiene changes: **137 passed, 0 failed** at commit
+  `195a2e33202b834f5f4b560f2c1abc4078d2ad27`.
+- Added `REPOSITORY_POLICY.md` covering authoritative source imports, data and
+  report tiers, artifact quarantine, deterministic fixtures, compatibility
+  copies, and the public-data-only research boundary.
+- Added `ENVIRONMENT.md` covering Python and dependency guidance, the tested
+  local command, local environment state, import policy, and the deliberately
+  absent live Google Trends and credentialed Kalshi trading integrations.
+- Updated `README.md` with a concise v0.1 migration orientation, canonical
+  config path, governance/documentation map, test command, and explicit
+  no-alpha/no-live-trading caveats.
+- Reviewed `pyproject.toml`: package version `0.3.0` remains consistent with
+  `vali.__version__` and generated run manifests; package discovery is already
+  limited to `src/`, and pytest already discovers the relocated `tests/` tree.
+  No metadata or dependency change was needed.
+- Reviewed `.gitignore` and retained it unchanged because it narrowly ignores
+  local/generated state while leaving source, docs, configs, tests, fixtures,
+  reviewed reports, and future intentional raw/processed data visible.
+- Reviewed root, provider, and boundary package exports. Existing compatibility
+  facades remain importable and no unstable export was added or removed.
+- Added `tests/contract/test_repository_hygiene.py` covering authoritative
+  import resolution, boundary and legacy facade imports, documentation,
+  canonical and compatibility configs, package/version consistency, the frozen
+  Trends manifest hash, and prohibited operational API surfaces.
+- No source logic, formula, methodology, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, report, artifact,
+  manifest field, schema, execution policy, fee model, or legacy public import
+  changed.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No live API, network dependency, credential use, private input, proprietary
+  flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 4K: **143 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.

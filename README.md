@@ -1,18 +1,37 @@
-# VALI Research MVP
+# VALI Research
 
-VALI is an offline research package for measuring divergence between behavioral
-activity and executable market-implied conviction. Version zero models the
+VALI is an offline, public-data-only research package for measuring divergence
+between Behavioral Attention (`A`) and executable market-implied Priced
+Conviction (`P`). The current pilot models the
 binary question: **will the Federal Reserve target range be lower after the
 next scheduled FOMC meeting?**
 
-The package is deliberately conservative. It enforces point-in-time feature
-availability, prior-only normalization, liquidity filters, event-grouped
-walk-forward evaluation, and complete exclusion/no-trade logs. It does not
-claim alpha and does not connect to live data or trading venues.
+The v0.1 repository migration is in progress. The methodology spine and its
+compatibility boundaries are protected by deterministic tests, but the project
+does **not** make an empirical alpha claim and contains no live trading, order
+submission, or credentialed venue integration. Public Kalshi endpoints are used
+only for read-only research collection; the Google Trends official API client
+has not been implemented.
 
-Version 0.2 adds a strictly read-only Kalshi adapter for the `KXFED` series.
-Version 0.3 adds offline-complete readiness for the official Google Trends API
-alpha. Neither integration contains order-placement functionality.
+VALI enforces point-in-time feature availability, prior-only normalization,
+liquidity filters, event-grouped walk-forward evaluation, and complete
+exclusion/no-trade logs. Honest null and negative results are valid outcomes.
+
+## Repository orientation
+
+- Start with [`AGENTS.md`](AGENTS.md) for repository governance and
+  [`docs/methodology/vali-1.0-contract.md`](docs/methodology/vali-1.0-contract.md)
+  for the methodology contract.
+- Architecture decisions live in [`docs/adr/`](docs/adr/); research and
+  reporting discipline live in [`docs/research-protocol.md`](docs/research-protocol.md)
+  and [`docs/reporting-and-alpha-policy.md`](docs/reporting-and-alpha-policy.md).
+- Repository, environment, and artifact handling are documented in
+  [`REPOSITORY_POLICY.md`](REPOSITORY_POLICY.md), [`ENVIRONMENT.md`](ENVIRONMENT.md),
+  and [`ARTIFACT_INVENTORY.md`](ARTIFACT_INVENTORY.md).
+- The canonical experiment config is
+  [`configs/experiments/fed_easing_v1.toml`](configs/experiments/fed_easing_v1.toml).
+  Compatibility config and fixture paths still exist and must not be retired
+  without a separate reviewed migration.
 
 ## Install and run
 
@@ -23,7 +42,7 @@ vali validate --config work/synthetic/config.toml
 vali signal --config work/synthetic/config.toml --out work/signals
 vali backtest --config work/synthetic/config.toml --out work/backtest
 vali report --run-dir work/backtest
-pytest
+& '.\work\.venv\Scripts\python.exe' -m pytest -q
 ```
 
 ## Kalshi market-data ingestion
