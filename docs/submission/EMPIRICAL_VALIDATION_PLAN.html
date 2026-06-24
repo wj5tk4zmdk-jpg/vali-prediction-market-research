@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Frozen hypotheses, required baselines, metrics, data gates, falsification conditions, and claim boundaries.">
+  <title>Step 5A Empirical Validation Plan · VALI Research Library</title>
+  <link rel="stylesheet" href="library.css">
+</head>
+<body style="--accent:#8066a8;--accent-soft:#eee7f8" data-page="validation-plan">
+  <a class="skip-link" href="#document">Skip to document</a>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="library-brand" href="VALI_EXPLORER.html"><span class="library-mark">V</span><span>VALI Explorer</span></a>
+      <span class="topbar-divider" aria-hidden="true"></span>
+      <span class="document-label">Research Library · Validation plan</span>
+      <button class="toc-toggle" id="toc-toggle" type="button" aria-controls="doc-sidebar" aria-expanded="false">Contents</button>
+      <label class="page-switcher-wrap"><span class="skip-link">Choose a library page</span><select class="page-switcher" id="page-switcher" aria-label="Choose a research library page"><option value="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html">Case study</option><option value="EMPIRICAL_VALIDATION_PLAN.html" selected>Validation plan</option><option value="DATA_AVAILABILITY_AUDIT.html">Data audit</option><option value="ATTENTION_DATA_ACQUISITION_PROTOCOL.html">Attention protocol</option><option value="KALSHI_RECONSTRUCTION_LEDGER.html">Kalshi ledger</option><option value="FINAL_VALIDATION_REPORT.html">Validation report</option><option value="REVIEWER_GUIDE.html">Reviewer guide</option></select></label>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="doc-sidebar" id="doc-sidebar">
+      <span class="doc-type">Pre-analysis protocol</span>
+      <h2 class="sidebar-title">Validation plan</h2>
+      <p class="sidebar-summary">Frozen hypotheses, required baselines, metrics, data gates, falsification conditions, and claim boundaries.</p>
+      <label class="search-label" for="section-search">Search this document</label>
+      <input class="section-search" id="section-search" type="search" placeholder="Try “leakage” or “depth”">
+      <p class="search-result" id="search-result">11 sections</p>
+      <p class="toc-heading">On this page</p>
+      <nav class="toc" aria-label="Document sections"><a href="#a-purpose">A. Purpose</a><a href="#b-canonical-experiment">B. Canonical experiment</a><a href="#c-primary-hypothesis">C. Primary hypothesis</a><a href="#d-null-hypothesis">D. Null hypothesis</a><a href="#e-required-baselines">E. Required baselines</a><a href="#f-required-metrics">F. Required metrics</a><a href="#g-data-validity-gates">G. Data validity gates</a><a href="#h-falsification-gates">H. Falsification gates</a><a href="#i-acceptance-thresholds">I. Acceptance thresholds</a><a href="#j-claim-boundaries">J. Claim boundaries</a><a href="#k-next-step">K. Next step</a></nav>
+      <div class="sidebar-actions">
+        <button class="small-button" id="collapse-all" type="button">Collapse all</button>
+        <a class="small-button" href="../operational/5A_EMPIRICAL_VALIDATION_PLAN.md">View source .md</a>
+      </div>
+    </aside>
+    <main class="document" id="document">
+      <header class="doc-hero">
+        <span class="hero-kicker">Pre-analysis protocol · VALI Research Library</span>
+        <h1>Step 5A Empirical Validation Plan</h1>
+        <p>Frozen hypotheses, required baselines, metrics, data gates, falsification conditions, and claim boundaries.</p>
+        <div class="hero-meta"><span class="meta-pill">Predeclared before evaluation</span><span class="meta-pill">Public-data-only</span><span class="meta-pill">Research, not a trading claim</span></div>
+      </header>
+      <section class="doc-section" id="a-purpose" data-doc-section><div class="section-heading"><span class="section-index">Section 01</span><h2>A. Purpose</h2><button class="section-toggle" type="button" aria-controls="a-purpose-body" aria-expanded="true" aria-label="Collapse A. Purpose" data-section-title="A. Purpose">⌄</button></div><div class="section-body" id="a-purpose-body">
+<p>This pre-analysis plan defines how VALI v0.1 will be judged before empirical work begins. It freezes the experiment, hypotheses, baselines, metrics, validity gates, falsification conditions, acceptance categories, and claim boundaries. No empirical alpha claim has been established.</p>
+</div></section>
+<section class="doc-section" id="b-canonical-experiment" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>B. Canonical experiment</h2><button class="section-toggle" type="button" aria-controls="b-canonical-experiment-body" aria-expanded="true" aria-label="Collapse B. Canonical experiment" data-section-title="B. Canonical experiment">⌄</button></div><div class="section-body" id="b-canonical-experiment-body">
+<p>The registered experiment is the Fed easing / Kalshi KXFED-oriented research setup. It uses public Behavioral Attention <code>A</code> and public or executable market-implied Priced Conviction <code>P</code>. VALI measures attention velocity <code>gA</code>, price velocity <code>gP</code>, signed divergence <code>S_t</code>, divergence magnitude <code>M_t = abs(S_t)</code>, and the predeclared regime classification.</p>
+<p>Evaluation must preserve the Clear Horizon, use prior-only normalization, keep labels outside signal-time frames, and group walk-forward folds by meeting. Execution-aware simulation is permitted only where contemporaneous executable price and observed-depth evidence support it. Forecast evaluation may proceed without historical depth, but capacity and tradability claims may not.</p>
+</div></section>
+<section class="doc-section" id="c-primary-hypothesis" data-doc-section><div class="section-heading"><span class="section-index">Section 03</span><h2>C. Primary hypothesis</h2><button class="section-toggle" type="button" aria-controls="c-primary-hypothesis-body" aria-expanded="true" aria-label="Collapse C. Primary hypothesis" data-section-title="C. Primary hypothesis">⌄</button></div><div class="section-body" id="c-primary-hypothesis-body">
+<p>VALI's predeclared public attention/price divergence measures contain incremental resolution information beyond market-implied probability, historical-frequency, and naive event-prior baselines when evaluated strictly out of sample using prior-only normalization and point-in-time data.</p>
+</div></section>
+<section class="doc-section" id="d-null-hypothesis" data-doc-section><div class="section-heading"><span class="section-index">Section 04</span><h2>D. Null hypothesis</h2><button class="section-toggle" type="button" aria-controls="d-null-hypothesis-body" aria-expanded="true" aria-label="Collapse D. Null hypothesis" data-section-title="D. Null hypothesis">⌄</button></div><div class="section-body" id="d-null-hypothesis-body">
+<p>The null hypothesis is that VALI provides no incremental predictive or timing value beyond market-implied probability, historical-frequency baselines, or naive event-prior baselines after accounting for leakage, liquidity, fees, missingness, and data availability.</p>
+</div></section>
+<section class="doc-section" id="e-required-baselines" data-doc-section><div class="section-heading"><span class="section-index">Section 05</span><h2>E. Required baselines</h2><button class="section-toggle" type="button" aria-controls="e-required-baselines-body" aria-expanded="true" aria-label="Collapse E. Required baselines" data-section-title="E. Required baselines">⌄</button></div><div class="section-body" id="e-required-baselines-body">
+<p>Every canonical evaluation must include:</p>
+<ul><li>the executable or otherwise eligible market probability at the decision cutoff;</li><li>the prior-only historical easing frequency available before each test event;</li><li>a no-change or sticky-prior forecast that carries the last eligible market probability forward;</li><li>a seeded random or within-event permutation baseline that preserves the declared event and time structure; and</li><li>a price-only momentum or <code>gP</code> baseline, where the available history supports the same prior-only construction.</li></ul>
+<p>VALI must not be compared only with a weak or retrospectively chosen baseline.</p>
+</div></section>
+<section class="doc-section" id="f-required-metrics" data-doc-section><div class="section-heading"><span class="section-index">Section 06</span><h2>F. Required metrics</h2><button class="section-toggle" type="button" aria-controls="f-required-metrics-body" aria-expanded="true" aria-label="Collapse F. Required metrics" data-section-title="F. Required metrics">⌄</button></div><div class="section-body" id="f-required-metrics-body">
+<h3>Forecast quality</h3>
+<ul><li>Brier score is the primary proper scoring rule.</li><li>Log loss is reported with the declared probability clipping where numerically safe.</li><li>Calibration is reported by predeclared probability buckets with counts.</li><li>Directional hit rate is secondary evidence and cannot override proper scores.</li></ul>
+<p>Score differences must be computed out of sample by event. Event-level uncertainty intervals must be reported when sample size permits; folds and excluded events remain visible even when an interval is not reliable.</p>
+<h3>Timing</h3>
+<ul><li>Clear-Horizon distribution and event coverage;</li><li>lead/lag between <code>A</code> movement and <code>P</code> movement; and</li><li>whether divergence resolves before price movement or merely follows it.</li></ul>
+<h3>Regimes</h3>
+<ul><li>performance and coverage by regime;</li><li>performance by predeclared divergence-magnitude bucket; and</li><li>stability of direction and coverage across walk-forward folds.</li></ul>
+<h3>Execution awareness</h3>
+<ul><li>simulated P&amp;L only for complete executable snapshots;</li><li>all fee results labeled provisional while the fee model is provisional; and</li><li>capacity and tradability metrics disabled when historical depth is unavailable rather than inferred from volume or open interest.</li></ul>
+<h3>Robustness</h3>
+<ul><li>leave-one-event-out sensitivity;</li><li>feature-family sensitivity without post-hoc replacement features;</li><li>missingness and fixed-composition sensitivity; and</li><li>date-cutoff sensitivity using only predeclared alternative cutoffs.</li></ul>
+</div></section>
+<section class="doc-section" id="g-data-validity-gates" data-doc-section><div class="section-heading"><span class="section-index">Section 07</span><h2>G. Data validity gates</h2><button class="section-toggle" type="button" aria-controls="g-data-validity-gates-body" aria-expanded="true" aria-label="Collapse G. Data validity gates" data-section-title="G. Data validity gates">⌄</button></div><div class="section-body" id="g-data-validity-gates-body">
+<p>A run is invalid unless all applicable hard gates pass:</p>
+<ul><li>the frozen feature-manifest hash is unchanged;</li><li>every research input is public and its provenance is documented;</li><li>no private, proprietary, client, pending-order, or order-flow input is used;</li><li>observation, public-availability, and vintage timestamps exist where the contract requires them;</li><li>outcome labels are physically isolated from signal-time and pre-decision frames;</li><li>normalization and calibration use prior observations only;</li><li>internal event identity is stable and uniquely maps to the EASING contract;</li><li>no out-of-manifest feature enters <code>A</code>;</li><li>optional-feature missingness follows exactly the frozen exclusion or reweighting rule, with composition audited; and</li><li>provider fixture provenance and raw-data provenance are documented.</li></ul>
+</div></section>
+<section class="doc-section" id="h-falsification-gates" data-doc-section><div class="section-heading"><span class="section-index">Section 08</span><h2>H. Falsification gates</h2><button class="section-toggle" type="button" aria-controls="h-falsification-gates-body" aria-expanded="true" aria-label="Collapse H. Falsification gates" data-section-title="H. Falsification gates">⌄</button></div><div class="section-body" id="h-falsification-gates-body">
+<p>The canonical hypothesis is falsified or the run is invalid if any of these conditions applies:</p>
+<ul><li>apparent value requires changing features or thresholds after outcomes are inspected;</li><li>outcome labels enter signal-time or pre-decision frames;</li><li>the signal disappears in grouped walk-forward evaluation;</li><li>one event or anomalous period drives the result;</li><li>VALI fails to improve on market-probability and historical-frequency baselines out of sample;</li><li>divergence follows market movement rather than providing lead information;</li><li>performance requires missingness-driven composition drift;</li><li>a capacity or tradability claim relies on unavailable historical depth;</li><li>the conclusion changes materially with the provisional fee assumption; or</li><li>the result requires private inputs, proprietary flow, <code>P_flow</code>, credentials, order submission, or live trading.</li></ul>
+<p>Failure is a valid research result and must be reported without retuning the registered experiment into success.</p>
+</div></section>
+<section class="doc-section" id="i-acceptance-thresholds" data-doc-section><div class="section-heading"><span class="section-index">Section 09</span><h2>I. Acceptance thresholds</h2><button class="section-toggle" type="button" aria-controls="i-acceptance-thresholds-body" aria-expanded="true" aria-label="Collapse I. Acceptance thresholds" data-section-title="I. Acceptance thresholds">⌄</button></div><div class="section-body" id="i-acceptance-thresholds-body">
+<h3>Fail</h3>
+<p>Classify the experiment as <strong>Fail</strong> if leakage is detected, the frozen manifest changes, valid point-in-time data are unavailable, VALI shows no out-of-sample improvement over the required baselines, any improvement exists only in sample, an execution claim requires unavailable depth, or a prohibited input appears.</p>
+<h3>Promising but exploratory</h3>
+<p>Classify the result as <strong>Exploratory</strong> when direction is promising but the event sample is small, VALI improves on only some baselines, the event-level uncertainty interval includes zero, leave-one-event-out analysis reverses the conclusion, or capacity cannot be evaluated. Exploratory results authorize no alpha or trading claim.</p>
+<h3>Proceed to Step 5B or 5C</h3>
+<p>Proceed when data availability is sufficient to run the canonical validation honestly, every hard validity gate passes, baselines and metrics remain predeclared, all caveats are documented, and no alpha or trading claim is made. This is a readiness threshold, not a performance threshold.</p>
+<h3>Potential alpha evidence, not trading readiness</h3>
+<p>Potential alpha evidence would require out-of-sample improvement over the predeclared baselines, robustness across folds and sensitivity checks, evidence of lead time rather than post-price reaction, and transparent failure modes. Execution-aware evidence counts only where executable price, depth, fees, and closures are observed or defensibly specified. Even this category is not trading readiness.</p>
+</div></section>
+<section class="doc-section" id="j-claim-boundaries" data-doc-section><div class="section-heading"><span class="section-index">Section 10</span><h2>J. Claim boundaries</h2><button class="section-toggle" type="button" aria-controls="j-claim-boundaries-body" aria-expanded="true" aria-label="Collapse J. Claim boundaries" data-section-title="J. Claim boundaries">⌄</button></div><div class="section-body" id="j-claim-boundaries-body">
+<ul><li>Passing Step 5A does not prove alpha.</li><li>Passing Step 5A does not authorize trading.</li><li>Passing Step 5A authorizes only disciplined empirical validation.</li><li>Any alpha claim requires later out-of-sample empirical evidence.</li><li>Any trading claim requires later execution, depth, fee, capacity, operational, and compliance validation.</li></ul>
+</div></section>
+<section class="doc-section" id="k-next-step" data-doc-section><div class="section-heading"><span class="section-index">Section 11</span><h2>K. Next step</h2><button class="section-toggle" type="button" aria-controls="k-next-step-body" aria-expanded="true" aria-label="Collapse K. Next step" data-section-title="K. Next step">⌄</button></div><div class="section-body" id="k-next-step-body">
+<p>The next step is <strong>Step 5B — data availability audit and experiment manifest</strong>. Step 5A authorizes that audit but does not authorize live collection or an empirical performance claim.</p>
+</div></section>
+      <nav class="page-neighbors" aria-label="Adjacent library pages">
+        <a class="neighbor previous" href="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html"><small>Previous</small><b>← Case study</b></a>
+        <a class="neighbor next" href="DATA_AVAILABILITY_AUDIT.html"><small>Next</small><b>Data audit →</b></a>
+      </nav>
+      <footer class="claim-footer"><p><strong>Claim boundary:</strong> No empirical alpha claim. No trading-readiness claim. No private data, proprietary order flow, order submission, live trading, or <code>P_flow</code>.</p></footer>
+    </main>
+  </div>
+  <noscript><style>.doc-sidebar{display:block!important;position:static;max-height:none}.section-body[hidden]{display:block!important}</style></noscript>
+  <script src="library.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A conservative classification of public quotes, trades, fixtures, depth evidence, mixed captures, and reconstruction decisions.">
+  <title>Kalshi Reconstruction Ledger · VALI Research Library</title>
+  <link rel="stylesheet" href="library.css">
+</head>
+<body style="--accent:#c85047;--accent-soft:#fbe5e2" data-page="kalshi-ledger">
+  <a class="skip-link" href="#document">Skip to document</a>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="library-brand" href="VALI_EXPLORER.html"><span class="library-mark">V</span><span>VALI Explorer</span></a>
+      <span class="topbar-divider" aria-hidden="true"></span>
+      <span class="document-label">Research Library · Kalshi ledger</span>
+      <button class="toc-toggle" id="toc-toggle" type="button" aria-controls="doc-sidebar" aria-expanded="false">Contents</button>
+      <label class="page-switcher-wrap"><span class="skip-link">Choose a library page</span><select class="page-switcher" id="page-switcher" aria-label="Choose a research library page"><option value="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html">Case study</option><option value="EMPIRICAL_VALIDATION_PLAN.html">Validation plan</option><option value="DATA_AVAILABILITY_AUDIT.html">Data audit</option><option value="ATTENTION_DATA_ACQUISITION_PROTOCOL.html">Attention protocol</option><option value="KALSHI_RECONSTRUCTION_LEDGER.html" selected>Kalshi ledger</option><option value="FINAL_VALIDATION_REPORT.html">Validation report</option><option value="REVIEWER_GUIDE.html">Reviewer guide</option></select></label>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="doc-sidebar" id="doc-sidebar">
+      <span class="doc-type">Market-data lineage</span>
+      <h2 class="sidebar-title">Kalshi ledger</h2>
+      <p class="sidebar-summary">A conservative classification of public quotes, trades, fixtures, depth evidence, mixed captures, and reconstruction decisions.</p>
+      <label class="search-label" for="section-search">Search this document</label>
+      <input class="section-search" id="section-search" type="search" placeholder="Try “leakage” or “depth”">
+      <p class="search-result" id="search-result">6 sections</p>
+      <p class="toc-heading">On this page</p>
+      <nav class="toc" aria-label="Document sections"><a href="#a-purpose">A. Purpose</a><a href="#b-data-locations-inspected">B. Data locations inspected</a><a href="#c-capture-inventory">C. Capture inventory</a><a href="#d-execution-evidence">D. Execution evidence</a><a href="#e-outcome-and-settlement-status">E. Outcome and settlement status</a><a href="#f-reconstruction-decisions">F. Reconstruction decisions</a></nav>
+      <div class="sidebar-actions">
+        <button class="small-button" id="collapse-all" type="button">Collapse all</button>
+        <a class="small-button" href="../../experiments/fed_easing_kxfed_v1/KALSHI_RECONSTRUCTION_LEDGER.md">View source .md</a>
+      </div>
+    </aside>
+    <main class="document" id="document">
+      <header class="doc-hero">
+        <span class="hero-kicker">Market-data lineage · VALI Research Library</span>
+        <h1>Kalshi Reconstruction Ledger</h1>
+        <p>A conservative classification of public quotes, trades, fixtures, depth evidence, mixed captures, and reconstruction decisions.</p>
+        <div class="hero-meta"><span class="meta-pill">Manual tiering required</span><span class="meta-pill">Public-data-only</span><span class="meta-pill">Research, not a trading claim</span></div>
+      </header>
+      <section class="doc-section" id="a-purpose" data-doc-section><div class="section-heading"><span class="section-index">Section 01</span><h2>A. Purpose</h2><button class="section-toggle" type="button" aria-controls="a-purpose-body" aria-expanded="true" aria-label="Collapse A. Purpose" data-section-title="A. Purpose">⌄</button></div><div class="section-body" id="a-purpose-body">
+<p>This local-only ledger separates raw public responses, normalized quotes, trades, candles, depth snapshots, fixtures, reports, and uncertain mixed captures. It identifies what may eventually support market-probability history and what cannot support execution or capacity claims. No file was moved, deleted, combined, or re-normalized.</p>
+</div></section>
+<section class="doc-section" id="b-data-locations-inspected" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>B. Data locations inspected</h2><button class="section-toggle" type="button" aria-controls="b-data-locations-inspected-body" aria-expanded="true" aria-label="Collapse B. Data locations inspected" data-section-title="B. Data locations inspected">⌄</button></div><div class="section-body" id="b-data-locations-inspected-body">
+<ul><li><code>tests/fixtures/providers/kalshi/</code></li><li><code>data/raw/kalshi/</code> (absent; <code>data/raw/</code> contains only <code>.gitkeep</code>)</li><li><code>data/interim/kalshi/</code></li><li><code>data/processed/kalshi/</code> (absent; <code>data/processed/</code> contains only <code>.gitkeep</code>)</li><li><code>data/quarantine/kalshi/</code></li><li><code>reports/archive/</code></li><li><code>reports/quarantine/</code></li><li><code>artifacts/quarantine/</code></li><li>the compatibility locations recorded in <code>ARTIFACT_INVENTORY.md</code></li></ul>
+</div></section>
+<section class="doc-section" id="c-capture-inventory" data-doc-section><div class="section-heading"><span class="section-index">Section 03</span><h2>C. Capture inventory</h2><button class="section-toggle" type="button" aria-controls="c-capture-inventory-body" aria-expanded="true" aria-label="Collapse C. Capture inventory" data-section-title="C. Capture inventory">⌄</button></div><div class="section-body" id="c-capture-inventory-body">
+<p>Sizes are local directory totals from the Step 5B-1 inspection. “Conditional” means usable only after raw/normalized tier separation, provenance verification, duplicate resolution, mapping validation, and a frozen dataset manifest.</p>
+<div class="table-scroll"><table><thead><tr><th>Path/group</th><th>Classification</th><th>Count/size</th><th>Date and coverage</th><th>Safe for 5C?</th><th>Reason</th></tr></thead><tbody><tr><td><code>tests/fixtures/providers/kalshi/</code></td><td><code>fixture</code></td><td>5 files / 2,493 bytes</td><td>Three fixture event IDs; one May 2025 candle/trade and one order book</td><td>No empirical use</td><td>Deterministic provider contracts only.</td></tr><tr><td><code>data/raw/kalshi/</code></td><td><code>unknown</code></td><td>Absent</td><td>None</td><td>No</td><td>No promoted immutable raw corpus exists.</td></tr><tr><td><code>data/interim/kalshi/kalshi-live-snapshot-2026-06-23/</code></td><td><code>depth_snapshot</code></td><td>7 files / 69,633 bytes; 11 ladder rows, 96 levels, 1 quote</td><td><code>KXFED-26JUL</code>, 2026-06-23 18:22:31Z</td><td>No historical execution use</td><td>One observed-depth snapshot, off the 16:00 ET cutoff and not a completeness series.</td></tr><tr><td><code>data/processed/kalshi/</code></td><td><code>unknown</code></td><td>Absent</td><td>None</td><td>No</td><td>No canonical processed market dataset exists.</td></tr><tr><td><code>data/quarantine/kalshi/kalshi-hourly-backfill/</code></td><td><code>raw_public_response</code></td><td>51 gzip files / 129,525 bytes</td><td>Public capture dated 2026-06-23; contents not promoted</td><td>No</td><td>Raw-only partial capture requires request/provenance reconciliation.</td></tr><tr><td><code>data/quarantine/kalshi/kalshi-hourly-backfill-v2/</code></td><td><code>mixed_raw_normalized</code></td><td>129 files / 13,074,145 bytes; 118 raw archives, 34 events, 66,465 quotes</td><td>Quotes 2021-12-27 through 2026-06-17; 34 contracts</td><td>Conditional for market probability</td><td>Best hourly bid/ask candidate, but raw and normalized data are mixed; no historical depth and zero trades in this run.</td></tr><tr><td><code>data/quarantine/kalshi/kalshi-live-backfill/</code></td><td><code>mixed_raw_normalized</code></td><td>87 files / 413,902 bytes; 76 raw, 576 quotes</td><td>Two contracts, 2025-08-07 through 2026-06-17</td><td>No canonical selection yet</td><td>Incomplete/early backfill variant.</td></tr><tr><td><code>data/quarantine/kalshi/kalshi-live-backfill-v2/</code></td><td><code>mixed_raw_normalized</code></td><td>87 files / 1,684,835 bytes; 76 raw, 7,429 quotes</td><td>34 contracts, 2021-12-28 through 2026-06-17</td><td>Conditional secondary comparison</td><td>Daily-style duplicate candidate; must be reconciled with hourly source.</td></tr><tr><td><code>data/quarantine/kalshi/kalshi-live-backfill-with-trades/</code></td><td><code>mixed_raw_normalized</code></td><td>315 files / 10,676,083 bytes; 304 raw, 7,429 quotes, 42,168 trades</td><td>34 contracts; trades 2021-12-27 through 2026-06-17</td><td>Conditional for secondary activity context</td><td>Trade history exists, but the run mixes raw, quotes, trades, mappings, and outcomes. Trades do not replace bid/ask or depth.</td></tr><tr><td><code>data/quarantine/kalshi/kalshi-live-discovery/</code></td><td><code>mixed_raw_normalized</code></td><td>13 files / 190,559 bytes; 4 raw archives</td><td>39 settled events, 7 open events, 98 open markets as of 2026-06-23</td><td>Conditional for roster verification</td><td>Useful discovery evidence after provenance review, not a price history.</td></tr><tr><td><code>data/quarantine/kalshi/kalshi-live-snapshots/</code></td><td><code>mixed_raw_normalized</code></td><td>24 files / 90,171 bytes; 17 raw plus one normalized snapshot</td><td>One <code>KXFED-26JUL</code> snapshot on 2026-06-23</td><td>No capacity use</td><td>Duplicate/mixed source of the interim snapshot; not a daily cutoff series.</td></tr><tr><td><code>reports/archive/KALSHI_ADAPTER_VERIFICATION.md</code></td><td><code>report</code></td><td>1 file / 1,480 bytes</td><td>Verification dated 2026-06-23</td><td>Documentation only</td><td>Summarizes public checks but is not source data.</td></tr><tr><td><code>reports/quarantine/</code></td><td><code>report</code></td><td>66 files / 9,903,761 bytes</td><td>Synthetic/legacy runs</td><td>No</td><td>Generated synthetic outputs are not empirical Kalshi inputs.</td></tr><tr><td><code>artifacts/quarantine/</code></td><td><code>unknown</code></td><td>32 files / 1,192,522 bytes</td><td>Stale builds/packages</td><td>No</td><td>Never an input or import source.</td></tr></tbody></table></div>
+<p>The hourly and trade counts agree with the reviewed adapter verification note. No single hash is assigned to a mixed directory; future reconstruction must hash every selected source file and the resulting frozen dataset manifest.</p>
+</div></section>
+<section class="doc-section" id="d-execution-evidence" data-doc-section><div class="section-heading"><span class="section-index">Section 04</span><h2>D. Execution evidence</h2><button class="section-toggle" type="button" aria-controls="d-execution-evidence-body" aria-expanded="true" aria-label="Collapse D. Execution evidence" data-section-title="D. Execution evidence">⌄</button></div><div class="section-body" id="d-execution-evidence-body">
+<p>Bid and ask evidence exists for all 66,465 rows in the preferred hourly candidate. None of those historical rows contains observed bid or ask depth; all have <code>depth_observed=False</code>. A single order-book snapshot contains observed depth, but it is off-cutoff and cannot establish historical executable conditions or completeness.</p>
+<p>Complete executable snapshots do not exist. Capacity and tradability remain disabled without historical observed depth. Volume, open interest, and trades must not be substituted for book depth. Forecast-only market-probability work may eventually use verified bid/ask history, while P&amp;L, capacity, and execution claims remain unavailable.</p>
+</div></section>
+<section class="doc-section" id="e-outcome-and-settlement-status" data-doc-section><div class="section-heading"><span class="section-index">Section 05</span><h2>E. Outcome and settlement status</h2><button class="section-toggle" type="button" aria-controls="e-outcome-and-settlement-status-body" aria-expanded="true" aria-label="Collapse E. Outcome and settlement status" data-section-title="E. Outcome and settlement status">⌄</button></div><div class="section-body" id="e-outcome-and-settlement-status-body">
+<p>The normalized event table contains 34 labels: 28 outcome <code>0</code> and 6 outcome <code>1</code>. Contract IDs consistently use the internal <code>event_id:EASING</code> identity, and outcomes are absent from normalized quote rows.</p>
+<p>The latest event, <code>KXFED-26JUN</code>, declares settlement at <code>2026-06-24T18:05:00Z</code>, after the local capture was created on June 23. Its label eligibility is not verified by a later local settlement record. It must be verified with timestamped public evidence or excluded before training. Five earlier tickers remain excluded for unresolved ladders or missing prior bounds.</p>
+</div></section>
+<section class="doc-section" id="f-reconstruction-decisions" data-doc-section><div class="section-heading"><span class="section-index">Section 06</span><h2>F. Reconstruction decisions</h2><button class="section-toggle" type="button" aria-controls="f-reconstruction-decisions-body" aria-expanded="true" aria-label="Collapse F. Reconstruction decisions" data-section-title="F. Reconstruction decisions">⌄</button></div><div class="section-body" id="f-reconstruction-decisions-body">
+<ul><li><code>quotes_can_support_market_probability_history</code> — conditionally, after provenance review and canonical tiering.</li><li><code>trades_can_support_secondary_market_activity_context</code> — conditionally; they are not <code>P</code>, depth, or order flow.</li><li><code>depth_insufficient_for_capacity_claims</code> — yes.</li><li><code>mixed_captures_require_manual_tiering</code> — yes.</li><li><code>canonical_processed_inputs_not_ready</code> — yes.</li></ul>
+<p>Nothing in this ledger authorizes Step 5C. Reconstruction must preserve the raw archives, select one canonical quote lineage, record file hashes and exclusions, verify outcome eligibility, and repeat the Step 5B availability audit.</p>
+</div></section>
+      <nav class="page-neighbors" aria-label="Adjacent library pages">
+        <a class="neighbor previous" href="ATTENTION_DATA_ACQUISITION_PROTOCOL.html"><small>Previous</small><b>← Attention protocol</b></a>
+        <a class="neighbor next" href="FINAL_VALIDATION_REPORT.html"><small>Next</small><b>Validation report →</b></a>
+      </nav>
+      <footer class="claim-footer"><p><strong>Claim boundary:</strong> No empirical alpha claim. No trading-readiness claim. No private data, proprietary order flow, order submission, live trading, or <code>P_flow</code>.</p></footer>
+    </main>
+  </div>
+  <noscript><style>.doc-sidebar{display:block!important;position:static;max-height:none}.section-body[hidden]{display:block!important}</style></noscript>
+  <script src="library.js" defer></script>
+</body>
+</html>

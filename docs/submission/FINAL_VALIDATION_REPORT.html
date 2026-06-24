@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Repository identity, automated tests, CLI smoke checks, contract validation, caveats, and bounded readiness conclusion.">
+  <title>VALI Final 4-Series Validation Report · VALI Research Library</title>
+  <link rel="stylesheet" href="library.css">
+</head>
+<body style="--accent:#17815f;--accent-soft:#daf1e8" data-page="final-validation">
+  <a class="skip-link" href="#document">Skip to document</a>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="library-brand" href="VALI_EXPLORER.html"><span class="library-mark">V</span><span>VALI Explorer</span></a>
+      <span class="topbar-divider" aria-hidden="true"></span>
+      <span class="document-label">Research Library · Validation report</span>
+      <button class="toc-toggle" id="toc-toggle" type="button" aria-controls="doc-sidebar" aria-expanded="false">Contents</button>
+      <label class="page-switcher-wrap"><span class="skip-link">Choose a library page</span><select class="page-switcher" id="page-switcher" aria-label="Choose a research library page"><option value="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html">Case study</option><option value="EMPIRICAL_VALIDATION_PLAN.html">Validation plan</option><option value="DATA_AVAILABILITY_AUDIT.html">Data audit</option><option value="ATTENTION_DATA_ACQUISITION_PROTOCOL.html">Attention protocol</option><option value="KALSHI_RECONSTRUCTION_LEDGER.html">Kalshi ledger</option><option value="FINAL_VALIDATION_REPORT.html" selected>Validation report</option><option value="REVIEWER_GUIDE.html">Reviewer guide</option></select></label>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="doc-sidebar" id="doc-sidebar">
+      <span class="doc-type">Release verification</span>
+      <h2 class="sidebar-title">Validation report</h2>
+      <p class="sidebar-summary">Repository identity, automated tests, CLI smoke checks, contract validation, caveats, and bounded readiness conclusion.</p>
+      <label class="search-label" for="section-search">Search this document</label>
+      <input class="section-search" id="section-search" type="search" placeholder="Try “leakage” or “depth”">
+      <p class="search-result" id="search-result">6 sections</p>
+      <p class="toc-heading">On this page</p>
+      <nav class="toc" aria-label="Document sections"><a href="#validation-identity">Validation identity</a><a href="#automated-test-validation">Automated test validation</a><a href="#cli-smoke-validation">CLI smoke validation</a><a href="#contract-validation">Contract validation</a><a href="#known-caveats">Known caveats</a><a href="#conclusion">Conclusion</a></nav>
+      <div class="sidebar-actions">
+        <button class="small-button" id="collapse-all" type="button">Collapse all</button>
+        <a class="small-button" href="../../FINAL_VALIDATION_REPORT.md">View source .md</a>
+      </div>
+    </aside>
+    <main class="document" id="document">
+      <header class="doc-hero">
+        <span class="hero-kicker">Release verification · VALI Research Library</span>
+        <h1>VALI Final 4-Series Validation Report</h1>
+        <p>Repository identity, automated tests, CLI smoke checks, contract validation, caveats, and bounded readiness conclusion.</p>
+        <div class="hero-meta"><span class="meta-pill">4-series pass</span><span class="meta-pill">Public-data-only</span><span class="meta-pill">Research, not a trading claim</span></div>
+      </header>
+      <section class="doc-section" id="validation-identity" data-doc-section><div class="section-heading"><span class="section-index">Section 01</span><h2>Validation identity</h2><button class="section-toggle" type="button" aria-controls="validation-identity-body" aria-expanded="true" aria-label="Collapse Validation identity" data-section-title="Validation identity">⌄</button></div><div class="section-body" id="validation-identity-body">
+<ul><li>Validation date: <code>2026-06-23</code></li><li>Branch: <code>main</code></li><li>Commit under validation: <code>3639580d81d4b6b2e7039f36771b7e6f785c74b5</code></li><li>Python: <code>3.12.13</code></li><li>Package version: <code>0.3.0</code></li><li>Migration release-candidate label: <code>v0.1</code></li></ul>
+</div></section>
+<section class="doc-section" id="automated-test-validation" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>Automated test validation</h2><button class="section-toggle" type="button" aria-controls="automated-test-validation-body" aria-expanded="true" aria-label="Collapse Automated test validation" data-section-title="Automated test validation">⌄</button></div><div class="section-body" id="automated-test-validation-body">
+<p>Command:</p>
+<pre><code class="language-powershell">&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m pytest -q</code></pre>
+<p>Result: <strong>149 passed, 0 failed</strong>.</p>
+</div></section>
+<section class="doc-section" id="cli-smoke-validation" data-doc-section><div class="section-heading"><span class="section-index">Section 03</span><h2>CLI smoke validation</h2><button class="section-toggle" type="button" aria-controls="cli-smoke-validation-body" aria-expanded="true" aria-label="Collapse CLI smoke validation" data-section-title="CLI smoke validation">⌄</button></div><div class="section-body" id="cli-smoke-validation-body">
+<p>The following deterministic, help-only commands returned exit code 0. They did not contact live APIs, require credentials, or write research data:</p>
+<pre><code class="language-powershell">&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali validate --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali signal --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali backtest --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali report --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali sample-data --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi discover --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi backfill --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali kalshi snapshot --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends plan --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends backfill --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends collect --help
+&amp; &#x27;.\work\.venv\Scripts\python.exe&#x27; -m vali trends status --help</code></pre>
+</div></section>
+<section class="doc-section" id="contract-validation" data-doc-section><div class="section-heading"><span class="section-index">Section 04</span><h2>Contract validation</h2><button class="section-toggle" type="button" aria-controls="contract-validation-body" aria-expanded="true" aria-label="Collapse Contract validation" data-section-title="Contract validation">⌄</button></div><div class="section-body" id="contract-validation-body">
+<ul><li>Frozen Google Trends manifest hash: <code>f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a</code></li><li>Import-source validation: <strong>pass</strong>. Public, boundary, and compatibility modules resolve from <code>src/vali</code>, not quarantined build artifacts.</li><li>Prohibited-surface validation: <strong>pass</strong>. Repository search occurrences are confined to prohibition documentation, input-rejection contracts, and tests; no executable or public API implements <code>P_flow</code>, private client data, proprietary order flow, order submission, credentialed trading, or live trading.</li><li>Config-path validation: <strong>pass</strong>. Both <code>configs/experiments/fed_easing_v1.toml</code> and <code>examples/config.toml</code> load while preserving their established relative-path resolution behavior.</li><li>Fixture-path validation: <strong>pass</strong>. Canonical provider fixtures and the old Google Trends compatibility fixture remain present and deterministic.</li></ul>
+</div></section>
+<section class="doc-section" id="known-caveats" data-doc-section><div class="section-heading"><span class="section-index">Section 05</span><h2>Known caveats</h2><button class="section-toggle" type="button" aria-controls="known-caveats-body" aria-expanded="true" aria-label="Collapse Known caveats" data-section-title="Known caveats">⌄</button></div><div class="section-body" id="known-caveats-body">
+<p>The migration label/package version ambiguity remains documented. No dependency lockfile exists. Quarantined artifacts and mixed Kalshi captures require later review. Kalshi historical depth is unobserved, venue configuration is embedded, and the fee model is provisional. Google has not supplied an implemented official alpha protocol or documented revision guarantees. No empirical alpha claim has been validated.</p>
+</div></section>
+<section class="doc-section" id="conclusion" data-doc-section><div class="section-heading"><span class="section-index">Section 06</span><h2>Conclusion</h2><button class="section-toggle" type="button" aria-controls="conclusion-body" aria-expanded="true" aria-label="Collapse Conclusion" data-section-title="Conclusion">⌄</button></div><div class="section-body" id="conclusion-body">
+<p><strong>Pass.</strong> The repository is ready to exit 4-series migration and enter 5-series operational research readiness, subject to the caveats listed. This conclusion does not mean VALI alpha is proven, trading-ready, or production investment infrastructure.</p>
+</div></section>
+      <nav class="page-neighbors" aria-label="Adjacent library pages">
+        <a class="neighbor previous" href="KALSHI_RECONSTRUCTION_LEDGER.html"><small>Previous</small><b>← Kalshi ledger</b></a>
+        <a class="neighbor next" href="REVIEWER_GUIDE.html"><small>Next</small><b>Reviewer guide →</b></a>
+      </nav>
+      <footer class="claim-footer"><p><strong>Claim boundary:</strong> No empirical alpha claim. No trading-readiness claim. No private data, proprietary order flow, order submission, live trading, or <code>P_flow</code>.</p></footer>
+    </main>
+  </div>
+  <noscript><style>.doc-sidebar{display:block!important;position:static;max-height:none}.section-body[hidden]{display:block!important}</style></noscript>
+  <script src="library.js" defer></script>
+</body>
+</html>
