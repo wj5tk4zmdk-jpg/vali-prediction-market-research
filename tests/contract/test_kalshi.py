@@ -19,7 +19,7 @@ from vali.providers.kalshi import (
 )
 
 
-FIXTURES = Path(__file__).parent / "fixtures" / "kalshi"
+FIXTURES = Path(__file__).parents[1] / "fixtures" / "providers" / "kalshi"
 
 
 def fixture(name):

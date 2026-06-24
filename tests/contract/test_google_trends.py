@@ -36,7 +36,13 @@ from vali.providers.google_trends import (
 )
 
 
-FIXTURE = Path(__file__).parent / "fixtures" / "google_trends" / "interest.json"
+FIXTURE = (
+    Path(__file__).parents[1]
+    / "fixtures"
+    / "providers"
+    / "google_trends"
+    / "interest.json"
+)
 
 
 class GoogleTrendsManifestTests(unittest.TestCase):

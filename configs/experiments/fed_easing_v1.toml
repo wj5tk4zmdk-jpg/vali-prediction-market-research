@@ -1,0 +1,48 @@
+[run]
+parameter_freeze_date = "2026-06-23"
+methodology_version = "1.0.1"
+
+[data]
+events = "data/events.csv"
+quotes = "data/quotes.csv"
+features = "data/features.csv"
+feature_manifest = "data/feature_manifest.csv"
+# trades = "data/trades.csv"
+
+[market]
+max_spread = 0.10
+min_depth = 100.0
+max_quote_age_minutes = 30
+fallback_trade_window_minutes = 120
+fee_bps = 5.0
+probability_epsilon = 0.0001
+
+[features]
+timezone = "America/New_York"
+daily_cutoff = "16:00"
+standardization_window = 90
+min_periods = 30
+
+[signal]
+velocity_window = 7
+normalization_window = 90
+min_periods = 30
+entry_threshold = 2.0
+exit_threshold = 0.5
+sensitivity_windows = [3, 14, 30]
+
+[regime]
+window = 90
+min_periods = 30
+max_lag = 7
+min_abs_correlation = 0.20
+tie_margin = 0.05
+
+[backtest]
+min_train_events = 16
+notional = 100.0
+stop_loss_fraction = 0.25
+max_holding_days = 14
+days_before_settlement = 1
+calibration_l2 = 1.0
+

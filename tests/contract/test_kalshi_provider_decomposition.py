@@ -35,7 +35,7 @@ from vali.providers.kalshi_components.normalization import (
 from vali.providers.kalshi_components.transport import KalshiClient
 
 
-FIXTURES = Path(__file__).parent / "fixtures" / "kalshi"
+FIXTURES = Path(__file__).parents[1] / "fixtures" / "providers" / "kalshi"
 
 
 def fixture(name: str):

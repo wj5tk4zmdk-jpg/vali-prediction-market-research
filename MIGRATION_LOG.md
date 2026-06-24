@@ -558,3 +558,71 @@ Completed 2026-06-23.
   introduced.
 - Full result after Step 4H: **125 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Created local commit `a6b6c427d2df8b77ad3b10cde5df88b765175dbb`
+  with subject `migration: extract application CLI boundary`.
+
+## Step 4I - Config, test, and fixture relocation
+
+Completed 2026-06-23.
+
+- Created the target configuration layout under `configs/experiments/`,
+  `configs/features/`, and `configs/venues/`.
+- Added `configs/experiments/fed_easing_v1.toml` as a byte-identical copy of
+  `examples/config.toml`. The old example path remains in place as a
+  compatibility copy; both TOML files load with identical run, market, feature,
+  signal, regime, and backtest settings.
+- Added `configs/features/google_trends_candidate_v1.csv` as a byte-identical
+  copy of the packaged manifest at
+  `src/vali/data/google_trends_query_manifest.v1.csv`. The packaged path remains
+  the default compatibility source for installed distributions.
+- Verified the Google Trends logical manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+  Query order, active IDs, inactive IDs, baskets, polarity, required flags, and
+  all candidate metadata remain identical.
+- No external Kalshi/KXFED configuration existed. Venue mapping remains
+  embedded by design; no speculative venue config was invented.
+- Relocated tests by purpose into `tests/unit/`, `tests/contract/`,
+  `tests/leakage/`, and `tests/integration/`, retaining `tests/__init__.py` and
+  unchanged expected values.
+- Relocated recorded provider fixtures into
+  `tests/fixtures/providers/kalshi/` and
+  `tests/fixtures/providers/google_trends/` without changing fixture bytes.
+- Retained a byte-identical compatibility copy at
+  `tests/fixtures/google_trends/interest.json` because the existing README
+  documents that path. No old Kalshi fixture path was documented outside the
+  historical baseline inventory.
+- Updated only relocated test-local fixture and repository-root path references.
+  Provider code, application code, configuration loading, and package data were
+  not changed.
+- Added `tests/contract/test_project_layout_compatibility.py` covering old/new
+  config paths, byte identity, manifest order/status/hash, deterministic `A_t`
+  and audit equivalence, forbidden post-freeze features, required and optional
+  missingness, dynamic reweighting, provider fixture content hashes and
+  normalization, pytest discovery, and CLI config/fixture paths.
+- Frozen attention composition remains unchanged: feature IDs and order,
+  active/inactive status, missing-required and missing-optional exclusions,
+  fixed composition, explicit dynamic reweighting, audit rows, and `A_t` are
+  identical. Relocated paths cannot broaden the candidate feature universe.
+- Pytest collection increased only by the six new layout compatibility tests:
+  131 tests are discovered across the four target test groups.
+- Files copied for compatibility or target layout:
+  - `configs/experiments/fed_easing_v1.toml`
+  - `configs/features/google_trends_candidate_v1.csv`
+  - `tests/fixtures/google_trends/interest.json`
+- New layout marker:
+  - `configs/venues/.gitkeep`
+- New test:
+  - `tests/contract/test_project_layout_compatibility.py`
+- Existing tests and fixtures were moved into their target directories; four
+  provider tests had fixture paths updated, and the application CLI test had
+  its repository-root calculation updated for its new depth.
+- Governance file modified:
+  - `MIGRATION_LOG.md`
+- No source logic, methodology, formula, TOML format, CLI behavior, provider
+  behavior, normalized output, fixture content, report, artifact, manifest
+  field, schema, execution policy, fee model, or generated artifact changed.
+  No data artifact was deleted or cleaned.
+- No live API, network dependency, credential use, private input, proprietary
+  flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 4I: **131 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.

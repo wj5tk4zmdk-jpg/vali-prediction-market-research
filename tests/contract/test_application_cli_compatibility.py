@@ -225,7 +225,7 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
     def test_python_module_entrypoint_remains_compatible(self):
         completed = subprocess.run(
             [sys.executable, "-m", "vali", "--help"],
-            cwd=Path(__file__).parents[1],
+            cwd=Path(__file__).parents[2],
             capture_output=True,
             text=True,
             check=False,

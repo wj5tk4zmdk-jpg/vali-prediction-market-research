@@ -42,8 +42,9 @@ from vali.providers.google_trends_components.normalization import (
 
 
 FIXTURE = (
-    Path(__file__).parent
+    Path(__file__).parents[1]
     / "fixtures"
+    / "providers"
     / "google_trends"
     / "interest.json"
 )
