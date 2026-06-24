@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from .config import ValiConfig
+from .execution.liquidity import signal_execution_rejection
 
 
 def generate_decisions(signals: pd.DataFrame, config: ValiConfig) -> pd.DataFrame:
@@ -17,22 +18,16 @@ def generate_decisions(signals: pd.DataFrame, config: ValiConfig) -> pd.DataFram
             action, reason = "none", "signal_unavailable"
         elif row.regime != "attention_leading":
             action, reason = "none", f"regime_{row.regime}"
-        elif bool(getattr(row, "market_closed", False)):
-            action, reason = "none", "market_closed"
-        elif not bool(row.price_quality_pass):
-            action, reason = "none", "price_quality_failed"
-        elif not bool(row.execution_liquidity_pass):
-            action, reason = "none", (
-                "depth_unobserved" if not bool(row.depth_observed) else "execution_liquidity_failed"
-            )
-        elif not bool(row.executable):
-            action, reason = "none", "price_not_executable"
-        elif row.signed_divergence >= config.signal.entry_threshold:
-            action, reason = "long_yes", "entry_positive_divergence"
-        elif row.signed_divergence <= -config.signal.entry_threshold:
-            action, reason = "long_no", "entry_negative_divergence"
         else:
-            action, reason = "none", "below_entry_threshold"
+            execution_rejection = signal_execution_rejection(row)
+            if execution_rejection:
+                action, reason = "none", execution_rejection
+            elif row.signed_divergence >= config.signal.entry_threshold:
+                action, reason = "long_yes", "entry_positive_divergence"
+            elif row.signed_divergence <= -config.signal.entry_threshold:
+                action, reason = "long_no", "entry_negative_divergence"
+            else:
+                action, reason = "none", "below_entry_threshold"
         actions.append(action)
         reasons.append(reason)
     frame["action"] = actions

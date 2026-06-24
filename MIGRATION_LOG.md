@@ -355,3 +355,50 @@ Completed 2026-06-23.
   changed. No source file or data artifact was moved or deleted.
 - Full result after Step 4E: **96 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Created local commit `ed9e74968e0e03b2c82b2519d813631e094a2692`
+  with subject `migration: extract artifact reporting boundary`.
+
+## Step 4F - Execution boundary
+
+Completed 2026-06-23.
+
+- Created `src/vali/execution/` for decision-time execution gates, liquidity
+  and capacity helpers, explicitly provisional basis-point fees, executable
+  snapshot completeness, YES/NO quote transformations, Clear Horizon and
+  settlement handling, failed mandatory exits, and trade simulation.
+- Preserved `vali.decisions.generate_decisions`,
+  `vali.backtest.simulate_trades`, `vali.pipeline.execution_validation_summary`,
+  and all existing research/reporting imports as compatibility wrappers or
+  unchanged call sites.
+- Left `BacktestResult`, walk-forward evaluation, and backtest orchestration in
+  `vali.backtest`; only the execution simulator and liquidation helper now
+  delegate to the execution boundary.
+- Preserved closed/non-executable rejection, price-quality and depth gates,
+  fixed-notional depth caps, YES/NO quote inversion, all exit rules, settlement
+  payoff, failed pre-settlement exit labeling, and `execution_failure=True`.
+- Preserved the generic fee model and its explicit `provisional_bps`, `fee_bps`,
+  and `fee_assumption_provisional` output and manifest fields.
+- Added deterministic compatibility tests for old/new imports, decision gates,
+  snapshot completeness, no-depth capacity gating, quote inversion, depth
+  caps, provisional fees, settlement failure, simulator outputs, and the exact
+  trade output schema.
+- Files created:
+  - `src/vali/execution/__init__.py`
+  - `src/vali/execution/liquidity.py`
+  - `src/vali/execution/fees.py`
+  - `src/vali/execution/snapshots.py`
+  - `src/vali/execution/settlement.py`
+  - `src/vali/execution/simulator.py`
+  - `tests/test_execution_boundary_compatibility.py`
+- Existing source files modified only for delegation:
+  - `src/vali/decisions.py`
+  - `src/vali/backtest.py`
+  - `src/vali/research/pipeline.py`
+- Governance file modified:
+  - `MIGRATION_LOG.md`
+- No formulas, execution policies, eligibility rules, fee assumptions, capacity
+  claims, output schemas, report text, artifact names, manifest fields,
+  providers, configuration behavior, TOML handling, or test layout changed.
+  No source file or data artifact was moved or deleted.
+- Full result after Step 4F: **102 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.

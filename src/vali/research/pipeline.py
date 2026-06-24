@@ -24,6 +24,10 @@ from ..backtest import BacktestResult, run_backtest
 from ..configuration.contracts import ValiConfig
 from ..data.contracts import InputBundle
 from ..decisions import generate_decisions
+from ..execution.fees import provisional_fee_metadata
+from ..execution.snapshots import (
+    execution_validation_summary as _execution_validation_summary,
+)
 from ..features import build_attention_index
 from ..io import load_inputs
 from ..market import select_daily_market
@@ -49,83 +53,7 @@ def validate_inputs(config: ValiConfig) -> InputBundle:
 
 def execution_validation_summary(signals: pd.DataFrame) -> dict[str, Any]:
     """Summarize whether every research cutoff has a known execution state."""
-    row_count = len(signals)
-    if row_count == 0:
-        return {
-            "status": "unvalidated_incomplete_execution_snapshots",
-            "snapshot_completeness": 0.0,
-            "depth_observed_fraction": 0.0,
-            "capacity_claims_enabled": False,
-            "required_snapshot_rows": 0,
-        }
-
-    index = signals.index
-    depth_observed = (
-        signals["depth_observed"].fillna(False).astype(bool)
-        if "depth_observed" in signals
-        else pd.Series(False, index=index)
-    )
-    market_closed = (
-        signals["market_closed"].fillna(False).astype(bool)
-        if "market_closed" in signals
-        else pd.Series(False, index=index)
-    )
-    numeric_complete = pd.Series(True, index=index)
-    for column in ("bid", "ask", "bid_depth", "ask_depth", "spread"):
-        if column not in signals:
-            numeric_complete &= False
-        else:
-            numeric_complete &= np.isfinite(
-                pd.to_numeric(signals[column], errors="coerce")
-            )
-
-    incomplete_reasons = {
-        "no_quote",
-        "stale_quote",
-        "depth_unobserved",
-        "non_executable_vwap",
-    }
-    rejection_reason = (
-        signals["rejection_reason"].fillna("").astype(str)
-        if "rejection_reason" in signals
-        else pd.Series("", index=index)
-    )
-    price_quality_pass = (
-        signals["price_quality_pass"].fillna(False).astype(bool)
-        if "price_quality_pass" in signals
-        else pd.Series(False, index=index)
-    )
-    execution_liquidity_pass = (
-        signals["execution_liquidity_pass"].fillna(False).astype(bool)
-        if "execution_liquidity_pass" in signals
-        else pd.Series(False, index=index)
-    )
-    executable = (
-        signals["executable"].fillna(False).astype(bool)
-        if "executable" in signals
-        else pd.Series(False, index=index)
-    )
-    open_snapshot_complete = (
-        depth_observed
-        & numeric_complete
-        & price_quality_pass
-        & execution_liquidity_pass
-        & executable
-        & ~rejection_reason.isin(incomplete_reasons)
-    )
-    snapshot_complete = market_closed | open_snapshot_complete
-    all_complete = bool(snapshot_complete.all())
-    return {
-        "status": (
-            "complete_executable_snapshots"
-            if all_complete
-            else "unvalidated_incomplete_execution_snapshots"
-        ),
-        "snapshot_completeness": float(snapshot_complete.mean()),
-        "depth_observed_fraction": float(depth_observed.mean()),
-        "capacity_claims_enabled": all_complete,
-        "required_snapshot_rows": row_count,
-    }
+    return _execution_validation_summary(signals)
 
 
 def _sha256(path: Path) -> str:
@@ -304,9 +232,7 @@ def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> Pipelin
     manifest["validation"] = bundle.validation.as_dict()
     manifest["execution_validation"] = {
         **execution_summary,
-        "fee_model": "provisional_bps",
-        "fee_bps": config.market.fee_bps,
-        "fee_assumption_provisional": True,
+        **provisional_fee_metadata(config.market.fee_bps),
     }
 
     outputs = {
