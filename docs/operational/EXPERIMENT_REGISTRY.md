@@ -16,10 +16,18 @@ not authorize silent changes to a registered experiment.
 - **Venue/market family:** Kalshi KXFED / Fed easing-style contracts, as
   currently implemented.
 - **Status:** Registered, not yet empirically validated.
+- **Experiment manifest:**
+  `experiments/fed_easing_kxfed_v1/EXPERIMENT_MANIFEST.md`
+- **Data availability audit:**
+  `experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md`
+- **Machine-readable availability manifest:**
+  `experiments/fed_easing_kxfed_v1/data_availability_manifest.json`
+- **Current 5B decision:** `insufficient_due_to_missing_attention_history`
 - **Allowed claims:** Methodology readiness only.
 - **Prohibited claims:** Alpha proven; trading-ready; capacity-validated; live
   deployment ready.
 
 Evaluation is governed by `5A_EMPIRICAL_VALIDATION_PLAN.md` and
 `FALSIFICATION_GATES.md`. Registration does not authorize live collection,
-credentials, order submission, or trading.
+credentials, order submission, or trading. Empirical validation has not yet
+been run.

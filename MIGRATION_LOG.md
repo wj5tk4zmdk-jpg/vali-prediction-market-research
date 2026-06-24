@@ -841,3 +841,61 @@ Completed 2026-06-24.
   proprietary flow, order submission, live trading, or `P_flow` was introduced.
 - Full result after Step 5A: **155 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Files created:
+  - `docs/operational/5A_EMPIRICAL_VALIDATION_PLAN.md`
+  - `docs/operational/FALSIFICATION_GATES.md`
+  - `docs/operational/EXPERIMENT_REGISTRY.md`
+  - `tests/contract/test_operational_research_plan.py`
+- File modified:
+  - `MIGRATION_LOG.md`
+- Created local commit `dd8e67c286c8b0321addcf1c7da290d184add86c`
+  with subject `research: define empirical validation plan`.
+- Step 5A predeclared the hypotheses, baselines, metrics, falsification gates,
+  and acceptance categories without making an alpha or trading-readiness claim.
+
+## Step 5B - Data availability audit and experiment manifest
+
+Completed 2026-06-24.
+
+- Created `experiments/fed_easing_kxfed_v1/EXPERIMENT_MANIFEST.md` with the
+  registered identity, hypothesis/null, required inputs and baselines, later
+  output families, and allowed sufficiency decisions.
+- Created `experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md` from
+  local repository files only. No live provider call, credential, or new
+  provider output was used.
+- Created machine-readable
+  `experiments/fed_easing_kxfed_v1/data_availability_manifest.json` and selected
+  `insufficient_due_to_missing_attention_history`.
+- The local public Kalshi capture contains 34 mapped EASING events, 66,465
+  hourly bid/ask rows from December 2021 through June 2026, 42,168 trades in a
+  separate capture, and one observed-depth snapshot. Historical quotes contain
+  no book depth, and mixed raw/normalized runs remain quarantined.
+- All 34 mapped event rows contain outcomes (28 outcome 0 and 6 outcome 1), but
+  the latest outcome requires settlement-availability verification before
+  training. Outcomes are absent from the quote table and remain governed by
+  label-isolation contracts.
+- The only local Google Trends attention rows are a three-date `fixture-v1`
+  response from June 19–21, 2026. It has stable UTC retrieval serialization but
+  is not empirical history and cannot supply the 30-prior-observation warm-up
+  or a pre-decision intersection with the resolved meetings.
+- `data/raw/` and `data/processed/` are empty, and the canonical TOML resolves
+  to four absent analysis-ready inputs under `configs/experiments/data/`.
+- Updated `docs/operational/EXPERIMENT_REGISTRY.md` with the experiment/audit
+  paths, machine manifest, 5B decision, and explicit not-yet-validated status.
+- Added `tests/contract/test_data_availability_manifest.py` with six
+  deterministic identity, parsing, decision, claim-boundary, availability, and
+  prohibited-surface checks.
+- The common intersection is sufficient for fixture validation only, not
+  exploratory or proper empirical walk-forward validation. Data collection or
+  reconstruction and a repeated availability audit are required before 5C.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No source logic, methodology, formula, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, existing test behavior,
+  report output, artifact, manifest field, schema, execution policy, or fee
+  model changed.
+- No alpha or trading-readiness claim, live API behavior, network dependency,
+  credential use, private input, proprietary flow, order submission, live
+  trading, or `P_flow` was introduced.
+- Full result after Step 5B: **161 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
