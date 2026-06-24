@@ -20,3 +20,4 @@ reports/quarantine/*
 !reports/quarantine/.gitkeep
 .git.invalid-*/
 .ipynb_checkpoints/
+.vscode/

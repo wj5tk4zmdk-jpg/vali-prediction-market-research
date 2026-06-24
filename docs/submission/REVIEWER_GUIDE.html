@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A concise route through the repository, evaluation checklist, caveats, non-inferences, and next research step.">
+  <title>VALI Reviewer Guide · VALI Research Library</title>
+  <link rel="stylesheet" href="library.css">
+</head>
+<body style="--accent:#a25079;--accent-soft:#f7e3ed" data-page="reviewer-guide">
+  <a class="skip-link" href="#document">Skip to document</a>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="library-brand" href="VALI_EXPLORER.html"><span class="library-mark">V</span><span>VALI Explorer</span></a>
+      <span class="topbar-divider" aria-hidden="true"></span>
+      <span class="document-label">Research Library · Reviewer guide</span>
+      <button class="toc-toggle" id="toc-toggle" type="button" aria-controls="doc-sidebar" aria-expanded="false">Contents</button>
+      <label class="page-switcher-wrap"><span class="skip-link">Choose a library page</span><select class="page-switcher" id="page-switcher" aria-label="Choose a research library page"><option value="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html">Case study</option><option value="EMPIRICAL_VALIDATION_PLAN.html">Validation plan</option><option value="DATA_AVAILABILITY_AUDIT.html">Data audit</option><option value="ATTENTION_DATA_ACQUISITION_PROTOCOL.html">Attention protocol</option><option value="KALSHI_RECONSTRUCTION_LEDGER.html">Kalshi ledger</option><option value="FINAL_VALIDATION_REPORT.html">Validation report</option><option value="REVIEWER_GUIDE.html" selected>Reviewer guide</option></select></label>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="doc-sidebar" id="doc-sidebar">
+      <span class="doc-type">Fast review path</span>
+      <h2 class="sidebar-title">Reviewer guide</h2>
+      <p class="sidebar-summary">A concise route through the repository, evaluation checklist, caveats, non-inferences, and next research step.</p>
+      <label class="search-label" for="section-search">Search this document</label>
+      <input class="section-search" id="section-search" type="search" placeholder="Try “leakage” or “depth”">
+      <p class="search-result" id="search-result">6 sections</p>
+      <p class="toc-heading">On this page</p>
+      <nav class="toc" aria-label="Document sections"><a href="#read-this-first">Read this first</a><a href="#run-this-command">Run this command</a><a href="#what-to-evaluate">What to evaluate</a><a href="#what-not-to-infer">What not to infer</a><a href="#known-caveats">Known caveats</a><a href="#next-research-step">Next research step</a></nav>
+      <div class="sidebar-actions">
+        <button class="small-button" id="collapse-all" type="button">Collapse all</button>
+        <a class="small-button" href="REVIEWER_GUIDE.md">View source .md</a>
+      </div>
+    </aside>
+    <main class="document" id="document">
+      <header class="doc-hero">
+        <span class="hero-kicker">Fast review path · VALI Research Library</span>
+        <h1>VALI Reviewer Guide</h1>
+        <p>A concise route through the repository, evaluation checklist, caveats, non-inferences, and next research step.</p>
+        <div class="hero-meta"><span class="meta-pill">Read this first</span><span class="meta-pill">Public-data-only</span><span class="meta-pill">Research, not a trading claim</span></div>
+      </header>
+      <section class="doc-section" id="read-this-first" data-doc-section><div class="section-heading"><span class="section-index">Section 01</span><h2>Read this first</h2><button class="section-toggle" type="button" aria-controls="read-this-first-body" aria-expanded="true" aria-label="Collapse Read this first" data-section-title="Read this first">⌄</button></div><div class="section-body" id="read-this-first-body">
+<ol><li><a href="VALI_EXPLORER.html"><code>VALI_EXPLORER.html</code></a> — interactive visual tour of the thesis, safeguards, architecture, and current gate.</li><li><a href="../../README.md"><code>../../README.md</code></a> — thesis, status, and quickstart.</li><li><a href="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html"><code>KALSHI_QUANT_RESEARCHER_CASE_STUDY.html</code></a> — interactive project narrative.</li><li><a href="ARCHITECTURE_MAP.md"><code>ARCHITECTURE_MAP.md</code></a> — code and responsibility map.</li><li><a href="EMPIRICAL_VALIDATION_PLAN.html"><code>EMPIRICAL_VALIDATION_PLAN.html</code></a> — interactive predeclared hypotheses and falsification gates.</li><li><a href="DATA_AVAILABILITY_AUDIT.html"><code>DATA_AVAILABILITY_AUDIT.html</code></a> — interactive evidence for the current stop decision.</li></ol>
+</div></section>
+<section class="doc-section" id="run-this-command" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>Run this command</h2><button class="section-toggle" type="button" aria-controls="run-this-command-body" aria-expanded="true" aria-label="Collapse Run this command" data-section-title="Run this command">⌄</button></div><div class="section-body" id="run-this-command-body">
+<p>From the repository root:</p>
+<pre><code class="language-powershell">.\work\.venv\Scripts\python.exe -m pytest -q</code></pre>
+<p>For environment assumptions, see <a href="../../ENVIRONMENT.md"><code>../../ENVIRONMENT.md</code></a>.</p>
+</div></section>
+<section class="doc-section" id="what-to-evaluate" data-doc-section><div class="section-heading"><span class="section-index">Section 03</span><h2>What to evaluate</h2><button class="section-toggle" type="button" aria-controls="what-to-evaluate-body" aria-expanded="true" aria-label="Collapse What to evaluate" data-section-title="What to evaluate">⌄</button></div><div class="section-body" id="what-to-evaluate-body">
+<ul><li>Does the project prevent label, vintage, normalization, and fold leakage?</li><li>Are variables, transformations, polarities, thresholds, and baselines frozen before validation?</li><li>Are walk-forward evaluation and falsification gates predeclared?</li><li>Are execution, depth, fee, capacity, and tradability claims constrained by observed evidence?</li><li>Is the code organized into production-minded, testable boundaries?</li><li>Are provider transport, normalization, archiving, and orchestration separated?</li><li>Does the project preserve exclusions, null results, and data blockers instead of optimizing them away?</li><li>Does the project refuse to overclaim?</li></ul>
+</div></section>
+<section class="doc-section" id="what-not-to-infer" data-doc-section><div class="section-heading"><span class="section-index">Section 04</span><h2>What not to infer</h2><button class="section-toggle" type="button" aria-controls="what-not-to-infer-body" aria-expanded="true" aria-label="Collapse What not to infer" data-section-title="What not to infer">⌄</button></div><div class="section-body" id="what-not-to-infer-body">
+<ul><li>Do not infer proven alpha.</li><li>Do not infer trading readiness or production trading capability.</li><li>Do not infer access to private Kalshi data or proprietary order flow.</li><li>Do not infer order submission, credentialed trading, or a live production API integration.</li><li>Do not infer that deterministic fixtures are empirical evidence.</li></ul>
+</div></section>
+<section class="doc-section" id="known-caveats" data-doc-section><div class="section-heading"><span class="section-index">Section 05</span><h2>Known caveats</h2><button class="section-toggle" type="button" aria-controls="known-caveats-body" aria-expanded="true" aria-label="Collapse Known caveats" data-section-title="Known caveats">⌄</button></div><div class="section-body" id="known-caveats-body">
+<ul><li>Point-in-time empirical attention history has not been acquired.</li><li>The canonical Step 5C run remains unauthorized.</li><li>Kalshi raw and normalized captures require controlled tier reconstruction.</li><li>Historical order-book depth is unavailable, so capacity claims are disabled.</li><li>The venue fee model remains provisional.</li><li>The latest outcome requires settlement-eligibility verification.</li><li>Package <code>0.3.0</code> and migration label <code>v0.1</code> remain intentionally distinct.</li></ul>
+<p>Historical integrity and migration records retain original local paths as audit provenance. Those files are not submission landing pages; this README and every document in <code>docs/submission/</code> use repository-relative paths only.</p>
+</div></section>
+<section class="doc-section" id="next-research-step" data-doc-section><div class="section-heading"><span class="section-index">Section 06</span><h2>Next research step</h2><button class="section-toggle" type="button" aria-controls="next-research-step-body" aria-expanded="true" aria-label="Collapse Next research step" data-section-title="Next research step">⌄</button></div><div class="section-body" id="next-research-step-body">
+<p>Acquire an approved, documented point-in-time attention history; reconstruct the Kalshi market lineage into frozen data tiers; then repeat the Step 5B availability audit. Step 5C may begin only if that repeated audit passes.</p>
+<p>This guide makes no alpha or trading-readiness claim and authorizes no live collection, order submission, or trading.</p>
+</div></section>
+      <nav class="page-neighbors" aria-label="Adjacent library pages">
+        <a class="neighbor previous" href="FINAL_VALIDATION_REPORT.html"><small>Previous</small><b>← Validation report</b></a>
+        <a class="neighbor next" href="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html"><small>Next</small><b>Case study →</b></a>
+      </nav>
+      <footer class="claim-footer"><p><strong>Claim boundary:</strong> No empirical alpha claim. No trading-readiness claim. No private data, proprietary order flow, order submission, live trading, or <code>P_flow</code>.</p></footer>
+    </main>
+  </div>
+  <noscript><style>.doc-sidebar{display:block!important;position:static;max-height:none}.section-body[hidden]{display:block!important}</style></noscript>
+  <script src="library.js" defer></script>
+</body>
+</html>

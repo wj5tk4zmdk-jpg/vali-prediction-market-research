@@ -1,0 +1,48 @@
+{
+  "experiment_id": "fed_easing_kxfed_v1",
+  "step": "5B-1",
+  "feature_manifest": "configs/features/google_trends_candidate_v1.csv",
+  "feature_manifest_hash": "f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a",
+  "attention_history": {
+    "status": "not_acquired",
+    "fixture_days_available": 3,
+    "canonical_empirical_history_available": false,
+    "acceptable_sources_documented": true,
+    "quarantine_only_sources_documented": true,
+    "prohibited_sources_documented": true,
+    "minimum_fields_documented": true,
+    "blocking_gap": "point_in_time_empirical_attention_history_missing"
+  },
+  "kalshi_reconstruction": {
+    "status": "inventory_completed",
+    "mapped_events_found": 34,
+    "hourly_quotes_found": 66465,
+    "trades_found": 42168,
+    "observed_depth_snapshots_found": 1,
+    "complete_cutoff_snapshot_series_available": false,
+    "historical_depth_available": false,
+    "capacity_claims_enabled": false,
+    "mixed_captures_require_review": true,
+    "latest_outcome_eligibility_verified": false,
+    "decisions": [
+      "quotes_can_support_market_probability_history",
+      "trades_can_support_secondary_market_activity_context",
+      "depth_insufficient_for_capacity_claims",
+      "mixed_captures_require_manual_tiering",
+      "canonical_processed_inputs_not_ready"
+    ]
+  },
+  "canonical_inputs": {
+    "analysis_ready_attention": false,
+    "analysis_ready_market": false,
+    "analysis_ready_outcomes": false,
+    "analysis_ready_execution": false
+  },
+  "next_gate": "repeat_5B_after_data_remediation",
+  "may_proceed_to_5C": false,
+  "claim_boundaries": [
+    "no_alpha_claim",
+    "no_trading_readiness_claim",
+    "no_capacity_claim_without_depth"
+  ]
+}

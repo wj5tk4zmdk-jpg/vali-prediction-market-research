@@ -1,0 +1,78 @@
+{
+  "experiment_id": "fed_easing_kxfed_v1",
+  "canonical_config": "configs/experiments/fed_easing_v1.toml",
+  "feature_manifest": "configs/features/google_trends_candidate_v1.csv",
+  "feature_manifest_hash": "f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a",
+  "audit_date": "2026-06-24",
+  "audit_scope": "local_repository_only_no_live_collection",
+  "event_roster": {
+    "available": true,
+    "count": 34,
+    "discovered_settled_count": 39,
+    "date_min": "2022-05-04T18:00:00Z",
+    "date_max": "2026-06-17T18:00:00Z",
+    "stable_internal_identity": true,
+    "notes": "Thirty-four public Kalshi events map to EASING contracts; nine exclusion rows cover unresolved ladders or missing prior bounds. The latest outcome requires settlement-availability review."
+  },
+  "kalshi_market_data": {
+    "available": true,
+    "raw_available": true,
+    "normalized_available": true,
+    "fixture_only": false,
+    "mapped_event_count": 34,
+    "hourly_quote_count": 66465,
+    "trade_count_in_separate_capture": 42168,
+    "depth_available": false,
+    "observed_depth_snapshot_count": 1,
+    "executable_snapshots_available": false,
+    "date_min": "2021-12-27T16:00:00Z",
+    "date_max": "2026-06-23T18:22:31.501907Z",
+    "notes": "Public raw archives and normalized tables exist but remain mixed in quarantine. Historical rows have bid/ask but no observed depth; one off-cutoff snapshot is not a complete executable series."
+  },
+  "google_trends_attention_data": {
+    "available": true,
+    "fixture_only": true,
+    "empirical_history_available": false,
+    "retrieved_at_available": true,
+    "active_feature_count": 6,
+    "observation_count": 24,
+    "active_feature_row_count": 18,
+    "date_min": "2026-06-19",
+    "date_max": "2026-06-21",
+    "notes": "Only fixture-v1 data exist: three dates, one UTC retrieval timestamp, 22 usable observations, and two explicit inactive-query exclusions. Historical point-in-time claims are disabled."
+  },
+  "outcomes": {
+    "available": true,
+    "count": 34,
+    "outcome_zero_count": 28,
+    "outcome_one_count": 6,
+    "notes": "Outcomes are stored in the event/evaluation table and absent from quotes. The latest row must be checked against its declared settlement availability before training."
+  },
+  "point_in_time_validity": {
+    "supported": false,
+    "implementation_contracts_pass": true,
+    "notes": "Local tests prove the controls, but no empirical point-in-time attention history spans the events, configured analysis files are absent, and one outcome needs eligibility review."
+  },
+  "common_intersection": {
+    "sufficient_for_fixture_validation": true,
+    "sufficient_for_exploratory_empirical_validation": false,
+    "sufficient_for_empirical_walk_forward": false,
+    "resolved_events_with_predecision_empirical_attention": 0,
+    "notes": "Market and outcome history cover 34 events, but the three-day attention fixture begins after the final resolved meeting and cannot form an empirical A/P intersection."
+  },
+  "decision": "insufficient_due_to_missing_attention_history",
+  "blocking_gaps": [
+    "No empirical point-in-time history for the six active attention queries",
+    "Official Trends revision and availability semantics are not documented locally",
+    "Canonical config resolves to four absent analysis-ready input files",
+    "Kalshi mixed raw and normalized captures require provenance review and tier separation",
+    "Latest outcome eligibility must be verified against declared settlement availability"
+  ],
+  "claim_limitations": [
+    "No empirical alpha claim",
+    "No trading-readiness claim",
+    "No historical capacity or tradability claim without observed depth",
+    "Simulated return claims remain limited by the provisional fee model",
+    "One off-cutoff order-book snapshot does not satisfy execution completeness"
+  ]
+}

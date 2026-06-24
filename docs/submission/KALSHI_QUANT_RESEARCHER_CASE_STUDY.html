@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The research question, methodology, engineering work, honest result, and relevance to event-market research.">
+  <title>VALI: Kalshi Quant Researcher Case Study · VALI Research Library</title>
+  <link rel="stylesheet" href="library.css">
+</head>
+<body style="--accent:#00a891;--accent-soft:#d6f4ed" data-page="case-study">
+  <a class="skip-link" href="#document">Skip to document</a>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="library-brand" href="VALI_EXPLORER.html"><span class="library-mark">V</span><span>VALI Explorer</span></a>
+      <span class="topbar-divider" aria-hidden="true"></span>
+      <span class="document-label">Research Library · Case study</span>
+      <button class="toc-toggle" id="toc-toggle" type="button" aria-controls="doc-sidebar" aria-expanded="false">Contents</button>
+      <label class="page-switcher-wrap"><span class="skip-link">Choose a library page</span><select class="page-switcher" id="page-switcher" aria-label="Choose a research library page"><option value="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html" selected>Case study</option><option value="EMPIRICAL_VALIDATION_PLAN.html">Validation plan</option><option value="DATA_AVAILABILITY_AUDIT.html">Data audit</option><option value="ATTENTION_DATA_ACQUISITION_PROTOCOL.html">Attention protocol</option><option value="KALSHI_RECONSTRUCTION_LEDGER.html">Kalshi ledger</option><option value="FINAL_VALIDATION_REPORT.html">Validation report</option><option value="REVIEWER_GUIDE.html">Reviewer guide</option></select></label>
+    </div>
+  </header>
+  <div class="page-shell">
+    <aside class="doc-sidebar" id="doc-sidebar">
+      <span class="doc-type">Portfolio narrative</span>
+      <h2 class="sidebar-title">Case study</h2>
+      <p class="sidebar-summary">The research question, methodology, engineering work, honest result, and relevance to event-market research.</p>
+      <label class="search-label" for="section-search">Search this document</label>
+      <input class="section-search" id="section-search" type="search" placeholder="Try “leakage” or “depth”">
+      <p class="search-result" id="search-result">7 sections</p>
+      <p class="toc-heading">On this page</p>
+      <nav class="toc" aria-label="Document sections"><a href="#project-summary">Project summary</a><a href="#problem">Problem</a><a href="#approach">Approach</a><a href="#engineering-work">Engineering work</a><a href="#result">Result</a><a href="#why-this-matters-for-kalshi">Why this matters for Kalshi</a><a href="#claim-boundaries">Claim boundaries</a></nav>
+      <div class="sidebar-actions">
+        <button class="small-button" id="collapse-all" type="button">Collapse all</button>
+        <a class="small-button" href="KALSHI_QUANT_RESEARCHER_CASE_STUDY.md">View source .md</a>
+      </div>
+    </aside>
+    <main class="document" id="document">
+      <header class="doc-hero">
+        <span class="hero-kicker">Portfolio narrative · VALI Research Library</span>
+        <h1>VALI: Kalshi Quant Researcher Case Study</h1>
+        <p>The research question, methodology, engineering work, honest result, and relevance to event-market research.</p>
+        <div class="hero-meta"><span class="meta-pill">Research engine MVP</span><span class="meta-pill">Public-data-only</span><span class="meta-pill">Research, not a trading claim</span></div>
+      </header>
+      <section class="doc-section" id="project-summary" data-doc-section><div class="section-heading"><span class="section-index">Section 01</span><h2>Project summary</h2><button class="section-toggle" type="button" aria-controls="project-summary-body" aria-expanded="true" aria-label="Collapse Project summary" data-section-title="Project summary">⌄</button></div><div class="section-body" id="project-summary-body">
+<p>VALI is a minimum viable public-data prediction-market research engine. It tests whether divergence between public Behavioral Attention and executable market-implied Priced Conviction contains incremental out-of-sample information about event resolution.</p>
+<p>I built the project from methodology through validation infrastructure: data contracts, deterministic signal math, read-only provider adapters, leakage controls, walk-forward tests, execution caveats, reproducible reports, and predeclared falsification gates. The project deliberately reports that its canonical empirical run is blocked rather than dressing fixture results up as alpha.</p>
+</div></section>
+<section class="doc-section" id="problem" data-doc-section><div class="section-heading"><span class="section-index">Section 02</span><h2>Problem</h2><button class="section-toggle" type="button" aria-controls="problem-body" aria-expanded="true" aria-label="Collapse Problem" data-section-title="Problem">⌄</button></div><div class="section-body" id="problem-body">
+<p>Prediction markets can incorporate information quickly, but public behavioral attention may sometimes reveal resolution latency or a change in regime before price conviction fully adjusts. The research question is whether that public attention/price divergence adds information beyond the market probability, historical-frequency, sticky-prior, permutation, and price-only baselines.</p>
+</div></section>
+<section class="doc-section" id="approach" data-doc-section><div class="section-heading"><span class="section-index">Section 03</span><h2>Approach</h2><button class="section-toggle" type="button" aria-controls="approach-body" aria-expanded="true" aria-label="Collapse Approach" data-section-title="Approach">⌄</button></div><div class="section-body" id="approach-body">
+<ul><li><code>A</code>: frozen, public behavioral-attention features with documented polarity, lag, missingness, and provenance.</li><li><code>P</code>: public or executable market-implied probability, subject to spread, freshness, and liquidity checks.</li><li><code>S_t = z(gA_t) - z(gP_t)</code>: signed prior-only velocity divergence.</li><li><code>M_t = |S_t|</code>: divergence magnitude, never a substitute for direction.</li><li>Regimes: attention-leading, market-leading, coupled, or unstable.</li><li>Clear Horizon: whether divergence resolves before price movement rather than following it.</li><li>Validation: meeting-grouped expanding walk-forward folds, prior-only normalization, label isolation, and predeclared baselines.</li><li>Execution: bid/ask, fees, closures, and observed depth where evidence exists; capacity is disabled where it does not.</li><li>Falsification: leakage, post-hoc feature selection, baseline failure, single-event dependence, composition drift, and overclaiming are explicit failure modes.</li></ul>
+</div></section>
+<section class="doc-section" id="engineering-work" data-doc-section><div class="section-heading"><span class="section-index">Section 04</span><h2>Engineering work</h2><button class="section-toggle" type="button" aria-controls="engineering-work-body" aria-expanded="true" aria-label="Collapse Engineering work" data-section-title="Engineering work">⌄</button></div><div class="section-body" id="engineering-work-body">
+<p>The repository separates domain math, data contracts, typed configuration, research orchestration, report artifacts, execution simulation, provider components, and the application/CLI boundary. Kalshi and Google Trends adapters are decomposed behind compatibility facades, with public-data-only boundaries and no order-entry surface.</p>
+<p>Submission polish began from a 167-test passing baseline. The repository also contains a final validation report, architecture decisions, a frozen experiment registry, data-tier policy, and an artifact quarantine/inventory process that preserves provenance instead of deleting inconvenient evidence.</p>
+</div></section>
+<section class="doc-section" id="result" data-doc-section><div class="section-heading"><span class="section-index">Section 05</span><h2>Result</h2><button class="section-toggle" type="button" aria-controls="result-body" aria-expanded="true" aria-label="Collapse Result" data-section-title="Result">⌄</button></div><div class="section-body" id="result-body">
+<p>The minimum viable research engine is complete and fixture validation is reproducible. Canonical alpha validation is not authorized: point-in-time empirical attention history is missing, mixed Kalshi captures still require controlled tier reconstruction, historical depth is absent, and the latest outcome needs settlement-eligibility review.</p>
+<p>That is the result of the current phase—not a footnote. The project treats “insufficient data” as a valid gate rather than a reason to weaken the design.</p>
+</div></section>
+<section class="doc-section" id="why-this-matters-for-kalshi" data-doc-section><div class="section-heading"><span class="section-index">Section 06</span><h2>Why this matters for Kalshi</h2><button class="section-toggle" type="button" aria-controls="why-this-matters-for-kalshi-body" aria-expanded="true" aria-label="Collapse Why this matters for Kalshi" data-section-title="Why this matters for Kalshi">⌄</button></div><div class="section-body" id="why-this-matters-for-kalshi-body">
+<p>The work is directly relevant to new index and model research around event markets: translating an ambiguous hypothesis into frozen variables, executable market mappings, falsifiable benchmarks, and operational data requirements. It also demonstrates the collaboration surface a quant researcher needs across engineering, product, market design, and trading—clear interfaces, reviewable assumptions, reproducible outputs, and practical ownership when the data are messy.</p>
+</div></section>
+<section class="doc-section" id="claim-boundaries" data-doc-section><div class="section-heading"><span class="section-index">Section 07</span><h2>Claim boundaries</h2><button class="section-toggle" type="button" aria-controls="claim-boundaries-body" aria-expanded="true" aria-label="Collapse Claim boundaries" data-section-title="Claim boundaries">⌄</button></div><div class="section-body" id="claim-boundaries-body">
+<p>This case study makes no alpha claim and no trading-readiness claim. It uses no private Kalshi data, proprietary order flow, client information, or <code>P_flow</code>. It performs no order submission, live trading, or production deployment.</p>
+</div></section>
+      <nav class="page-neighbors" aria-label="Adjacent library pages">
+        <a class="neighbor previous" href="REVIEWER_GUIDE.html"><small>Previous</small><b>← Reviewer guide</b></a>
+        <a class="neighbor next" href="EMPIRICAL_VALIDATION_PLAN.html"><small>Next</small><b>Validation plan →</b></a>
+      </nav>
+      <footer class="claim-footer"><p><strong>Claim boundary:</strong> No empirical alpha claim. No trading-readiness claim. No private data, proprietary order flow, order submission, live trading, or <code>P_flow</code>.</p></footer>
+    </main>
+  </div>
+  <noscript><style>.doc-sidebar{display:block!important;position:static;max-height:none}.section-body[hidden]{display:block!important}</style></noscript>
+  <script src="library.js" defer></script>
+</body>
+</html>

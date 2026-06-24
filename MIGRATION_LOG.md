@@ -791,3 +791,168 @@ Completed 2026-06-23.
   flow, order submission, live trading, or `P_flow` was introduced.
 - Full result after Step 4L: **149 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Files created:
+  - `V0_1_RELEASE_CANDIDATE.md`
+  - `FINAL_VALIDATION_REPORT.md`
+  - `tests/contract/test_final_release_candidate.py`
+- File modified:
+  - `MIGRATION_LOG.md`
+- Created local commit `96b57645517bf93469184e0ce8a51c1f61a9adb5`
+  with subject `migration: prepare v0.1 release candidate`.
+- The repository was cleared to exit the 4-series and enter 5-series
+  operational research readiness. This is research-engine readiness, not
+  evidence of alpha or trading readiness.
+- Before Step 5A, local editor state at `.vscode/` was reviewed and ignored in
+  follow-up hygiene commit `630f142066635e1d1291d3780e953ec181e1652e`.
+  The local file was preserved and no source or test behavior changed.
+
+## Step 5A - Empirical validation plan and falsification gates
+
+Completed 2026-06-24.
+
+- Created `docs/operational/` and registered the canonical experiment
+  `fed_easing_kxfed_v1` before empirical evaluation.
+- Added `docs/operational/5A_EMPIRICAL_VALIDATION_PLAN.md` defining the primary
+  and null hypotheses; market, historical-frequency, sticky-prior,
+  permutation, and price-only baselines; forecast, timing, regime,
+  execution-aware, and robustness metrics; validity and falsification gates;
+  conservative acceptance categories; and explicit claim boundaries.
+- Added `docs/operational/FALSIFICATION_GATES.md` covering leakage, post-hoc
+  selection, prohibited inputs, point-in-time and baseline failure,
+  walk-forward and regime instability, composition drift, depth/capacity,
+  provisional fees, provider uncertainty, specification drift, and
+  overclaiming.
+- Added `docs/operational/EXPERIMENT_REGISTRY.md` with the canonical config,
+  frozen Google Trends feature manifest, Kalshi KXFED market family, and the
+  status `registered, not yet empirically validated`.
+- Added `tests/contract/test_operational_research_plan.py` with six
+  deterministic documentation and prohibited-surface checks. It uses no live
+  API, credentials, or mutable empirical data.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No empirical alpha claim or trading-readiness claim was made. Passing Step
+  5A authorizes only disciplined data-availability and empirical validation
+  work.
+- No source logic, methodology, formula, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, existing test behavior,
+  report output, artifact, manifest field, schema, execution policy, or fee
+  model changed.
+- No live API behavior, network dependency, credential use, private input,
+  proprietary flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 5A: **155 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Files created:
+  - `docs/operational/5A_EMPIRICAL_VALIDATION_PLAN.md`
+  - `docs/operational/FALSIFICATION_GATES.md`
+  - `docs/operational/EXPERIMENT_REGISTRY.md`
+  - `tests/contract/test_operational_research_plan.py`
+- File modified:
+  - `MIGRATION_LOG.md`
+- Created local commit `dd8e67c286c8b0321addcf1c7da290d184add86c`
+  with subject `research: define empirical validation plan`.
+- Step 5A predeclared the hypotheses, baselines, metrics, falsification gates,
+  and acceptance categories without making an alpha or trading-readiness claim.
+
+## Step 5B - Data availability audit and experiment manifest
+
+Completed 2026-06-24.
+
+- Created `experiments/fed_easing_kxfed_v1/EXPERIMENT_MANIFEST.md` with the
+  registered identity, hypothesis/null, required inputs and baselines, later
+  output families, and allowed sufficiency decisions.
+- Created `experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md` from
+  local repository files only. No live provider call, credential, or new
+  provider output was used.
+- Created machine-readable
+  `experiments/fed_easing_kxfed_v1/data_availability_manifest.json` and selected
+  `insufficient_due_to_missing_attention_history`.
+- The local public Kalshi capture contains 34 mapped EASING events, 66,465
+  hourly bid/ask rows from December 2021 through June 2026, 42,168 trades in a
+  separate capture, and one observed-depth snapshot. Historical quotes contain
+  no book depth, and mixed raw/normalized runs remain quarantined.
+- All 34 mapped event rows contain outcomes (28 outcome 0 and 6 outcome 1), but
+  the latest outcome requires settlement-availability verification before
+  training. Outcomes are absent from the quote table and remain governed by
+  label-isolation contracts.
+- The only local Google Trends attention rows are a three-date `fixture-v1`
+  response from June 19–21, 2026. It has stable UTC retrieval serialization but
+  is not empirical history and cannot supply the 30-prior-observation warm-up
+  or a pre-decision intersection with the resolved meetings.
+- `data/raw/` and `data/processed/` are empty, and the canonical TOML resolves
+  to four absent analysis-ready inputs under `configs/experiments/data/`.
+- Updated `docs/operational/EXPERIMENT_REGISTRY.md` with the experiment/audit
+  paths, machine manifest, 5B decision, and explicit not-yet-validated status.
+- Added `tests/contract/test_data_availability_manifest.py` with six
+  deterministic identity, parsing, decision, claim-boundary, availability, and
+  prohibited-surface checks.
+- The common intersection is sufficient for fixture validation only, not
+  exploratory or proper empirical walk-forward validation. Data collection or
+  reconstruction and a repeated availability audit are required before 5C.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No source logic, methodology, formula, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, existing test behavior,
+  report output, artifact, manifest field, schema, execution policy, or fee
+  model changed.
+- No alpha or trading-readiness claim, live API behavior, network dependency,
+  credential use, private input, proprietary flow, order submission, live
+  trading, or `P_flow` was introduced.
+- Full result after Step 5B: **161 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Files created:
+  - `experiments/fed_easing_kxfed_v1/EXPERIMENT_MANIFEST.md`
+  - `experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md`
+  - `experiments/fed_easing_kxfed_v1/data_availability_manifest.json`
+  - `tests/contract/test_data_availability_manifest.py`
+- Files modified:
+  - `MIGRATION_LOG.md`
+  - `docs/operational/EXPERIMENT_REGISTRY.md`
+- Created local commit `6468f598646fc3012eafd48d9f220a305beac813`
+  with subject `research: audit data availability for fed easing experiment`.
+- Step 5B concluded `insufficient_due_to_missing_attention_history`; 5C
+  cannot proceed honestly until remediation is complete and availability is
+  audited again.
+
+## Step 5B-1 - Controlled data remediation protocol
+
+Completed 2026-06-24.
+
+- Added
+  `experiments/fed_easing_kxfed_v1/ATTENTION_DATA_ACQUISITION_PROTOCOL.md`
+  defining the frozen feature universe, acquisition/provenance fields, current
+  normalized field mappings, acceptable and quarantine-only sources,
+  prohibited private/proprietary sources, revision semantics, minimum coverage,
+  and status `not_acquired`.
+- Added `experiments/fed_easing_kxfed_v1/KALSHI_RECONSTRUCTION_LEDGER.md`
+  classifying fixtures, raw captures, normalized quotes, trades, discovery,
+  depth snapshots, reports, and mixed/uncertain local material without moving,
+  deleting, combining, or re-normalizing any data.
+- Added machine-readable
+  `experiments/fed_easing_kxfed_v1/data_remediation_manifest.json`. It records
+  66,465 hourly quotes, 42,168 trades, one incomplete observed-depth snapshot,
+  no historical depth, four non-ready canonical input families, and
+  `may_proceed_to_5C=false`.
+- Updated `docs/operational/EXPERIMENT_REGISTRY.md` with remediation paths and
+  the status `Registered, not yet empirically validated; data remediation
+  required before 5C`, preserving the existing compatibility wording.
+- Added `tests/contract/test_data_remediation_plan.py` with six deterministic
+  existence, identity/freeze, acquisition-status, 5C/capacity, claim-boundary,
+  and prohibited-source checks.
+- Attention history remains `not_acquired`; the three fixture days cannot
+  support empirical validation. Acceptable source requirements are documented,
+  but no live acquisition was executed or authorized.
+- Kalshi quotes and trades may become market-probability and secondary-activity
+  inputs only after manual provenance review, tier separation, lineage hashing,
+  outcome eligibility verification, and a repeated Step 5B audit. Capacity and
+  tradability remain disabled without historical depth.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No source logic, methodology, formula, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, existing test behavior,
+  report output, artifact, manifest field, schema, execution policy, or fee
+  model changed.
+- No alpha or trading-readiness claim, empirical validation, backtest, live API
+  behavior, network dependency, credential use, private input, proprietary
+  flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 5B-1: **167 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
