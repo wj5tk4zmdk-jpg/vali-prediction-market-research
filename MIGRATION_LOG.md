@@ -451,3 +451,59 @@ Completed 2026-06-23.
   order flow, or `P_flow` was introduced.
 - Full result after Step 4G-1: **110 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Created local commit `9358b5954b3b6985530297b9bc9e47d11ecb58e3`
+  with subject `migration: decompose Kalshi provider boundary`.
+
+## Step 4G-2 - Google Trends provider decomposition
+
+Completed 2026-06-23.
+
+- Created the non-conflicting internal `google_trends_components` package while
+  retaining `vali.providers.google_trends` as the public compatibility facade.
+- Moved typed query/request/observation/response/run contracts, constants,
+  shared exceptions, UTC parsing, deterministic hashing, and secret redaction
+  into `contracts.py`.
+- Moved frozen query-manifest loading and validation, balanced active-basket
+  enforcement, manifest frames and hashes, T-2 request planning, and plan-file
+  generation into `manifest.py`.
+- Moved the deterministic recorded-fixture gateway and fixture validation into
+  `fixtures.py` without changing filtering, status, missingness, request IDs,
+  or fixture response content.
+- Moved feature-manifest construction, response normalization, T-2 and partial
+  exclusions, UTC `retrieved_at` handling, vintage hashes, and append/deduplication
+  helpers into `normalization.py`.
+- Moved coverage, missing-active-query, suppression, low-volume, and latest-date
+  status reporting into `audit.py`.
+- Moved the explicit unavailable-official-access gate and protocol-independent
+  retry wrapper into `client.py`. The module intentionally contains no HTTP
+  transport, credentials, or assumptions about the unpublished alpha protocol.
+- Kept `TrendsArchiveStore` and `TrendsAdapter` orchestration in the public
+  facade to preserve archive and persistence behavior exactly. Existing private
+  helper aliases used by the adapter remain available.
+- Added deterministic compatibility tests for old/new imports, query manifests,
+  active/inactive selection, request-plan bytes, fixture responses, normalized
+  frames and dtypes, audit/exclusion output, UTC/Parquet serialization,
+  archive names and hashes, redaction, and the absence of live networking or
+  credentials.
+- Files created:
+  - `src/vali/providers/google_trends_components/__init__.py`
+  - `src/vali/providers/google_trends_components/contracts.py`
+  - `src/vali/providers/google_trends_components/manifest.py`
+  - `src/vali/providers/google_trends_components/fixtures.py`
+  - `src/vali/providers/google_trends_components/normalization.py`
+  - `src/vali/providers/google_trends_components/audit.py`
+  - `src/vali/providers/google_trends_components/client.py`
+  - `tests/test_google_trends_provider_decomposition.py`
+- Existing source file modified as the compatibility facade:
+  - `src/vali/providers/google_trends.py`
+- Governance file modified:
+  - `MIGRATION_LOG.md`
+- Kalshi was not changed. No query-manifest behavior, fixture output,
+  normalized output, audit/exclusion output, archive path or hash, timestamp,
+  dtype, schema, formula, report, artifact, configuration, TOML behavior, or
+  test layout changed. No data artifact was moved or deleted.
+- No live API call, network dependency, credential use, official-alpha protocol
+  assumption, private input, proprietary order flow, order submission, or
+  `P_flow` was introduced.
+- Full result after Step 4G-2: **118 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
