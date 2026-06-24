@@ -1,0 +1,15 @@
+{
+  "KXFED-25JAN": [
+    {"ticker": "KXFED-25JAN-T4.25", "event_ticker": "KXFED-25JAN", "result": "yes", "open_time": "2024-12-01T14:00:00Z", "close_time": "2025-01-29T17:55:00Z", "expiration_time": "2025-02-05T18:05:00Z"},
+    {"ticker": "KXFED-25JAN-T4.50", "event_ticker": "KXFED-25JAN", "result": "no", "open_time": "2024-12-01T14:00:00Z", "close_time": "2025-01-29T17:55:00Z", "expiration_time": "2025-02-05T18:05:00Z"}
+  ],
+  "KXFED-25MAR": [
+    {"ticker": "KXFED-25MAR-T4.00", "event_ticker": "KXFED-25MAR", "result": "yes", "open_time": "2025-01-30T14:00:00Z", "close_time": "2025-03-19T17:55:00Z", "expiration_time": "2025-03-26T18:05:00Z"},
+    {"ticker": "KXFED-25MAR-T4.25", "event_ticker": "KXFED-25MAR", "result": "no", "open_time": "2025-01-30T14:00:00Z", "close_time": "2025-03-19T17:55:00Z", "expiration_time": "2025-03-26T18:05:00Z"},
+    {"ticker": "KXFED-25MAR-T4.50", "event_ticker": "KXFED-25MAR", "result": "no", "open_time": "2025-01-30T14:00:00Z", "close_time": "2025-03-19T17:55:00Z", "expiration_time": "2025-03-26T18:05:00Z"}
+  ],
+  "KXFED-25MAY": [
+    {"ticker": "KXFED-25MAY-T4.00", "event_ticker": "KXFED-25MAY", "result": "yes", "open_time": "2025-03-20T14:00:00Z", "close_time": "2025-05-07T17:55:00Z", "expiration_time": "2025-05-14T18:05:00Z", "last_price_dollars": "0.6000", "volume_fp": "100.00"},
+    {"ticker": "KXFED-25MAY-T4.25", "event_ticker": "KXFED-25MAY", "result": "no", "open_time": "2025-03-20T14:00:00Z", "close_time": "2025-05-07T17:55:00Z", "expiration_time": "2025-05-14T18:05:00Z"}
+  ]
+}

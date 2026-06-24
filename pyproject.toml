@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vali-research"
+version = "0.3.0"
+description = "Offline, execution-aware research implementation of the VALI methodology"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{name = "Matt Eaton"}]
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "pyarrow>=16",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5"]
+notebook = ["jupyterlab>=4", "nbformat>=5"]
+
+[project.scripts]
+vali = "vali.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+vali = ["data/*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

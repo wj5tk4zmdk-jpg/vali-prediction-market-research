@@ -1,0 +1,8 @@
+{
+  "events": [
+    {"event_ticker": "KXFED-25JAN", "title": "Fed funds rate after Jan 2025 meeting?"},
+    {"event_ticker": "KXFED-25MAR", "title": "Fed funds rate after Mar 2025 meeting?"},
+    {"event_ticker": "KXFED-25MAY", "title": "Fed funds rate after May 2025 meeting?"}
+  ],
+  "cursor": ""
+}

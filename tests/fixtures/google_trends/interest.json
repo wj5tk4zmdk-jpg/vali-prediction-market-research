@@ -1,0 +1,33 @@
+{
+  "fixture_schema": "vali-google-trends-fixture-v1",
+  "api_version": "fixture-v1",
+  "retrieved_at": "2026-06-23T15:30:00Z",
+  "request_id": "fixture-request-001",
+  "observations": [
+    {"query_id": "rate_cut", "date": "2026-06-19", "value": 18.5, "status": "available", "partial": false},
+    {"query_id": "federal_reserve_rate_cut", "date": "2026-06-19", "value": 12.0, "status": "available", "partial": false},
+    {"query_id": "interest_rates_down", "date": "2026-06-19", "value": 21.5, "status": "available", "partial": false},
+    {"query_id": "rate_hike", "date": "2026-06-19", "value": 5.0, "status": "available", "partial": false},
+    {"query_id": "federal_reserve_rate_hike", "date": "2026-06-19", "value": 3.5, "status": "available", "partial": false},
+    {"query_id": "interest_rates_up", "date": "2026-06-19", "value": 7.5, "status": "available", "partial": false},
+    {"query_id": "rate_cut", "date": "2026-06-20", "value": 20.0, "status": "available", "partial": false},
+    {"query_id": "federal_reserve_rate_cut", "date": "2026-06-20", "value": 14.0, "status": "available", "partial": false},
+    {"query_id": "interest_rates_down", "date": "2026-06-20", "value": 24.0, "status": "available", "partial": false},
+    {"query_id": "rate_hike", "date": "2026-06-20", "value": 4.5, "status": "available", "partial": false},
+    {"query_id": "federal_reserve_rate_hike", "date": "2026-06-20", "value": 3.0, "status": "available", "partial": false},
+    {"query_id": "interest_rates_up", "date": "2026-06-20", "value": 6.5, "status": "available", "partial": false},
+    {"query_id": "rate_cut", "date": "2026-06-21", "value": 23.0, "status": "available", "partial": false},
+    {"query_id": "federal_reserve_rate_cut", "date": "2026-06-21", "value": 16.5, "status": "available", "partial": false},
+    {"query_id": "interest_rates_down", "date": "2026-06-21", "value": 28.0, "status": "available", "partial": false},
+    {"query_id": "rate_hike", "date": "2026-06-21", "value": 4.0, "status": "available", "partial": false},
+    {"query_id": "federal_reserve_rate_hike", "date": "2026-06-21", "value": 2.5, "status": "available", "partial": false},
+    {"query_id": "interest_rates_up", "date": "2026-06-21", "value": 6.0, "status": "available", "partial": false},
+    {"query_id": "federal_reserve", "date": "2026-06-21", "value": 54.0, "status": "available", "partial": false},
+    {"query_id": "fomc", "date": "2026-06-21", "value": 31.0, "status": "available", "partial": false},
+    {"query_id": "jerome_powell", "date": "2026-06-21", "value": 25.0, "status": "available", "partial": false},
+    {"query_id": "unemployment_benefits", "date": "2026-06-21", "value": 15.0, "status": "available", "partial": false},
+    {"query_id": "laid_off", "date": "2026-06-21", "value": null, "status": "low_volume", "partial": false},
+    {"query_id": "recession", "date": "2026-06-21", "value": null, "status": "suppressed", "partial": false},
+    {"query_id": "rate_cut", "date": "2026-06-22", "value": 25.0, "status": "available", "partial": true}
+  ]
+}

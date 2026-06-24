@@ -1,0 +1,13 @@
+manifest_version,query_id,query,query_kind,basket,polarity,active,required,rationale,geography,aggregation,candidate_since,freeze_date
+1,rate_cut,fed rate cut,term,easing,1,true,true,Direct search attention toward Federal Reserve easing,US,daily,2026-06-23,
+1,federal_reserve_rate_cut,federal reserve rate cut,term,easing,1,true,true,Explicit Federal Reserve easing search intent,US,daily,2026-06-23,
+1,interest_rates_down,when will interest rates go down,term,easing,1,true,true,Directional public search interest toward lower rates,US,daily,2026-06-23,
+1,rate_hike,fed rate hike,term,tightening,-1,true,true,Direct search attention toward Federal Reserve tightening,US,daily,2026-06-23,
+1,federal_reserve_rate_hike,federal reserve rate hike,term,tightening,-1,true,true,Explicit Federal Reserve tightening search intent,US,daily,2026-06-23,
+1,interest_rates_up,when will interest rates go up,term,tightening,-1,true,true,Directional public search interest toward higher rates,US,daily,2026-06-23,
+1,federal_reserve,Federal Reserve,term,control,0,false,false,Control for broad Federal Reserve attention,US,daily,2026-06-23,
+1,fomc,FOMC,term,control,0,false,false,Control for broad meeting-related attention,US,daily,2026-06-23,
+1,jerome_powell,Jerome Powell,term,control,0,false,false,Control for attention driven by the Federal Reserve chair,US,daily,2026-06-23,
+1,unemployment_benefits,unemployment benefits,term,stress,1,false,false,Experimental household labor-stress search behavior,US,daily,2026-06-23,
+1,laid_off,laid off,term,stress,1,false,false,Experimental job-loss search behavior,US,daily,2026-06-23,
+1,recession,recession,term,stress,1,false,false,Experimental macroeconomic stress search attention,US,daily,2026-06-23,
