@@ -6,7 +6,17 @@ __pycache__/
 htmlcov/
 .venv/
 build/
+dist/
 work/
 outputs/
+artifacts/quarantine/*
+!artifacts/quarantine/.gitkeep
+data/interim/kalshi/kalshi-live-snapshot-2026-06-23/
+data/quarantine/kalshi/kalshi-*/
+data/quarantine/google_trends/trends_acceptance_v03/
+reports/runs/*
+!reports/runs/.gitkeep
+reports/quarantine/*
+!reports/quarantine/.gitkeep
 .git.invalid-*/
 .ipynb_checkpoints/

@@ -626,3 +626,66 @@ Completed 2026-06-23.
   flow, order submission, live trading, or `P_flow` was introduced.
 - Full result after Step 4I: **131 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Created local commit `28cda08073eecf206313878670e6b736ebdac0f1`
+  with subject `migration: relocate configs tests and fixtures`.
+
+## Step 4J - Artifact quarantine and data tiers
+
+Completed 2026-06-23.
+
+- Created the data tiers `data/raw/`, `data/interim/`, `data/processed/`, and
+  `data/quarantine/`; report tiers `reports/archive/`, `reports/runs/`, and
+  `reports/quarantine/`; and `artifacts/quarantine/` for generated package and
+  source snapshots.
+- Added `ARTIFACT_INVENTORY.md` with original/current paths, classifications,
+  move/deletion status, file and byte summaries, reproducibility and empirical
+  flags, reasons, and SHA-256 values for package bundles and the archived
+  verification report.
+- Moved stale generated `build/lib` source copies, package metadata, historical
+  wheels, source archives, duplicated wheel builds, and the legacy output
+  README into `artifacts/quarantine/`. No quarantined package file was deleted.
+- Moved the known normalized Kalshi live snapshot into
+  `data/interim/kalshi/`. Moved mixed raw/normalized Kalshi captures into
+  `data/quarantine/kalshi/` rather than guessing their final tier.
+- Moved the fixture-derived Trends acceptance run into
+  `data/quarantine/google_trends/`. Committed provider fixtures and the old
+  Google Trends compatibility fixture remained unchanged in place.
+- Moved the deterministic synthetic output run into `reports/runs/`; moved
+  older unreviewed work runs into `reports/quarantine/legacy-work/`; and moved
+  the reviewed `KALSHI_ADAPTER_VERIFICATION.md` into `reports/archive/` without
+  changing its filename or text.
+- Left `.pytest_cache`, `.coverage`, `.venv`, `work/.venv`, `work/tools`, and
+  previously quarantined invalid Git metadata in place. They are inventoried as
+  local caches, environments, or needs-review metadata. No file was deleted.
+- Updated `.gitignore` narrowly:
+  - added `dist/` for standard generated package distributions;
+  - ignored `artifacts/quarantine/*` while retaining its layout marker;
+  - ignored only the specifically relocated local Kalshi/Trends data payloads,
+    leaving future `data/raw/` and `data/processed/` visible by default;
+  - ignored generated `reports/runs/*` and unreviewed
+    `reports/quarantine/*` while retaining layout markers.
+- Added `tests/contract/test_artifact_layout_compatibility.py` covering provider
+  fixtures and compatibility copies, new config/CLI paths, report
+  reconstruction, authoritative `src/vali` import resolution, absence of stale
+  build dependencies, and absence of prohibited live/trading/private surfaces.
+- Verified no project import resolves from `artifacts/quarantine/build` and no
+  test references the former `build/lib` source snapshot.
+- Files created or modified for repository state:
+  - `ARTIFACT_INVENTORY.md`
+  - `.gitignore`
+  - data/report/artifact tier `.gitkeep` markers
+  - `reports/archive/KALSHI_ADAPTER_VERIFICATION.md`
+  - `tests/contract/test_artifact_layout_compatibility.py`
+  - `MIGRATION_LOG.md`
+- No source logic, methodology, formula, provider behavior, normalized output,
+  fixture content, config/TOML behavior, CLI behavior, execution policy, fee
+  model, report content, artifact content, manifest field, schema, or existing
+  test expectation changed.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- All raw public/empirical data was preserved in interim or quarantine tiers;
+  none was deleted. No compatibility copy was deleted.
+- No live API, network dependency, credential use, private input, proprietary
+  flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 4J: **137 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
