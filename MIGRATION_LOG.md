@@ -402,3 +402,52 @@ Completed 2026-06-23.
   No source file or data artifact was moved or deleted.
 - Full result after Step 4F: **102 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Created local commit `230f9c88cab898876ff2aaa09f9a2456c5e7846d`
+  with subject `migration: extract execution boundary`.
+
+## Step 4G-1 - Kalshi provider decomposition
+
+Completed 2026-06-23.
+
+- Created the non-conflicting internal `kalshi_components` package while
+  retaining `vali.providers.kalshi` as the public compatibility facade.
+- Moved Kalshi constants, typed mappings, run results, the shared exception,
+  and the read-only transport contract into `contracts.py`.
+- Moved canonical payload serialization and immutable content-addressed gzip
+  response archiving into `archive.py`, preserving directory layout, archive
+  names, content SHA-256 calculation, and envelope fields.
+- Moved public REST URL construction, retry/backoff, cursor pagination,
+  historical/live endpoint routing, candlestick chunking, and read-only client
+  methods into `transport.py` without adding network requirements to tests.
+- Moved KXFED strike parsing, threshold-ladder settlement validation, target
+  upper-bound derivation, internal EASING mapping, timestamps, and upper-bound
+  CSV loading into `mapping.py`.
+- Moved candlestick, trade, event, and bid-only fixed-point order-book
+  normalization into `normalization.py`, preserving YES/NO inversion, observed
+  and unavailable depth behavior, columns, ordering, values, and dtypes.
+- Kept `KalshiAdapter` orchestration in `vali.providers.kalshi` and preserved
+  all existing public imports and private aliases used by the adapter.
+- Added deterministic fixture-based compatibility tests for imports, mappings,
+  normalized frames and dtypes, depth, archive path/name/hash/envelope,
+  pagination/retry behavior, and the absence of credentials or order methods.
+- Files created:
+  - `src/vali/providers/kalshi_components/__init__.py`
+  - `src/vali/providers/kalshi_components/contracts.py`
+  - `src/vali/providers/kalshi_components/transport.py`
+  - `src/vali/providers/kalshi_components/archive.py`
+  - `src/vali/providers/kalshi_components/normalization.py`
+  - `src/vali/providers/kalshi_components/mapping.py`
+  - `tests/test_kalshi_provider_decomposition.py`
+- Existing source file modified as the compatibility facade:
+  - `src/vali/providers/kalshi.py`
+- Governance file modified:
+  - `MIGRATION_LOG.md`
+- Google Trends was not changed. No normalized outputs, archive paths or hashes,
+  mapping rules, pagination/retry behavior, timestamp behavior, schemas,
+  formulas, execution policies, fee assumptions, reports, artifacts,
+  configuration behavior, TOML handling, or test layout changed. No data
+  artifact was moved or deleted.
+- No credentialed endpoint, order-submission logic, private input, proprietary
+  order flow, or `P_flow` was introduced.
+- Full result after Step 4G-1: **110 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
