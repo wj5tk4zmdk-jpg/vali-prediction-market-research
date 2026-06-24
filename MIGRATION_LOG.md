@@ -791,3 +791,53 @@ Completed 2026-06-23.
   flow, order submission, live trading, or `P_flow` was introduced.
 - Full result after Step 4L: **149 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
+- Files created:
+  - `V0_1_RELEASE_CANDIDATE.md`
+  - `FINAL_VALIDATION_REPORT.md`
+  - `tests/contract/test_final_release_candidate.py`
+- File modified:
+  - `MIGRATION_LOG.md`
+- Created local commit `96b57645517bf93469184e0ce8a51c1f61a9adb5`
+  with subject `migration: prepare v0.1 release candidate`.
+- The repository was cleared to exit the 4-series and enter 5-series
+  operational research readiness. This is research-engine readiness, not
+  evidence of alpha or trading readiness.
+- Before Step 5A, local editor state at `.vscode/` was reviewed and ignored in
+  follow-up hygiene commit `630f142066635e1d1291d3780e953ec181e1652e`.
+  The local file was preserved and no source or test behavior changed.
+
+## Step 5A - Empirical validation plan and falsification gates
+
+Completed 2026-06-24.
+
+- Created `docs/operational/` and registered the canonical experiment
+  `fed_easing_kxfed_v1` before empirical evaluation.
+- Added `docs/operational/5A_EMPIRICAL_VALIDATION_PLAN.md` defining the primary
+  and null hypotheses; market, historical-frequency, sticky-prior,
+  permutation, and price-only baselines; forecast, timing, regime,
+  execution-aware, and robustness metrics; validity and falsification gates;
+  conservative acceptance categories; and explicit claim boundaries.
+- Added `docs/operational/FALSIFICATION_GATES.md` covering leakage, post-hoc
+  selection, prohibited inputs, point-in-time and baseline failure,
+  walk-forward and regime instability, composition drift, depth/capacity,
+  provisional fees, provider uncertainty, specification drift, and
+  overclaiming.
+- Added `docs/operational/EXPERIMENT_REGISTRY.md` with the canonical config,
+  frozen Google Trends feature manifest, Kalshi KXFED market family, and the
+  status `registered, not yet empirically validated`.
+- Added `tests/contract/test_operational_research_plan.py` with six
+  deterministic documentation and prohibited-surface checks. It uses no live
+  API, credentials, or mutable empirical data.
+- The frozen Google Trends manifest hash remains
+  `f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a`.
+- No empirical alpha claim or trading-readiness claim was made. Passing Step
+  5A authorizes only disciplined data-availability and empirical validation
+  work.
+- No source logic, methodology, formula, provider behavior, normalized output,
+  config/TOML behavior, CLI behavior, fixture content, existing test behavior,
+  report output, artifact, manifest field, schema, execution policy, or fee
+  model changed.
+- No live API behavior, network dependency, credential use, private input,
+  proprietary flow, order submission, live trading, or `P_flow` was introduced.
+- Full result after Step 5A: **155 passed, 0 failed** using
+  `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
