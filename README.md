@@ -111,6 +111,8 @@ For a 2–5 minute review, start with:
 5. [`V0_1_RELEASE_CANDIDATE.md`](V0_1_RELEASE_CANDIDATE.md)
 6. [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)
 7. [`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md)
+8. [`docs/submission/APPLICATION_SUBMISSION_NOTE.md`](docs/submission/APPLICATION_SUBMISSION_NOTE.md)
+9. [`docs/submission/FINAL_REVIEWER_CHECKLIST.md`](docs/submission/FINAL_REVIEWER_CHECKLIST.md)
 
 ## Repository tour
 

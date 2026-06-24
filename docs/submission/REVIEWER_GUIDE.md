@@ -8,6 +8,8 @@
 4. [`ARCHITECTURE_MAP.md`](ARCHITECTURE_MAP.md) — code and responsibility map.
 5. [`EMPIRICAL_VALIDATION_PLAN.html`](EMPIRICAL_VALIDATION_PLAN.html) — interactive predeclared hypotheses and falsification gates.
 6. [`DATA_AVAILABILITY_AUDIT.html`](DATA_AVAILABILITY_AUDIT.html) — interactive evidence for the current stop decision.
+7. [`APPLICATION_SUBMISSION_NOTE.md`](APPLICATION_SUBMISSION_NOTE.md) — concise, adaptable application note.
+8. [`FINAL_REVIEWER_CHECKLIST.md`](FINAL_REVIEWER_CHECKLIST.md) — final access, validation, and claim-boundary checklist.
 
 ## Reproduce the checks
 

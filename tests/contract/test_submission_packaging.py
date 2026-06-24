@@ -21,6 +21,8 @@ VALIDATION_REPORT = ROOT / "FINAL_VALIDATION_REPORT.md"
 RELEASE_CANDIDATE = ROOT / "V0_1_RELEASE_CANDIDATE.md"
 EXPLORER = SUBMISSION / "VALI_EXPLORER.html"
 CLEAN_CLONE_RECORD = SUBMISSION / "CLEAN_CLONE_INSTALL_TEST.md"
+APPLICATION_NOTE = SUBMISSION / "APPLICATION_SUBMISSION_NOTE.md"
+FINAL_REVIEWER_CHECKLIST = SUBMISSION / "FINAL_REVIEWER_CHECKLIST.md"
 VALIDATION_BASELINE = "0493e9a358e59a491116d3bdf4af529a2ee44e79"
 VALIDATION_RESULT = "186 passed, 0 failed"
 CLEAN_CLONE_COMMIT = "3f1329e2708d6e8ab24eecfeefb5c8f5ccaa9e70"
@@ -40,6 +42,8 @@ def test_submission_documents_exist():
     assert BLURBS.is_file()
     assert ARCHITECTURE.is_file()
     assert CLEAN_CLONE_RECORD.is_file()
+    assert APPLICATION_NOTE.is_file()
+    assert FINAL_REVIEWER_CHECKLIST.is_file()
 
 
 def test_readme_exposes_status_quickstart_and_canonical_experiment():
@@ -139,6 +143,28 @@ def test_submission_pack_makes_no_affirmative_operational_claims():
     assert "docs/submission/CLEAN_CLONE_INSTALL_TEST.md" in _read(README)
     assert "CLEAN_CLONE_INSTALL_TEST.md" in _read(GUIDE)
     assert "sdfas" not in clean_clone_folded
+    final_package = "\n".join(
+        _read(path) for path in (APPLICATION_NOTE, FINAL_REVIEWER_CHECKLIST)
+    )
+    final_package_folded = final_package.casefold()
+    assert REPOSITORY_NAME in final_package
+    assert "clean-clone installation test" in final_package_folded
+    assert VALIDATION_RESULT in final_package
+    assert "15 passed" in final_package_folded
+    assert "no empirical alpha claim" in final_package_folded
+    assert "no trading-readiness claim" in final_package_folded
+    assert "no private" in final_package_folded
+    assert "proprietary order flow" in final_package_folded
+    assert "no order submission" in final_package_folded
+    assert "no `p_flow`" in final_package_folded
+    assert "point-in-time attention" in final_package_folded
+    assert "sdfas" not in final_package_folded
+    assert "C:\\Users\\" not in final_package
+    assert "C:/Users/" not in final_package
+    assert "docs/submission/APPLICATION_SUBMISSION_NOTE.md" in _read(README)
+    assert "docs/submission/FINAL_REVIEWER_CHECKLIST.md" in _read(README)
+    assert "APPLICATION_SUBMISSION_NOTE.md" in _read(GUIDE)
+    assert "FINAL_REVIEWER_CHECKLIST.md" in _read(GUIDE)
     for stale in (
         "149 passed",
         "155 passed",
