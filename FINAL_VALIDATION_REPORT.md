@@ -3,6 +3,7 @@
 ## Validation identity
 
 - Validation date: `2026-06-24`
+- Repository: `vali-prediction-market-research`
 - Branch: `main`
 - Commit under validation: `0493e9a358e59a491116d3bdf4af529a2ee44e79`
 - Python: `3.12.13`

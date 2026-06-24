@@ -5,6 +5,8 @@
 > resolution information, with leakage controls, walk-forward validation,
 > execution-aware caveats, and explicit falsification gates.
 
+Repository identity: **`vali-prediction-market-research`**
+
 Prediction markets aggregate beliefs about future events into prices. VALI
 tests a narrower, falsifiable thesis: public attention may sometimes move before
 market conviction, creating measurable resolution latency. It represents

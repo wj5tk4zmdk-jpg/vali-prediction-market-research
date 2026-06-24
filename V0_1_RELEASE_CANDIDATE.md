@@ -3,6 +3,7 @@
 ## A. Release candidate identity
 
 - Release label: **VALI v0.1 migration release candidate**
+- Repository: `vali-prediction-market-research`
 - Repository branch: `main`
 - Submission validation baseline: `0493e9a358e59a491116d3bdf4af529a2ee44e79`
 - Full-suite result: **186 passed, 0 failed**

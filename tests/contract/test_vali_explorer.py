@@ -14,6 +14,7 @@ FROZEN_HASH = (
 )
 VALIDATION_BASELINE = "0493e9a"
 VALIDATION_RESULT = "186 passed, 0 failed"
+REPOSITORY_NAME = "vali-prediction-market-research"
 REQUIRED_SECTIONS = {
     "intro",
     "signal-lab",
@@ -131,6 +132,7 @@ def test_explorer_preserves_claim_boundaries_and_current_blocker():
     assert "may_proceed_to_5c" in folded
     assert VALIDATION_BASELINE in text
     assert VALIDATION_RESULT in text
+    assert REPOSITORY_NAME in text
     assert "clean-clone installation remains pending" in folded
     for boundary in (
         "no empirical alpha claim",

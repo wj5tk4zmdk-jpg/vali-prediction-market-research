@@ -22,6 +22,7 @@ RELEASE_CANDIDATE = ROOT / "V0_1_RELEASE_CANDIDATE.md"
 EXPLORER = SUBMISSION / "VALI_EXPLORER.html"
 VALIDATION_BASELINE = "0493e9a358e59a491116d3bdf4af529a2ee44e79"
 VALIDATION_RESULT = "186 passed, 0 failed"
+REPOSITORY_NAME = "vali-prediction-market-research"
 FROZEN_HASH = (
     "f720ef7ba487e9949720a348f8ba5354162f67f4df4acf0d625ccf83715bfb1a"
 )
@@ -102,6 +103,7 @@ def test_submission_pack_makes_no_affirmative_operational_claims():
         text = _read(path)
         normalized = " ".join(text.casefold().split())
         assert VALIDATION_RESULT in text
+        assert REPOSITORY_NAME in text
         assert "main" in normalized
         assert "research-engine submission artifact" in normalized
         assert "no empirical alpha claim" in normalized or "no alpha claim" in normalized
@@ -120,6 +122,7 @@ def test_submission_pack_makes_no_affirmative_operational_claims():
 
     assert VALIDATION_BASELINE in _read(VALIDATION_REPORT)
     assert VALIDATION_BASELINE in _read(RELEASE_CANDIDATE)
+    assert REPOSITORY_NAME in _read(README)
     for stale in (
         "149 passed",
         "155 passed",
