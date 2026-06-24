@@ -3,7 +3,7 @@
 ## Inspection
 
 - Inspected: `2026-06-23T20:27:41-04:00`
-- Last updated: `2026-06-23T20:49:07-04:00`
+- Last updated: `2026-06-23T21:00:39-04:00`
 - Project root: `C:\Users\matte\Documents\Codex\2026-06-23\sdfas`
 - Git executable available: **Yes**, using the official Git for Windows
   portable distribution at
@@ -12,8 +12,11 @@
   `BEA006A6CC69673F27B1647E84AB3A68E912FBC175AB6320C5987E012897F311`
 - Valid Git repository: **Yes**
 - Branch: `main`
-- Checkpoint commit created: **No**
-- Checkpoint commit hash: unavailable
+- Repository-local identity:
+  `wj5tk4zmdk-jpg <matteaton084@gmail.com>`
+- Checkpoint commit created: **Yes**
+- Checkpoint commit hash:
+  `895f0e2118c04f1301c6fd74ce4aa19ffda27518`
 
 ## Invalid metadata quarantine
 
@@ -47,13 +50,17 @@ and quarantined metadata are excluded from the checkpoint by `.gitignore`.
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`
 - Result: **90 passed, 0 failed**
 
-## Limitation and required follow-up
+## Readiness and limitations
 
-Repository initialization is complete, but the checkpoint commit is blocked
-because neither `user.name` nor `user.email` is configured. The candidate set
-contains 87 authoritative source, documentation, configuration, notebook,
-script, fixture, and test files. Do not invent a Git identity; configure an
-approved name and email locally, then stage and create the checkpoint.
+Repository initialization and the migration checkpoint are complete. The
+checkpoint contains 87 authoritative source, documentation, configuration,
+notebook, script, fixture, and test files. Generated files, virtual
+environments, outputs, portable tooling, downloads, and quarantined metadata
+remain ignored.
 
-Step 4E reporting extraction should not begin until the checkpoint commit is
-completed and recorded here.
+Portable Git is installed inside the ignored workspace tools directory rather
+than system `PATH`; repository commands must use that executable unless Git is
+later installed system-wide. A GitHub remote is not required for the local
+integrity checkpoint and has not been configured.
+
+Step 4E reporting extraction is cleared to proceed from the recorded checkpoint.

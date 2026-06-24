@@ -283,8 +283,7 @@ Completed 2026-06-23.
 
 ## Step 4E-0 - Repository integrity checkpoint
 
-Inspected and initialized 2026-06-23; checkpoint remains blocked only on Git
-identity.
+Completed 2026-06-23.
 
 - Git commands initially could not run because no `git` executable was
   installed or discoverable on `PATH`.
@@ -305,14 +304,16 @@ identity.
 - Inspected the 87-file checkpoint candidate set. Updated `.gitignore` to omit
   generated `build/`, portable tools, downloads, outputs, virtual environments,
   and quarantined Git metadata.
-- No checkpoint commit exists because neither `user.name` nor `user.email` is
-  configured. No identity value was invented; no commit hash is available.
+- Configured the user-approved repository-local identity
+  `wj5tk4zmdk-jpg <matteaton084@gmail.com>`.
+- Created the 87-file migration checkpoint commit
+  `895f0e2118c04f1301c6fd74ce4aa19ffda27518` with subject
+  `checkpoint: VALI migration baseline through Step 4D`.
 - Created `REPO_INTEGRITY_STATUS.md` with the inspection result, quarantine
   paths, verification status, and required follow-up.
 - No source, formula, provider, reporting, execution, configuration, test, or
   data-artifact behavior was changed.
 - Full result after Step 4E-0 inspection: **90 passed, 0 failed** using
   `& '.\work\.venv\Scripts\python.exe' -m pytest -q`.
-- Step 4E reporting extraction is not yet cleared. Configure an approved local
-  Git name and email, stage the inspected files, and create the migration
-  checkpoint first.
+- Step 4E reporting extraction is cleared to proceed from the valid `main`
+  branch checkpoint. A GitHub remote is optional and has not been configured.
