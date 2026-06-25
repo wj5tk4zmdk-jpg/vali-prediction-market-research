@@ -3,6 +3,9 @@
 Status: design-only, pre-validation infrastructure. This document defines no
 runtime parser, empirical result, or trading authority.
 
+For a visual, reviewer-friendly overview, see
+[`VALI_KNOWLEDGE_GRAPH_EXPLAINER.html`](VALI_KNOWLEDGE_GRAPH_EXPLAINER.html).
+
 ## A. Purpose
 
 VALI should not treat markets as isolated ticker strings, arbitrary tags, or

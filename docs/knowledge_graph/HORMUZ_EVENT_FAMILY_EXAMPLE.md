@@ -3,6 +3,10 @@
 Status: `draft`, `hypothesized`, `not_validated`,
 `human_review_required`. This is a conceptual example, not empirical evidence.
 
+For the static visual explainer that places this example in the broader VALI
+Contract Knowledge Graph, see
+[`VALI_KNOWLEDGE_GRAPH_EXPLAINER.html`](VALI_KNOWLEDGE_GRAPH_EXPLAINER.html).
+
 KG-2 provides a machine-readable, non-validated version of this example under
 `configs/knowledge_graph/examples/hormuz_normalization/`, including:
 
