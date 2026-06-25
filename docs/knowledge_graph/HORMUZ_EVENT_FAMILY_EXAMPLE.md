@@ -27,6 +27,12 @@ The optional hash utility is documented in
 computes a draft provenance hash only; it does not freeze the graph, validate
 the hypothesis, prove alpha, or authorize trading.
 
+The draft human-review artifact is
+`configs/knowledge_graph/examples/hormuz_normalization/REVIEW_RECORD.v1.json`,
+using the schema at `configs/knowledge_graph/review_record_schema.v1.json` and
+the process documented in `docs/knowledge_graph/GRAPH_REVIEW_RECORDS.md`. It
+keeps the Hormuz graph at `freeze_recommendation: not_ready`.
+
 ## Family identity
 
 | Field | Draft value |

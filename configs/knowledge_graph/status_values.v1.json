@@ -41,6 +41,20 @@
       "private_prohibited",
       "proprietary_prohibited",
       "credentialed_prohibited"
+    ],
+    "review_status": [
+      "draft",
+      "review_in_progress",
+      "reviewed_with_open_items",
+      "approved_for_freeze",
+      "blocked",
+      "rejected"
+    ],
+    "freeze_recommendation": [
+      "not_ready",
+      "ready_after_open_items",
+      "approved_for_freeze",
+      "blocked"
     ]
   }
 }

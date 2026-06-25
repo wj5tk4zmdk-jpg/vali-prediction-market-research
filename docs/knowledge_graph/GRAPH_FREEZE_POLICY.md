@@ -152,6 +152,11 @@ KG-4 adds the standalone developer utility
 and graph-level SHA256 hashes from a manifest's explicit `graph_files` list. It
 does not integrate the knowledge graph into VALI runtime research flows.
 
+KG-5 adds review records documented in
+`docs/knowledge_graph/GRAPH_REVIEW_RECORDS.md`. A review record may document
+that human review found open items, but it is not empirical validation and does
+not by itself approve freezing.
+
 ## Change tracking
 
 Frozen graph changes are tracked by version rather than by mutation. A later

@@ -2,6 +2,9 @@
   "graph_id": "example_graph:hormuz_normalization:v1",
   "version": "v1",
   "status": "draft",
+  "review_record": "REVIEW_RECORD.v1.json",
+  "review_status": "draft",
+  "freeze_recommendation": "not_ready",
   "freeze_status": "draft",
   "freeze_policy": "docs/knowledge_graph/GRAPH_FREEZE_POLICY.md",
   "freeze_checklist": "configs/knowledge_graph/examples/hormuz_normalization/FREEZE_CHECKLIST.v1.md",
@@ -27,7 +30,8 @@
     "attention_concepts.v1.csv",
     "attention_queries.v1.csv",
     "relationship_edges.v1.csv",
-    "graph_manifest.v1.json"
+    "graph_manifest.v1.json",
+    "REVIEW_RECORD.v1.json"
   ],
   "claim_boundaries": [
     "no alpha claim",

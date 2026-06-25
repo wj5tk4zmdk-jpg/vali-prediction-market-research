@@ -247,11 +247,13 @@ configs/knowledge_graph/node_types.v1.json
 configs/knowledge_graph/edge_types.v1.json
 configs/knowledge_graph/status_values.v1.json
 configs/knowledge_graph/politicalstat_template.v1.json
+configs/knowledge_graph/review_record_schema.v1.json
 configs/knowledge_graph/examples/hormuz_normalization/event_family.v1.json
 configs/knowledge_graph/examples/hormuz_normalization/attention_concepts.v1.csv
 configs/knowledge_graph/examples/hormuz_normalization/attention_queries.v1.csv
 configs/knowledge_graph/examples/hormuz_normalization/relationship_edges.v1.csv
 configs/knowledge_graph/examples/hormuz_normalization/graph_manifest.v1.json
+configs/knowledge_graph/examples/hormuz_normalization/REVIEW_RECORD.v1.json
 configs/knowledge_graph/examples/hormuz_normalization/FREEZE_CHECKLIST.v1.md
 configs/knowledge_graph/examples/hormuz_normalization/HASH_INVENTORY.v1.md
 ```
@@ -265,6 +267,11 @@ KG-3 adds `docs/knowledge_graph/GRAPH_FREEZE_POLICY.md`, which defines the
 draft, review, freeze, validation-eligible, retired/superseded lifecycle and the
 deterministic graph hash policy. The Hormuz example remains draft and
 human-review-required under its freeze checklist.
+
+KG-5 adds `docs/knowledge_graph/GRAPH_REVIEW_RECORDS.md` and the lightweight
+`configs/knowledge_graph/review_record_schema.v1.json` format. The Hormuz
+`REVIEW_RECORD.v1.json` documents open review items and keeps the graph
+`not_ready` for freezing.
 
 ## L. Review and freeze workflow
 

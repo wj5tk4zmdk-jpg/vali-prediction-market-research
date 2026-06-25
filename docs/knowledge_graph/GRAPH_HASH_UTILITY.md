@@ -40,6 +40,11 @@ The graph manifest is the source of truth. The utility reads
 `graph_manifest.v1.json` and uses the manifest's `graph_files` list. Paths are
 interpreted relative to the manifest directory.
 
+KG-5 may include review artifacts such as `REVIEW_RECORD.v1.json` in
+`graph_files` when the manifest explicitly treats them as part of the draft
+graph provenance. Review records are documented in
+`docs/knowledge_graph/GRAPH_REVIEW_RECORDS.md` and are not empirical validation.
+
 The utility rejects absolute paths and parent-directory traversal. It does not
 discover files by walking directories. It does not include generated reports,
 tests, docs, raw data, provider outputs, or other files unless the manifest

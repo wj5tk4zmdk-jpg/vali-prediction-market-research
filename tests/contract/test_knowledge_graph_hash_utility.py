@@ -20,6 +20,7 @@ EXPECTED_GRAPH_FILES = {
     "attention_queries.v1.csv",
     "relationship_edges.v1.csv",
     "graph_manifest.v1.json",
+    "REVIEW_RECORD.v1.json",
 }
 
 
