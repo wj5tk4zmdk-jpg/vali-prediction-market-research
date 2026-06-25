@@ -252,12 +252,19 @@ configs/knowledge_graph/examples/hormuz_normalization/attention_concepts.v1.csv
 configs/knowledge_graph/examples/hormuz_normalization/attention_queries.v1.csv
 configs/knowledge_graph/examples/hormuz_normalization/relationship_edges.v1.csv
 configs/knowledge_graph/examples/hormuz_normalization/graph_manifest.v1.json
+configs/knowledge_graph/examples/hormuz_normalization/FREEZE_CHECKLIST.v1.md
+configs/knowledge_graph/examples/hormuz_normalization/HASH_INVENTORY.v1.md
 ```
 
 KG-1 documents these paths only. It creates no runtime config or authoritative
 mapping file. KG-2 converts the design into reviewable registry artifacts, but
 still creates no parser, provider behavior, empirical input, CLI behavior, or
 trading capability.
+
+KG-3 adds `docs/knowledge_graph/GRAPH_FREEZE_POLICY.md`, which defines the
+draft, review, freeze, validation-eligible, retired/superseded lifecycle and the
+deterministic graph hash policy. The Hormuz example remains draft and
+human-review-required under its freeze checklist.
 
 ## L. Review and freeze workflow
 
@@ -277,6 +284,8 @@ trading capability.
 
 A material change to a terminal measure, source hierarchy, query, polarity, lag,
 operator, threshold, or horizon creates a new graph version and hash.
+The graph hash proves provenance and change detection, not empirical validity,
+alpha, or trading readiness.
 
 ## M. How the graph integrates with VALI
 

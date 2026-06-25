@@ -11,9 +11,16 @@ KG-2 provides a machine-readable, non-validated version of this example under
 - `attention_queries.v1.csv`
 - `relationship_edges.v1.csv`
 - `graph_manifest.v1.json`
+- `FREEZE_CHECKLIST.v1.md`
+- `HASH_INVENTORY.v1.md`
 
 These files are not a frozen attention manifest, not canonical validation
 inputs, and not trading signals.
+
+The freeze lifecycle and graph hash policy are documented in
+`docs/knowledge_graph/GRAPH_FREEZE_POLICY.md`. The Hormuz checklist currently
+marks the graph as draft, human-review-required, not validated, not frozen, and
+not eligible for validation.
 
 ## Family identity
 

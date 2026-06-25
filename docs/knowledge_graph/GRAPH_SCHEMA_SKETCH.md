@@ -15,6 +15,11 @@ Those registry files are machine-readable review artifacts only. They do not
 implement graph parsing, contract parsing, provider ingestion, attention
 collection, empirical validation, or trading behavior.
 
+KG-3 adds `GRAPH_FREEZE_POLICY.md` plus a Hormuz `FREEZE_CHECKLIST.v1.md` and
+`HASH_INVENTORY.v1.md`. The policy defines when a graph is draft, reviewed,
+frozen, validation eligible, retired, or superseded, and it describes the
+deterministic graph hash policy for provenance rather than empirical validity.
+
 ## Common node schema
 
 ```json
