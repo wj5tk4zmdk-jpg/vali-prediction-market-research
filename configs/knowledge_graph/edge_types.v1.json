@@ -1,0 +1,202 @@
+{
+  "registry": "vali_knowledge_graph_edge_types",
+  "version": "v1",
+  "status": "draft_schema_registry",
+  "documentation_only": true,
+  "runtime_parsing_supported": false,
+  "description": "Lightweight edge-type registry for reviewed Kalshi market, contract, attention, and evidence relationships.",
+  "edge_types": [
+    {
+      "relationship": "belongs_to_category",
+      "description": "Venue taxonomy membership.",
+      "allowed_from": ["KalshiSeries"],
+      "allowed_to": ["KalshiCategory"],
+      "evidence_phase": "metadata_pre_validation",
+      "human_review_required": false
+    },
+    {
+      "relationship": "has_tag",
+      "description": "Venue-supplied tag context.",
+      "allowed_from": ["KalshiSeries", "KalshiEvent", "KalshiMarket"],
+      "allowed_to": ["KalshiTag"],
+      "evidence_phase": "metadata_pre_validation",
+      "human_review_required": false
+    },
+    {
+      "relationship": "belongs_to_series",
+      "description": "Stable series lineage.",
+      "allowed_from": ["KalshiEvent", "KalshiMarket"],
+      "allowed_to": ["KalshiSeries"],
+      "evidence_phase": "metadata_pre_validation",
+      "human_review_required": false
+    },
+    {
+      "relationship": "contains_event",
+      "description": "Series contains a resolution occasion.",
+      "allowed_from": ["KalshiSeries"],
+      "allowed_to": ["KalshiEvent"],
+      "evidence_phase": "metadata_pre_validation",
+      "human_review_required": false
+    },
+    {
+      "relationship": "contains_market",
+      "description": "Event contains a listed binary contract.",
+      "allowed_from": ["KalshiEvent"],
+      "allowed_to": ["KalshiMarket"],
+      "evidence_phase": "metadata_pre_validation",
+      "human_review_required": false
+    },
+    {
+      "relationship": "uses_template",
+      "description": "Market rules are reviewed against a contract-template version.",
+      "allowed_from": ["KalshiMarket"],
+      "allowed_to": ["ContractTemplate"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "normalizes_to",
+      "description": "Venue market maps to a normalized VALI contract object.",
+      "allowed_from": ["KalshiMarket"],
+      "allowed_to": ["NormalizedContract"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "settles_by",
+      "description": "Normalized contract resolves by the stated terminal measure.",
+      "allowed_from": ["NormalizedContract"],
+      "allowed_to": ["TerminalMeasure"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "uses_source_agency",
+      "description": "Contract or measure depends on an official or contract-defined source hierarchy.",
+      "allowed_from": ["NormalizedContract", "TerminalMeasure"],
+      "allowed_to": ["SourceAgency"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "has_operator",
+      "description": "Normalized contract applies a comparison operator to the terminal value.",
+      "allowed_from": ["NormalizedContract"],
+      "allowed_to": ["ComparisonOperator"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "has_threshold",
+      "description": "Normalized contract uses a reviewed threshold, strike, range, text value, or None literal.",
+      "allowed_from": ["NormalizedContract"],
+      "allowed_to": ["ThresholdLiteral"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "has_time_period",
+      "description": "Normalized contract uses a reviewed measurement, publication, capture, or event window.",
+      "allowed_from": ["NormalizedContract"],
+      "allowed_to": ["TimePeriod"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "has_clear_horizon",
+      "description": "Contract or family has a predeclared Clear Horizon for research evaluation.",
+      "allowed_from": ["NormalizedContract", "EventFamily"],
+      "allowed_to": ["ClearHorizon"],
+      "evidence_phase": "pre_validation_theory",
+      "human_review_required": true
+    },
+    {
+      "relationship": "belongs_to_event_family",
+      "description": "Normalized contract has reviewed membership in an event family.",
+      "allowed_from": ["NormalizedContract"],
+      "allowed_to": ["EventFamily"],
+      "evidence_phase": "pre_validation_mapping",
+      "human_review_required": true
+    },
+    {
+      "relationship": "is_measured_by",
+      "description": "Event family is anchored to a terminal measure.",
+      "allowed_from": ["EventFamily"],
+      "allowed_to": ["TerminalMeasure"],
+      "evidence_phase": "pre_validation_theory",
+      "human_review_required": true
+    },
+    {
+      "relationship": "likely_leads",
+      "description": "Pre-validation hypothesis that one public attention concept tends to move before a terminal measure, market, or family.",
+      "allowed_from": ["AttentionConcept"],
+      "allowed_to": ["TerminalMeasure", "KalshiMarket", "EventFamily"],
+      "evidence_phase": "pre_validation_theory",
+      "human_review_required": true
+    },
+    {
+      "relationship": "likely_lags",
+      "description": "Pre-validation hypothesis that one public attention concept reacts too late to lead.",
+      "allowed_from": ["AttentionConcept"],
+      "allowed_to": ["TerminalMeasure", "KalshiMarket", "EventFamily"],
+      "evidence_phase": "pre_validation_theory",
+      "human_review_required": true
+    },
+    {
+      "relationship": "proxy_for",
+      "description": "Candidate public query operationalizes an attention concept without equating wording to theory.",
+      "allowed_from": ["AttentionQuery"],
+      "allowed_to": ["AttentionConcept", "TerminalMeasure"],
+      "evidence_phase": "pre_validation_theory",
+      "human_review_required": true
+    },
+    {
+      "relationship": "contaminates",
+      "description": "Concept or query may be driven by unrelated public attention, news, ambiguity, or reflexive price coverage.",
+      "allowed_from": ["AttentionConcept", "AttentionQuery"],
+      "allowed_to": ["EventFamily", "AttentionConcept"],
+      "evidence_phase": "pre_validation_risk",
+      "human_review_required": true
+    },
+    {
+      "relationship": "excluded_from",
+      "description": "Candidate object is barred from a frozen run with an auditable reason.",
+      "allowed_from": ["AttentionQuery", "KalshiMarket", "NormalizedContract"],
+      "allowed_to": ["EventFamily"],
+      "evidence_phase": "governance",
+      "human_review_required": true
+    },
+    {
+      "relationship": "validated_for",
+      "description": "Post-validation evidence met a declared gate for the stated scope.",
+      "allowed_from": ["ValidationEvidence"],
+      "allowed_to": ["AttentionConcept", "AttentionQuery", "EventFamily"],
+      "evidence_phase": "post_validation_evidence",
+      "human_review_required": true
+    },
+    {
+      "relationship": "failed_for",
+      "description": "Post-validation evidence failed or falsified a scoped hypothesis or gate.",
+      "allowed_from": ["ValidationEvidence"],
+      "allowed_to": ["AttentionConcept", "AttentionQuery", "EventFamily", "FalsificationGate"],
+      "evidence_phase": "post_validation_evidence",
+      "human_review_required": true
+    },
+    {
+      "relationship": "requires_human_review",
+      "description": "Ambiguity prevents automatic eligibility or broad claims.",
+      "allowed_from": ["NormalizedContract", "TerminalMeasure", "AttentionQuery", "EventFamily"],
+      "allowed_to": ["ClaimBoundary"],
+      "evidence_phase": "governance",
+      "human_review_required": true
+    },
+    {
+      "relationship": "frozen_as",
+      "description": "Versionable node or edge has an immutable version, hash, and freeze time.",
+      "allowed_from": ["AnyVersionableObject"],
+      "allowed_to": ["AnyVersionableObject"],
+      "evidence_phase": "governance",
+      "human_review_required": true
+    }
+  ]
+}

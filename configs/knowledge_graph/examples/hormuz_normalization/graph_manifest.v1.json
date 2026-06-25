@@ -1,0 +1,53 @@
+{
+  "graph_id": "example_graph:hormuz_normalization:v1",
+  "version": "v1",
+  "status": "draft",
+  "review_record": "REVIEW_RECORD.v1.json",
+  "review_status": "draft",
+  "freeze_recommendation": "not_ready",
+  "freeze_status": "draft",
+  "freeze_policy": "docs/knowledge_graph/GRAPH_FREEZE_POLICY.md",
+  "freeze_checklist": "configs/knowledge_graph/examples/hormuz_normalization/FREEZE_CHECKLIST.v1.md",
+  "hash_inventory": "configs/knowledge_graph/examples/hormuz_normalization/HASH_INVENTORY.v1.md",
+  "graph_hash_status": "not_computed",
+  "graph_hash": null,
+  "frozen_at": null,
+  "frozen_by": null,
+  "supersedes": null,
+  "superseded_by": null,
+  "documentation_only": true,
+  "runtime_parsing_supported": false,
+  "evidence_status": "not_validated",
+  "human_review_status": "review_required",
+  "files_included": [
+    "event_family.v1.json",
+    "attention_concepts.v1.csv",
+    "attention_queries.v1.csv",
+    "relationship_edges.v1.csv"
+  ],
+  "graph_files": [
+    "event_family.v1.json",
+    "attention_concepts.v1.csv",
+    "attention_queries.v1.csv",
+    "relationship_edges.v1.csv",
+    "graph_manifest.v1.json",
+    "REVIEW_RECORD.v1.json"
+  ],
+  "claim_boundaries": [
+    "no alpha claim",
+    "no trading-readiness claim",
+    "no order submission",
+    "no private data",
+    "no proprietary order flow",
+    "no P_flow",
+    "no live trading",
+    "no credentials"
+  ],
+  "notes": [
+    "This is not a frozen attention manifest.",
+    "This is not a canonical validation input.",
+    "This is not a trading signal.",
+    "All relationships remain hypothesized and non-validated.",
+    "Human review is required before any empirical use."
+  ]
+}

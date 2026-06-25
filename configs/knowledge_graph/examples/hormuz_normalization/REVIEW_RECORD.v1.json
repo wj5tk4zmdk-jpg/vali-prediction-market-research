@@ -1,0 +1,74 @@
+{
+  "review_id": "review:hormuz_normalization:v1:draft",
+  "graph_id": "example_graph:hormuz_normalization:v1",
+  "graph_version": "v1",
+  "review_status": "reviewed_with_open_items",
+  "reviewer_role": "methodology_reviewer",
+  "reviewed_at": null,
+  "reviewed_files": [
+    "graph_manifest.v1.json",
+    "event_family.v1.json",
+    "attention_concepts.v1.csv",
+    "attention_queries.v1.csv",
+    "relationship_edges.v1.csv",
+    "FREEZE_CHECKLIST.v1.md",
+    "HASH_INVENTORY.v1.md"
+  ],
+  "review_checks": {
+    "contract_rules": "open_item_verify_exact_kalshi_contract_rules",
+    "contract_template_applicability": "open_item_verify_whether_POLITICALSTAT_applies",
+    "settlement_source": "open_item_verify_settlement_source",
+    "terminal_measure": "open_item_verify_terminal_measure",
+    "clear_horizon": "open_item_verify_clear_horizon",
+    "market_date_bucket_mapping": "open_item_verify_market_date_bucket_mapping",
+    "attention_concepts": "open_item_review_attention_concepts",
+    "candidate_queries": "open_item_review_candidate_queries",
+    "contamination_risks": "open_item_review_contamination_risks",
+    "claim_boundaries": "checked_no_alpha_no_trading_readiness_research_only"
+  },
+  "open_items": [
+    "verify exact Kalshi contract rules",
+    "verify whether POLITICALSTAT applies",
+    "verify settlement source",
+    "verify terminal measure",
+    "verify Clear Horizon",
+    "verify market/date-bucket mapping",
+    "review attention concepts",
+    "review candidate queries",
+    "review contamination risks",
+    "review claim boundaries",
+    "confirm no private/proprietary inputs",
+    "confirm no P_flow",
+    "confirm no order submission",
+    "confirm no trading claim"
+  ],
+  "human_review_required": true,
+  "evidence_status": "not_validated",
+  "claim_status": [
+    "no_alpha_claim",
+    "no_trading_readiness_claim",
+    "research_only"
+  ],
+  "claim_boundaries": [
+    "not empirical validation",
+    "does not prove alpha",
+    "does not authorize trading",
+    "does not prove trading readiness",
+    "does not replace contract or legal review where needed"
+  ],
+  "prohibited_scope_checks": {
+    "private_data": "prohibited",
+    "proprietary_order_flow": "prohibited",
+    "credentials": "prohibited",
+    "live_trading": "prohibited",
+    "order_submission": "prohibited",
+    "P_flow": "prohibited"
+  },
+  "freeze_recommendation": "not_ready",
+  "freeze_approved": false,
+  "notes": [
+    "This review record is conservative and keeps the Hormuz graph in draft/non-validated status.",
+    "The graph must not be frozen until all open items are resolved and separately reviewed.",
+    "No alpha claim or trading-readiness claim is introduced."
+  ]
+}
