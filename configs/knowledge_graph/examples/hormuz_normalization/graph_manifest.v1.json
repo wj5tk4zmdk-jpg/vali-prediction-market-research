@@ -22,6 +22,13 @@
     "attention_queries.v1.csv",
     "relationship_edges.v1.csv"
   ],
+  "graph_files": [
+    "event_family.v1.json",
+    "attention_concepts.v1.csv",
+    "attention_queries.v1.csv",
+    "relationship_edges.v1.csv",
+    "graph_manifest.v1.json"
+  ],
   "claim_boundaries": [
     "no alpha claim",
     "no trading-readiness claim",

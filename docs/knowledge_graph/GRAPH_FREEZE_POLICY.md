@@ -146,6 +146,12 @@ with graph-hash fields set to `null` or exclude the inventory field itself under
 a documented rule. KG-3 does not implement hashing; it documents the policy and
 inventory format.
 
+KG-4 adds the standalone developer utility
+`tools/knowledge_graph/compute_graph_hash.py`, documented in
+`docs/knowledge_graph/GRAPH_HASH_UTILITY.md`. The utility computes file-level
+and graph-level SHA256 hashes from a manifest's explicit `graph_files` list. It
+does not integrate the knowledge graph into VALI runtime research flows.
+
 ## Change tracking
 
 Frozen graph changes are tracked by version rather than by mutation. A later

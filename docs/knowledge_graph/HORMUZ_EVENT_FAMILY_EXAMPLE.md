@@ -22,6 +22,11 @@ The freeze lifecycle and graph hash policy are documented in
 marks the graph as draft, human-review-required, not validated, not frozen, and
 not eligible for validation.
 
+The optional hash utility is documented in
+`docs/knowledge_graph/GRAPH_HASH_UTILITY.md`. Running it against this example
+computes a draft provenance hash only; it does not freeze the graph, validate
+the hypothesis, prove alpha, or authorize trading.
+
 ## Family identity
 
 | Field | Draft value |
