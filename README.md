@@ -19,7 +19,7 @@ normalization, meeting-grouped walk-forward evaluation, read-only provider
 adapters, execution constraints, reproducible artifacts, and an explicit
 decision to stop when the empirical data are not yet sufficient.
 
-**[Open the live VALI Research Explorer →](https://wj5tk4zmdk-jpg.github.io/vali-prediction-market-research/)**
+**[Open the live VALI Research Explorer →](https://wj5tk4zmdk-jpg.github.io/vali-prediction-market-research/submission/VALI_EXPLORER.html)**
 
 [Offline repository copy](docs/submission/VALI_EXPLORER.html)
 
