@@ -168,7 +168,8 @@ stop_loss_fraction = 0.25
 max_holding_days = 14
 days_before_settlement = 1
 calibration_l2 = 1.0
+entry_regime_confirmation_periods = 1
+exit_regime_confirmation_periods = 1
 '''
     (root / "config.toml").write_text(config, encoding="utf-8")
     return root / "config.toml"
-

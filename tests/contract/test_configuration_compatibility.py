@@ -62,6 +62,8 @@ class ConfigurationCompatibilityTests(unittest.TestCase):
             )
             self.assertEqual(extracted.features.optional_feature_policy, "reject")
             self.assertEqual(extracted.signal.sensitivity_windows, (3, 14, 30))
+            self.assertEqual(extracted.backtest.entry_regime_confirmation_periods, 1)
+            self.assertEqual(extracted.backtest.exit_regime_confirmation_periods, 1)
 
     def test_invalid_config_validation_has_same_exception_and_message(self):
         invalid = MarketConfig(0.0, 100, 30, 120, 5)

@@ -109,6 +109,71 @@ def _daily_exclusions(signals: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def regime_confirmation_metrics(
+    signals: pd.DataFrame,
+    trades: pd.DataFrame,
+    config: ValiConfig,
+) -> pd.DataFrame:
+    """Report configured regime-confirmation execution sensitivity settings."""
+    decision_reasons = (
+        signals["decision_reason"]
+        if "decision_reason" in signals
+        else pd.Series(dtype=object)
+    )
+    entries_suppressed = int(
+        (decision_reasons == "entry_regime_unconfirmed").sum()
+    )
+    exit_delays = (
+        trades.loc[
+            (trades.get("exit_reason", pd.Series(dtype=object)) == "regime_change")
+            & (
+                trades.get("exit_confirmation_delay_days", pd.Series(dtype=float))
+                > 0
+            ),
+            "exit_confirmation_delay_days",
+        ]
+        if not trades.empty
+        and {"exit_reason", "exit_confirmation_delay_days"}.issubset(trades.columns)
+        else pd.Series(dtype=float)
+    )
+    return pd.DataFrame(
+        [
+            {
+                "model": "pipeline",
+                "metric": "entry_regime_confirmation_periods",
+                "value": config.backtest.entry_regime_confirmation_periods,
+                "observations": len(signals),
+            },
+            {
+                "model": "pipeline",
+                "metric": "exit_regime_confirmation_periods",
+                "value": config.backtest.exit_regime_confirmation_periods,
+                "observations": len(trades),
+            },
+            {
+                "model": "pipeline",
+                "metric": "entries_suppressed_by_regime_confirmation",
+                "value": entries_suppressed,
+                "observations": len(signals),
+            },
+            {
+                "model": "pipeline",
+                "metric": "exits_delayed_by_regime_confirmation",
+                "value": len(exit_delays),
+                "observations": len(trades),
+            },
+            {
+                "model": "pipeline",
+                "metric": "mean_exit_confirmation_delay_days",
+                "value": (
+                    float(exit_delays.mean()) if len(exit_delays) else np.nan
+                ),
+                "observations": len(exit_delays),
+            },
+        ]
+    )
+
+
 def run_signal_pipeline(
     config: ValiConfig,
     output_dir: str | Path | None = None,
@@ -181,6 +246,14 @@ def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> Pipelin
             ),
         ],
         ignore_index=True,
+    )
+    metrics = pd.concat(
+        [
+            metrics,
+            regime_confirmation_metrics(signals, backtest.trades, config),
+        ],
+        ignore_index=True,
+        sort=False,
     )
     half_lives = divergence_half_lives(
         signals, config.signal.entry_threshold, config.signal.exit_threshold

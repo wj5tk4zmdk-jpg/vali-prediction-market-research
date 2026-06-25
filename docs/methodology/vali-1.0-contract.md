@@ -53,6 +53,14 @@ Entries must exit on convergence, regime change, stop loss, maximum holding
 period, mandatory pre-settlement cutoff, closure, or settlement as applicable.
 The horizon must not be optimized after observing outcomes.
 
+Regime confirmation is an optional execution-sensitivity overlay, not a new
+signal and not a change to the raw regime classifier. The default confirmation
+period of `1` preserves baseline behavior. Values above `1` must be
+predeclared sensitivity tests and are not alpha evidence. Stop loss,
+convergence, maximum holding period, mandatory pre-settlement exits, failed
+mandatory exits, and settlement boundaries remain immediate; trade-count,
+spread, and fee deltas require a separately run unbuffered comparison.
+
 ## Liquidity and execution
 
 Signal-price quality and execution liquidity are separate gates. Forecasting
@@ -74,4 +82,3 @@ raw market probability and a prior historical-frequency baseline.
 Reports must include exclusions, rejected signals, no-trade rates, calibration,
 costs, and liquidity limitations. In-sample results, small samples, descriptive
 relationships, or gross returns are not alpha. A null result is acceptable.
-

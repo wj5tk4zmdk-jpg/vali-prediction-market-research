@@ -270,6 +270,8 @@ stop_loss_fraction = 0.25
 max_holding_days = 14
 days_before_settlement = 1
 calibration_l2 = 1.0
+entry_regime_confirmation_periods = 1
+exit_regime_confirmation_periods = 1
 '''
         (self.output_root / "vali_config.template.toml").write_text(
             template, encoding="utf-8"
