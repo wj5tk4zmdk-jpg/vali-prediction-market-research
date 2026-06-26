@@ -119,7 +119,10 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
         self.assertEqual(
             set(kalshi_commands), {"discover", "backfill", "snapshot"}
         )
-        self.assertEqual(set(kg_commands), {"preflight", "compile", "evidence-summary"})
+        self.assertEqual(
+            set(kg_commands),
+            {"preflight", "compile", "evidence-summary", "review-packet", "supersede"},
+        )
         self.assertEqual(
             set(trends_commands), {"plan", "backfill", "collect", "status"}
         )
@@ -134,6 +137,14 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
         self.assertEqual(
             option_strings(kg_commands["evidence-summary"]),
             {"-h", "--help", "--graph", "--out"},
+        )
+        self.assertEqual(
+            option_strings(kg_commands["review-packet"]),
+            {"-h", "--help", "--graph", "--out", "--recommendations", "--reviewer"},
+        )
+        self.assertEqual(
+            option_strings(kg_commands["supersede"]),
+            {"-h", "--help", "--graph", "--review", "--out-dir", "--graph-id", "--version"},
         )
 
     def test_legacy_and_application_parser_namespaces_are_identical(self):
@@ -170,6 +181,32 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
                 "graph_manifest.v1.json",
                 "--out",
                 "evidence_summary.md",
+            ],
+            [
+                "kg",
+                "review-packet",
+                "--graph",
+                "graph_manifest.v1.json",
+                "--out",
+                "review.json",
+                "--recommendations",
+                "recommendations.json",
+                "--reviewer",
+                "researcher",
+            ],
+            [
+                "kg",
+                "supersede",
+                "--graph",
+                "graph_manifest.v1.json",
+                "--review",
+                "review.json",
+                "--out-dir",
+                "superseding",
+                "--graph-id",
+                "graph:v2",
+                "--version",
+                "v2",
             ],
             ["kalshi", "discover", "--out", "kalshi"],
             [

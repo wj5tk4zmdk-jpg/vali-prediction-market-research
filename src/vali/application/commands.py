@@ -70,6 +70,23 @@ def build_parser() -> argparse.ArgumentParser:
     )
     kg_evidence_summary.add_argument("--graph", required=True, type=Path)
     kg_evidence_summary.add_argument("--out", required=True, type=Path)
+    kg_review = kg_commands.add_parser(
+        "review-packet",
+        help="Write a human-reviewed KG evidence recommendation packet",
+    )
+    kg_review.add_argument("--graph", required=True, type=Path)
+    kg_review.add_argument("--out", required=True, type=Path)
+    kg_review.add_argument("--recommendations", type=Path)
+    kg_review.add_argument("--reviewer")
+    kg_supersede = kg_commands.add_parser(
+        "supersede",
+        help="Create a draft superseding graph copy from explicit human review",
+    )
+    kg_supersede.add_argument("--graph", required=True, type=Path)
+    kg_supersede.add_argument("--review", required=True, type=Path)
+    kg_supersede.add_argument("--out-dir", required=True, type=Path)
+    kg_supersede.add_argument("--graph-id")
+    kg_supersede.add_argument("--version", default="v2")
     kalshi = subparsers.add_parser(
         "kalshi", help="Read-only Kalshi market-data ingestion"
     )

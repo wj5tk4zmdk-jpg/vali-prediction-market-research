@@ -7,6 +7,10 @@ from typing import Any
 
 from ..knowledge_graph import compile_graph_manifest, preflight_graph
 from ..knowledge_graph.evidence import write_evidence_summary
+from ..knowledge_graph.review import (
+    create_superseding_graph_version,
+    write_evidence_review_packet,
+)
 
 
 def run_kg_command(args: Any) -> None:
@@ -47,6 +51,46 @@ def run_kg_command(args: Any) -> None:
                     "total_experiments": summary["total_experiments"],
                     "passing_count": summary["passing_count"],
                     "failing_count": summary["failing_count"],
+                },
+                indent=2,
+            )
+        )
+        return
+    if args.kg_command == "review-packet":
+        packet = write_evidence_review_packet(
+            args.graph,
+            args.out,
+            reviewer=args.reviewer,
+            recommendations_path=args.recommendations,
+        )
+        print(
+            json.dumps(
+                {
+                    "output": str(args.out),
+                    "recommendations": len(packet["recommendations"]),
+                    "automatic_recommendations": packet["automatic_recommendations"],
+                    "automatic_rejection": packet["automatic_rejection"],
+                },
+                indent=2,
+            )
+        )
+        return
+    if args.kg_command == "supersede":
+        result = create_superseding_graph_version(
+            args.graph,
+            args.review,
+            args.out_dir,
+            new_graph_id=args.graph_id,
+            new_version=args.version,
+        )
+        print(
+            json.dumps(
+                {
+                    "output_dir": result["output_dir"],
+                    "new_graph_manifest": result["new_graph_manifest"],
+                    "new_graph_id": result["new_graph_id"],
+                    "actions": len(result["actions"]),
+                    "original_graph_unchanged": result["original_graph_unchanged"],
                 },
                 indent=2,
             )
