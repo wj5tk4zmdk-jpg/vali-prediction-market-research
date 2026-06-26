@@ -14,6 +14,7 @@ from vali.application.collection import (
     run_trends_command,
 )
 from vali.application.commands import build_parser, main as application_main
+from vali.application.knowledge_graph import run_kg_command
 from vali.application.reporting import run_report_command
 from vali.application.research import (
     run_research_command,
@@ -58,6 +59,7 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
             run_research_command,
             run_sample_data_command,
             run_kalshi_command,
+            run_kg_command,
             run_trends_command,
             run_report_command,
             run_validation_command,
@@ -78,6 +80,7 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
             "confirmation-panel",
             "report",
             "sample-data",
+            "kg",
             "kalshi",
             "trends",
         }
@@ -111,12 +114,22 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
         )
 
         kalshi_commands = subcommands(commands["kalshi"])
+        kg_commands = subcommands(commands["kg"])
         trends_commands = subcommands(commands["trends"])
         self.assertEqual(
             set(kalshi_commands), {"discover", "backfill", "snapshot"}
         )
+        self.assertEqual(set(kg_commands), {"preflight", "compile"})
         self.assertEqual(
             set(trends_commands), {"plan", "backfill", "collect", "status"}
+        )
+        self.assertEqual(
+            option_strings(kg_commands["preflight"]),
+            {"-h", "--help", "--graph", "--out"},
+        )
+        self.assertEqual(
+            option_strings(kg_commands["compile"]),
+            {"-h", "--help", "--graph", "--preflight", "--out"},
         )
 
     def test_legacy_and_application_parser_namespaces_are_identical(self):
@@ -135,6 +148,17 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
             ],
             ["report", "--run-dir", "run"],
             ["sample-data", "--out", "data", "--seed", "7", "--events", "3"],
+            ["kg", "preflight", "--graph", "graph_manifest.v1.json", "--out", "preflight.json"],
+            [
+                "kg",
+                "compile",
+                "--graph",
+                "graph_manifest.v1.json",
+                "--preflight",
+                "preflight.json",
+                "--out",
+                "manifest.json",
+            ],
             ["kalshi", "discover", "--out", "kalshi"],
             [
                 "kalshi",

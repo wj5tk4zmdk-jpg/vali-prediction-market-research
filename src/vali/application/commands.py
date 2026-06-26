@@ -9,6 +9,7 @@ from pathlib import Path
 
 from ..providers.kalshi import PRODUCTION_BASE_URL
 from .collection import run_kalshi_command, run_trends_command
+from .knowledge_graph import run_kg_command
 from .reporting import run_report_command
 from .research import run_research_command, run_sample_data_command
 from .validation import run_validation_command
@@ -44,6 +45,21 @@ def build_parser() -> argparse.ArgumentParser:
     sample.add_argument("--out", required=True, type=Path)
     sample.add_argument("--seed", type=int, default=20260623)
     sample.add_argument("--events", type=int, default=24)
+    kg = subparsers.add_parser(
+        "kg", help="Knowledge-graph handoff scaffolding"
+    )
+    kg_commands = kg.add_subparsers(dest="kg_command", required=True)
+    kg_preflight = kg_commands.add_parser(
+        "preflight", help="Write an availability-only KG preflight report"
+    )
+    kg_preflight.add_argument("--graph", required=True, type=Path)
+    kg_preflight.add_argument("--out", required=True, type=Path)
+    kg_compile = kg_commands.add_parser(
+        "compile", help="Write a flat compiled VALI manifest from a KG fixture"
+    )
+    kg_compile.add_argument("--graph", required=True, type=Path)
+    kg_compile.add_argument("--preflight", required=True, type=Path)
+    kg_compile.add_argument("--out", required=True, type=Path)
     kalshi = subparsers.add_parser(
         "kalshi", help="Read-only Kalshi market-data ingestion"
     )
@@ -105,6 +121,9 @@ def main(argv: list[str] | None = None) -> None:
         return
     if args.command == "kalshi":
         run_kalshi_command(args)
+        return
+    if args.command == "kg":
+        run_kg_command(args)
         return
     if args.command == "trends":
         run_trends_command(args)
