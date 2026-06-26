@@ -2,15 +2,16 @@
 
 ## Read this first
 
-1. [`VALI_EXPLORER.html`](VALI_EXPLORER.html) — interactive visual tour of the thesis, safeguards, architecture, and current gate.
-2. [`../knowledge_graph/VALI_KNOWLEDGE_GRAPH_EXPLAINER.html`](../knowledge_graph/VALI_KNOWLEDGE_GRAPH_EXPLAINER.html) — static visual tour of the contract knowledge graph design artifact.
-3. [`../../README.md`](../../README.md) — thesis, status, and quickstart.
-4. [`KALSHI_QUANT_RESEARCHER_CASE_STUDY.html`](KALSHI_QUANT_RESEARCHER_CASE_STUDY.html) — interactive project narrative.
-5. [`ARCHITECTURE_MAP.md`](ARCHITECTURE_MAP.md) — code and responsibility map.
-6. [`EMPIRICAL_VALIDATION_PLAN.html`](EMPIRICAL_VALIDATION_PLAN.html) — interactive predeclared hypotheses and falsification gates.
-7. [`DATA_AVAILABILITY_AUDIT.html`](DATA_AVAILABILITY_AUDIT.html) — interactive evidence for the current stop decision.
-8. [`APPLICATION_SUBMISSION_NOTE.md`](APPLICATION_SUBMISSION_NOTE.md) — concise, adaptable application note.
-9. [`FINAL_REVIEWER_CHECKLIST.md`](FINAL_REVIEWER_CHECKLIST.md) — final access, validation, and claim-boundary checklist.
+1. [`VALI_EXPLORER.html`](VALI_EXPLORER.html) - interactive visual tour of the thesis, safeguards, architecture, and current gate.
+2. [`../knowledge_graph/VALI_KNOWLEDGE_GRAPH_EXPLAINER.html`](../knowledge_graph/VALI_KNOWLEDGE_GRAPH_EXPLAINER.html) - static visual tour of the contract knowledge graph design artifact.
+3. [`../../README.md`](../../README.md) - thesis, status, and quickstart.
+4. [`KALSHI_QUANT_RESEARCHER_CASE_STUDY.html`](KALSHI_QUANT_RESEARCHER_CASE_STUDY.html) - interactive project narrative.
+5. [`REGIME_CONFIRMATION_PANEL.html`](REGIME_CONFIRMATION_PANEL.html) - execution-sensitivity panel for EM-2, including the `1/1`, `1/2`, `2/1`, `2/2`, `3/3` grid and delayed-exit summary.
+6. [`ARCHITECTURE_MAP.md`](ARCHITECTURE_MAP.md) - code and responsibility map.
+7. [`EMPIRICAL_VALIDATION_PLAN.html`](EMPIRICAL_VALIDATION_PLAN.html) - interactive predeclared hypotheses and falsification gates.
+8. [`DATA_AVAILABILITY_AUDIT.html`](DATA_AVAILABILITY_AUDIT.html) - interactive evidence for the current stop decision.
+9. [`APPLICATION_SUBMISSION_NOTE.md`](APPLICATION_SUBMISSION_NOTE.md) - concise, adaptable application note.
+10. [`FINAL_REVIEWER_CHECKLIST.md`](FINAL_REVIEWER_CHECKLIST.md) - final access, validation, and claim-boundary checklist.
 
 ## Reproduce the checks
 
@@ -46,6 +47,9 @@ For environment assumptions, see [`../../ENVIRONMENT.md`](../../ENVIRONMENT.md).
 - Status: **research-engine submission artifact**
 - Clean-clone installation test: **verified** at commit `3f1329e`; see
   [`CLEAN_CLONE_INSTALL_TEST.md`](CLEAN_CLONE_INSTALL_TEST.md)
+- Latest regime-confirmation branch verification: **240 passed, 0 failed** on
+  the EM-2 execution-sensitivity branch. This is a later implementation check,
+  not a replacement for the historical validation identity above.
 
 Canonical empirical validation remains blocked pending documented point-in-time
 attention history. Capacity and tradability claims remain disabled because
@@ -61,6 +65,8 @@ claim and no trading-readiness claim.
 - Are walk-forward evaluation and falsification gates predeclared?
 - Are execution, depth, fee, capacity, and tradability claims constrained by
   observed evidence?
+- Is the regime-confirmation panel clearly framed as an execution sensitivity
+  overlay rather than a new signal, classifier tuning, or alpha evidence?
 - Is the code organized into production-minded, testable boundaries?
 - Are provider transport, normalization, archiving, and orchestration separated?
 - Does the project preserve exclusions, null results, and data blockers instead
@@ -75,6 +81,8 @@ claim and no trading-readiness claim.
 - Do not infer order submission, credentialed trading, or a live production API
   integration.
 - Do not infer that deterministic fixtures are empirical evidence.
+- Do not infer that the regime-confirmation panel proves the buffer improves
+  performance; it is a robustness diagnostic until valid empirical data exist.
 
 ## Known caveats
 
