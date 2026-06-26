@@ -119,7 +119,7 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
         self.assertEqual(
             set(kalshi_commands), {"discover", "backfill", "snapshot"}
         )
-        self.assertEqual(set(kg_commands), {"preflight", "compile"})
+        self.assertEqual(set(kg_commands), {"preflight", "compile", "evidence-summary"})
         self.assertEqual(
             set(trends_commands), {"plan", "backfill", "collect", "status"}
         )
@@ -130,6 +130,10 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
         self.assertEqual(
             option_strings(kg_commands["compile"]),
             {"-h", "--help", "--graph", "--preflight", "--out"},
+        )
+        self.assertEqual(
+            option_strings(kg_commands["evidence-summary"]),
+            {"-h", "--help", "--graph", "--out"},
         )
 
     def test_legacy_and_application_parser_namespaces_are_identical(self):
@@ -158,6 +162,14 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
                 "preflight.json",
                 "--out",
                 "manifest.json",
+            ],
+            [
+                "kg",
+                "evidence-summary",
+                "--graph",
+                "graph_manifest.v1.json",
+                "--out",
+                "evidence_summary.md",
             ],
             ["kalshi", "discover", "--out", "kalshi"],
             [

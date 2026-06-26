@@ -392,6 +392,84 @@ def _lead_days(row: dict[str, str]) -> list[int]:
     return values
 
 
+def _status_value(value: Any) -> str:
+    return str(value or "").strip().casefold()
+
+
+def _is_frozen_graph(parts: dict[str, Any]) -> bool:
+    manifest = parts["manifest"]
+    event_family = parts["event_family"]
+    frozen_statuses = {"frozen"}
+    return (
+        _status_value(manifest.get("freeze_status")) in frozen_statuses
+        or _status_value(manifest.get("status")) in frozen_statuses
+        or _status_value(event_family.get("mapping_status")) in frozen_statuses
+    )
+
+
+def _require_frozen_field(value: Any, field: str, failures: list[str]) -> None:
+    if not _value_present(value):
+        failures.append(field)
+
+
+def _assert_frozen_graph_required_fields(parts: dict[str, Any]) -> None:
+    """Reject frozen graphs that are not complete enough to compile safely."""
+
+    if not _is_frozen_graph(parts):
+        return
+
+    failures: list[str] = []
+    event_family = parts["event_family"]
+    terminal = event_family.get("terminal_measure", {}) if isinstance(event_family, dict) else {}
+    kalshi = event_family.get("kalshi", {}) if isinstance(event_family, dict) else {}
+    concepts = {str(row.get("concept_id", "")): row for row in parts["concepts"]}
+
+    _require_frozen_field(event_family.get("id"), "event_family.id", failures)
+    _require_frozen_field(
+        terminal.get("id"),
+        "event_family.terminal_measure.id",
+        failures,
+    )
+    _require_frozen_field(
+        terminal.get("source"),
+        "event_family.terminal_measure.source",
+        failures,
+    )
+    _require_frozen_field(
+        event_family.get("clear_horizon_status"),
+        "event_family.clear_horizon_status",
+        failures,
+    )
+    _require_frozen_field(
+        kalshi.get("series_ticker"),
+        "event_family.kalshi.series_ticker",
+        failures,
+    )
+
+    if not parts["queries"]:
+        failures.append("attention_queries")
+
+    for index, query in enumerate(parts["queries"], start=1):
+        prefix = f"attention_queries[{index}]"
+        for field in ("query_id", "concept_id", "query", "source", "geo", "search_type"):
+            _require_frozen_field(query.get(field), f"{prefix}.{field}", failures)
+        concept_id = str(query.get("concept_id", ""))
+        concept = concepts.get(concept_id)
+        if concept is None:
+            failures.append(f"{prefix}.concept_id.references_known_concept")
+            continue
+        polarity = _polarity(str(concept.get("expected_direction", "")))
+        if polarity not in {-1, 1}:
+            failures.append(f"attention_concepts[{concept_id}].expected_direction")
+
+    if failures:
+        joined = ", ".join(failures)
+        raise KnowledgeGraphError(
+            "Frozen graph is missing required field(s) for compilation: "
+            f"{joined}"
+        )
+
+
 def build_compiled_manifest(
     graph: Path,
     preflight: Path,
@@ -407,6 +485,7 @@ def build_compiled_manifest(
         raise KnowledgeGraphError(
             "Preflight report graph_hash does not match current graph hash."
         )
+    _assert_frozen_graph_required_fields(parts)
 
     manifest = parts["manifest"]
     event_family = parts["event_family"]
@@ -523,4 +602,3 @@ def compile_graph_manifest(graph: Path, preflight: Path, out: Path) -> dict[str,
     payload = build_compiled_manifest(graph, preflight)
     _write_json(out, payload)
     return payload
-

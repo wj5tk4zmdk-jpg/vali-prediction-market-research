@@ -60,6 +60,12 @@ def build_parser() -> argparse.ArgumentParser:
     kg_compile.add_argument("--graph", required=True, type=Path)
     kg_compile.add_argument("--preflight", required=True, type=Path)
     kg_compile.add_argument("--out", required=True, type=Path)
+    kg_evidence_summary = kg_commands.add_parser(
+        "evidence-summary",
+        help="Write a human-readable append-only KG validation evidence summary",
+    )
+    kg_evidence_summary.add_argument("--graph", required=True, type=Path)
+    kg_evidence_summary.add_argument("--out", required=True, type=Path)
     kalshi = subparsers.add_parser(
         "kalshi", help="Read-only Kalshi market-data ingestion"
     )

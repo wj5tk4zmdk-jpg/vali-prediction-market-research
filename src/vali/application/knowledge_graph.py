@@ -6,6 +6,7 @@ import json
 from typing import Any
 
 from ..knowledge_graph import compile_graph_manifest, preflight_graph
+from ..knowledge_graph.evidence import write_evidence_summary
 
 
 def run_kg_command(args: Any) -> None:
@@ -32,6 +33,20 @@ def run_kg_command(args: Any) -> None:
                     "manifest_id": manifest["manifest_id"],
                     "features": len(manifest["a_side"]["features"]),
                     "preflight_status": manifest["preflight_status"],
+                },
+                indent=2,
+            )
+        )
+        return
+    if args.kg_command == "evidence-summary":
+        summary = write_evidence_summary(args.graph, args.out)
+        print(
+            json.dumps(
+                {
+                    "output": str(args.out),
+                    "total_experiments": summary["total_experiments"],
+                    "passing_count": summary["passing_count"],
+                    "failing_count": summary["failing_count"],
                 },
                 indent=2,
             )

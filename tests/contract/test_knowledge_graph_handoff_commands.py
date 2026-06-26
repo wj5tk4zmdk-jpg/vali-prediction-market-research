@@ -126,6 +126,70 @@ class KnowledgeGraphHandoffCommandTests(unittest.TestCase):
             with self.assertRaisesRegex(KnowledgeGraphError, "graph_hash does not match"):
                 compile_graph_manifest(HORMUZ_GRAPH, preflight, manifest)
 
+    def test_compile_rejects_frozen_graph_with_missing_required_fields(self):
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "event_family.v1.json").write_text(
+                json.dumps(
+                    {
+                        "id": "frozen_family",
+                        "type": "EventFamily",
+                        "version": "v1",
+                        "mapping_status": "frozen",
+                        "clear_horizon_status": "frozen",
+                        "kalshi": {"series_ticker": "KXFROZEN"},
+                        "terminal_measure": {
+                            "id": "frozen_terminal",
+                            "source": "public_settlement_source",
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (root / "attention_concepts.v1.csv").write_text(
+                "concept_id,event_family_id,concept_name,rationale,expected_direction,expected_lag_min_days,expected_lag_max_days,contamination_risk,evidence_status,human_review_status,claim_status\n"
+                "attention_1,frozen_family,Attention 1,Rationale,positive_toward_event,1,3,,hypothesized,approved,research_only\n",
+                encoding="utf-8",
+            )
+            (root / "attention_queries.v1.csv").write_text(
+                "query_id,concept_id,query,source,geo,time_window,search_type,evidence_status,human_review_status,claim_status,notes\n"
+                "query_1,attention_1,public query,,US,past_5_years,web_search,hypothesized,approved,research_only,source intentionally missing\n",
+                encoding="utf-8",
+            )
+            (root / "relationship_edges.v1.csv").write_text(
+                "edge_id,from_type,from_id,relationship,to_type,to_id,expected_sign,expected_lag_min_days,expected_lag_max_days,rationale,evidence_status,human_review_status,claim_status\n",
+                encoding="utf-8",
+            )
+            graph = root / "graph_manifest.v1.json"
+            graph.write_text(
+                json.dumps(
+                    {
+                        "graph_id": "example_graph:frozen_missing_source:v1",
+                        "version": "v1",
+                        "status": "frozen",
+                        "freeze_status": "frozen",
+                        "review_record": "REVIEW_RECORD.v1.json",
+                        "graph_files": [
+                            "event_family.v1.json",
+                            "attention_concepts.v1.csv",
+                            "attention_queries.v1.csv",
+                            "relationship_edges.v1.csv",
+                            "graph_manifest.v1.json",
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preflight = root / "preflight.json"
+            manifest = root / "compiled.json"
+            preflight_graph(graph, preflight)
+
+            with self.assertRaisesRegex(
+                KnowledgeGraphError,
+                "Frozen graph is missing required field",
+            ):
+                compile_graph_manifest(graph, preflight, manifest)
+
     def test_compile_handles_empty_optional_graph_fields_without_runtime_wiring(self):
         with TemporaryDirectory() as temporary:
             root = Path(temporary)

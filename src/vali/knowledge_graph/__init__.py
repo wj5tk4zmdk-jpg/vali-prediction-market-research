@@ -12,11 +12,23 @@ from .handoff import (
     compute_graph_hash,
     preflight_graph,
 )
+from .evidence import (
+    EVIDENCE_STATUSES,
+    append_evidence,
+    read_evidence,
+    summarize_evidence,
+    write_evidence,
+)
 
 __all__ = [
+    "EVIDENCE_STATUSES",
     "KG_PRECHECKS",
     "KnowledgeGraphError",
+    "append_evidence",
     "compile_graph_manifest",
     "compute_graph_hash",
     "preflight_graph",
+    "read_evidence",
+    "summarize_evidence",
+    "write_evidence",
 ]
