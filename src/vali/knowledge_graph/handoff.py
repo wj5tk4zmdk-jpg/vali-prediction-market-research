@@ -549,6 +549,7 @@ def build_compiled_manifest(
             "graph_id": manifest.get("graph_id", "unknown"),
             "graph_version": manifest.get("version", "v1"),
             "graph_hash": parts["graph_hash"],
+            "graph_manifest_path": str(graph.resolve()),
             "freeze_status": manifest.get("freeze_status", manifest.get("status", "unknown")),
             "review_record": manifest.get("review_record", "TBD"),
             "preflight_report_hash": _sha256_text_file(preflight),

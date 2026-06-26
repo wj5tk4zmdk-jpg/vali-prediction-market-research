@@ -129,6 +129,9 @@ def test_compiled_manifest_schema_names_required_fields_and_runtime_constraints(
         "falsification_gates",
         "claim_boundaries",
         "runtime_constraints",
+        "runtime_inputs",
+        "runtime_parameters",
+        "graph_manifest_path",
         "feature_id",
         "concept_id",
         "query_id",
@@ -209,15 +212,21 @@ def test_handoff_schemas_preserve_forbidden_behavior_and_claim_boundaries():
         assert forbidden_permission not in folded
 
 
-def test_handoff_step_does_not_claim_runtime_implementation():
+def test_handoff_step_documents_runtime_handoff_without_graph_traversal():
     combined = "\n".join(_read(path) for path in (GOVERNANCE, PREFLIGHT, COMPILED))
     folded = combined.casefold()
 
+    for implemented_boundary in (
+        "`vali kg preflight`",
+        "`vali kg compile`",
+        "`vali backtest --manifest`",
+        "is implemented",
+    ):
+        assert implemented_boundary in folded
+
     for non_implementation_boundary in (
         "does not implement graph parsing",
-        "does not implement `vali kg preflight`",
-        "does not implement `vali kg compile`",
-        "does not implement `vali backtest --manifest`",
         "does not implement runtime graph traversal",
+        "does not implement provider ingestion",
     ):
         assert non_implementation_boundary in folded

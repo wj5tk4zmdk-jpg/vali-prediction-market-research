@@ -27,11 +27,15 @@ def build_parser() -> argparse.ArgumentParser:
         prog="vali", description="Offline VALI research pipeline"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
-    for command in ("validate", "signal", "backtest"):
+    for command in ("validate", "signal"):
         subparser = subparsers.add_parser(command)
         subparser.add_argument("--config", required=True, type=Path)
-        if command != "validate":
+        if command == "signal":
             subparser.add_argument("--out", required=True, type=Path)
+    backtest = subparsers.add_parser("backtest")
+    backtest.add_argument("--config", type=Path)
+    backtest.add_argument("--manifest", type=Path)
+    backtest.add_argument("--out", required=True, type=Path)
     confirmation = subparsers.add_parser(
         "confirmation-panel",
         help="Paired regime-confirmation execution sensitivity report",

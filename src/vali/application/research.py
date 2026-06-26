@@ -6,7 +6,11 @@ import json
 from typing import Any
 
 from ..config import ValiConfig
-from ..pipeline import run_backtest_pipeline, run_signal_pipeline
+from ..pipeline import (
+    run_backtest_pipeline,
+    run_backtest_pipeline_from_manifest,
+    run_signal_pipeline,
+)
 from ..research.regime_confirmation import run_confirmation_panel
 from ..sample import make_synthetic_dataset
 
@@ -19,8 +23,8 @@ def run_sample_data_command(args: Any) -> None:
 
 
 def run_research_command(args: Any) -> None:
-    config = ValiConfig.from_toml(args.config)
     if args.command == "signal":
+        config = ValiConfig.from_toml(args.config)
         result = run_signal_pipeline(config, args.out)
         print(
             json.dumps(
@@ -32,7 +36,13 @@ def run_research_command(args: Any) -> None:
             )
         )
     elif args.command == "backtest":
-        result = run_backtest_pipeline(config, args.out)
+        if bool(args.config) == bool(args.manifest):
+            raise SystemExit("backtest requires exactly one of --config or --manifest")
+        if args.manifest:
+            result = run_backtest_pipeline_from_manifest(args.manifest, args.out)
+        else:
+            config = ValiConfig.from_toml(args.config)
+            result = run_backtest_pipeline(config, args.out)
         print(
             json.dumps(
                 {
@@ -45,6 +55,7 @@ def run_research_command(args: Any) -> None:
             )
         )
     elif args.command == "confirmation-panel":
+        config = ValiConfig.from_toml(args.config)
         result = run_confirmation_panel(config, args.out, args.grid)
         print(
             json.dumps(

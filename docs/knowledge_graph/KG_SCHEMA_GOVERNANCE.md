@@ -1,15 +1,16 @@
 # KG-Handoff Schema Governance
 
-Status: schema-governance contract only. This document does not implement graph
-parsing, preflight checks, manifest compilation, provider ingestion, empirical
-validation, live APIs, credentials, order submission, live trading, or `P_flow`.
+Status: schema-governance contract. `vali kg preflight`, `vali kg compile`, and
+`vali backtest --manifest` are implemented as local flat-handoff commands. This
+document does not implement graph parsing, runtime graph traversal, provider
+ingestion, live APIs, credentials, order submission, live trading, or `P_flow`.
 It does not implement graph parsing. It does not implement runtime graph traversal.
 
 ## Purpose
 
-The KG-handoff schemas define how a reviewed VALI knowledge graph may later be
-translated into flat, auditable inputs for the methodology-locked VALI research
-engine. They exist to prevent schema drift before implementation exists.
+The KG-handoff schemas define how a reviewed VALI knowledge graph is translated
+into flat, auditable inputs for the methodology-locked VALI research engine.
+They exist to prevent schema drift as implementation proceeds.
 
 The governing separation is:
 

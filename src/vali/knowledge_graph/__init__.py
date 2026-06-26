@@ -12,6 +12,11 @@ from .handoff import (
     compute_graph_hash,
     preflight_graph,
 )
+from .runtime import (
+    feature_manifest_from_compiled_manifest,
+    load_compiled_manifest_runtime,
+    load_inputs_from_compiled_manifest,
+)
 from .evidence import (
     EVIDENCE_STATUSES,
     append_evidence,
@@ -27,6 +32,9 @@ __all__ = [
     "append_evidence",
     "compile_graph_manifest",
     "compute_graph_hash",
+    "feature_manifest_from_compiled_manifest",
+    "load_compiled_manifest_runtime",
+    "load_inputs_from_compiled_manifest",
     "preflight_graph",
     "read_evidence",
     "summarize_evidence",

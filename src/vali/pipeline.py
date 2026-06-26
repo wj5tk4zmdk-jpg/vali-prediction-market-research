@@ -19,6 +19,7 @@ from .research.pipeline import (
     execution_validation_summary as _research_execution_validation_summary,
     rebuild_report as _research_rebuild_report,
     run_backtest_pipeline as _research_run_backtest_pipeline,
+    run_backtest_pipeline_from_manifest as _research_run_backtest_pipeline_from_manifest,
     run_signal_pipeline as _research_run_signal_pipeline,
     validate_inputs as _research_validate_inputs,
 )
@@ -68,6 +69,13 @@ def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> Pipelin
     return _research_run_backtest_pipeline(config, output_dir)
 
 
+def run_backtest_pipeline_from_manifest(
+    manifest_path: str | Path,
+    output_dir: str | Path,
+) -> PipelineResult:
+    return _research_run_backtest_pipeline_from_manifest(manifest_path, output_dir)
+
+
 def rebuild_report(run_dir: str | Path) -> Path:
     return _research_rebuild_report(run_dir)
 
@@ -77,6 +85,7 @@ __all__ = [
     "execution_validation_summary",
     "rebuild_report",
     "run_backtest_pipeline",
+    "run_backtest_pipeline_from_manifest",
     "run_signal_pipeline",
     "validate_inputs",
 ]

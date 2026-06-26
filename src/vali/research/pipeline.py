@@ -30,6 +30,13 @@ from ..execution.snapshots import (
 )
 from ..features import build_attention_index
 from ..io import load_inputs
+from ..knowledge_graph.evidence import REQUIRED_CLAIM_BOUNDARIES, append_evidence
+from ..knowledge_graph.handoff import KnowledgeGraphError, compute_graph_hash
+from ..knowledge_graph.runtime import (
+    CompiledManifestRuntime,
+    load_compiled_manifest_runtime,
+    load_inputs_from_compiled_manifest,
+)
 from ..market import select_daily_market
 from ..regimes import add_realized_regime, classify_regimes
 from ..signals import compute_vali_signals
@@ -204,10 +211,104 @@ def _sensitivity(config: ValiConfig, bundle: InputBundle) -> pd.DataFrame:
     )
 
 
-def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> PipelineResult:
+def _manifest_metric_payload(metrics: pd.DataFrame) -> dict[str, Any]:
+    payload: dict[str, Any] = {}
+    for row in metrics.itertuples(index=False):
+        key = f"{getattr(row, 'model', 'metric')}.{getattr(row, 'metric')}"
+        value = getattr(row, "value")
+        payload[key] = None if pd.isna(value) else float(value)
+    return payload
+
+
+def _artifact_hashes(output_dir: Path, outputs: dict[str, dict[str, Any]]) -> list[str]:
+    hashes: list[str] = []
+    for name, descriptor in sorted(outputs.items()):
+        csv_name = descriptor.get("csv")
+        if csv_name:
+            hashes.append(f"{name}.csv=sha256:{sha256_file(output_dir / csv_name)}")
+    return hashes
+
+
+def _manifest_target_node_ids(manifest: dict[str, Any]) -> list[str]:
+    features = manifest.get("a_side", {}).get("features", [])
+    targets = [str(feature.get("concept_id")) for feature in features if feature.get("concept_id")]
+    return sorted(set(targets))
+
+
+def _manifest_target_edge_ids(manifest: dict[str, Any]) -> list[str]:
+    edges = manifest.get("relationships", [])
+    targets = [str(edge.get("edge_id")) for edge in edges if edge.get("edge_id")]
+    return sorted(set(targets))
+
+
+def _compiled_manifest_summary(runtime: CompiledManifestRuntime) -> dict[str, Any]:
+    source_graph = runtime.manifest["source_graph"]
+    return {
+        "manifest_id": runtime.manifest["manifest_id"],
+        "manifest_path": str(runtime.manifest_path),
+        "manifest_sha256": "sha256:" + sha256_file(runtime.manifest_path),
+        "source_graph": {
+            "graph_id": source_graph.get("graph_id"),
+            "graph_hash": source_graph.get("graph_hash"),
+            "graph_manifest_path": str(runtime.graph_path),
+        },
+        "runtime_constraints": runtime.manifest["runtime_constraints"],
+        "claim_boundaries": runtime.manifest["claim_boundaries"],
+        "a_side_feature_count": len(runtime.manifest.get("a_side", {}).get("features", [])),
+        "p_side_market_count": len(runtime.manifest.get("p_side", {}).get("markets", [])),
+        "expected_lag_metadata_usage": "documentation_and_falsification_only",
+        "expected_lag_metadata_used_for_signal_construction": False,
+    }
+
+
+def _append_manifest_evidence(
+    runtime: CompiledManifestRuntime,
+    output_dir: Path,
+    outputs: dict[str, dict[str, Any]],
+    metrics: pd.DataFrame,
+) -> Path:
+    _, _, graph_hash = compute_graph_hash(runtime.graph_path)
+    expected_hash = runtime.manifest["source_graph"]["graph_hash"]
+    if graph_hash != expected_hash:
+        raise KnowledgeGraphError(
+            "Compiled manifest source_graph.graph_hash does not match current graph hash."
+        )
+    evidence_data = {
+        "id": f"validation_evidence:{runtime.manifest['manifest_id']}:backtest",
+        "type": "ValidationEvidence",
+        "version": "v1",
+        "source": {
+            "experiment_id": f"vali_backtest:{runtime.manifest['manifest_id']}",
+            "compiled_manifest_id": runtime.manifest["manifest_id"],
+            "compiled_manifest_hash": "sha256:" + sha256_file(runtime.manifest_path),
+            "output_dir": str(output_dir),
+            "artifact_hashes": _artifact_hashes(output_dir, outputs),
+        },
+        "target_node_ids": _manifest_target_node_ids(runtime.manifest),
+        "target_edge_ids": _manifest_target_edge_ids(runtime.manifest),
+        "metrics": _manifest_metric_payload(metrics),
+        "falsification_gate_results": runtime.manifest.get("falsification_gates", []),
+        "walk_forward_folds": [],
+        "execution_evidence": {
+            "source": "vali_backtest_pipeline",
+            "descriptive_only": True,
+        },
+        "status": "not_validated",
+        "claim_status": list(REQUIRED_CLAIM_BOUNDARIES),
+        "evidence_status": "not_validated",
+    }
+    return append_evidence(runtime.graph_path, evidence_data)
+
+
+def _run_backtest_pipeline_with_bundle(
+    config: ValiConfig,
+    bundle: InputBundle,
+    output_dir: str | Path,
+    *,
+    compiled_runtime: CompiledManifestRuntime | None = None,
+) -> PipelineResult:
     target = Path(output_dir).resolve()
     target.mkdir(parents=True, exist_ok=True)
-    bundle = load_inputs(config)
     signals, feature_audit = _build_signals(config, bundle)
     backtest: BacktestResult = run_backtest(signals, bundle.events, config)
     daily_exclusions = _daily_exclusions(signals)
@@ -307,6 +408,8 @@ def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> Pipelin
         **execution_summary,
         **provisional_fee_metadata(config.market.fee_bps),
     }
+    if compiled_runtime is not None:
+        manifest["compiled_manifest"] = _compiled_manifest_summary(compiled_runtime)
 
     outputs = {
         "signals": signals,
@@ -323,6 +426,23 @@ def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> Pipelin
     manifest["outputs"] = {
         name: write_dataframe(frame, name, target) for name, frame in outputs.items()
     }
+    if compiled_runtime is not None:
+        evidence_path = _append_manifest_evidence(
+            compiled_runtime,
+            target,
+            manifest["outputs"],
+            metrics,
+        )
+        manifest["kg_validation_evidence"] = {
+            "path": str(evidence_path),
+            "append_only": True,
+            "status": "not_validated",
+            "claim_boundary": [
+                "not_alpha_evidence",
+                "not_trading_readiness_evidence",
+                "human_review_required",
+            ],
+        }
     (target / "run_manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8"
     )
@@ -345,6 +465,25 @@ def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> Pipelin
         exclusions=exclusions,
         metrics=metrics,
         sensitivity=sensitivity,
+    )
+
+
+def run_backtest_pipeline(config: ValiConfig, output_dir: str | Path) -> PipelineResult:
+    bundle = load_inputs(config)
+    return _run_backtest_pipeline_with_bundle(config, bundle, output_dir)
+
+
+def run_backtest_pipeline_from_manifest(
+    manifest_path: str | Path,
+    output_dir: str | Path,
+) -> PipelineResult:
+    runtime = load_compiled_manifest_runtime(manifest_path)
+    bundle = load_inputs_from_compiled_manifest(runtime)
+    return _run_backtest_pipeline_with_bundle(
+        runtime.config,
+        bundle,
+        output_dir,
+        compiled_runtime=runtime,
     )
 
 

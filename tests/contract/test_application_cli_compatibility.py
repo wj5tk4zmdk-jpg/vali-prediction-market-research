@@ -102,7 +102,7 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
         )
         self.assertEqual(
             option_strings(commands["backtest"]),
-            {"-h", "--help", "--config", "--out"},
+            {"-h", "--help", "--config", "--manifest", "--out"},
         )
         self.assertEqual(
             option_strings(commands["confirmation-panel"]),

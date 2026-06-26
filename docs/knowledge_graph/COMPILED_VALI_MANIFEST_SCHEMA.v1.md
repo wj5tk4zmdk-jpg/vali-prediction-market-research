@@ -1,12 +1,12 @@
 # Compiled VALI Manifest Schema v1
 
-Status: schema contract only. This document defines a future flat handoff
-manifest from a reviewed knowledge graph into the VALI research engine. It does
-not implement `vali kg compile`. It does not implement `vali backtest --manifest`.
-It does not implement runtime graph traversal, provider ingestion, empirical
-validation, live APIs, credentials, order submission, live trading, or `P_flow`.
-Boundary phrase: this schema does not implement `vali kg compile`.
-Boundary phrase: this schema does not implement `vali backtest --manifest`.
+Status: schema and runtime-handoff contract. `vali kg compile` and
+`vali backtest --manifest` are implemented as flat-manifest handoff commands.
+This schema does not implement runtime graph traversal, provider ingestion,
+live APIs, credentials, order submission, live trading, or `P_flow`.
+It does not implement provider ingestion.
+Boundary phrase: `vali kg compile` is implemented.
+Boundary phrase: `vali backtest --manifest` is implemented.
 Boundary phrase: this schema does not implement runtime graph traversal.
 
 ## Purpose
@@ -18,9 +18,9 @@ knowledge graph and the methodology-locked VALI engine.
 Frozen graph -> preflight report -> compiled manifest -> VALI engine
 ```
 
-The manifest carries a frozen claim into flat, auditable runtime inputs. It does
-not compute `A`, `P`, `gA`, `gP`, `S_t`, `M_t`, regimes, forecasts, returns, or
-validation evidence.
+The manifest carries a frozen claim into flat, auditable runtime inputs. The
+VALI engine computes `A`, `P`, `gA`, `gP`, `S_t`, `M_t`, regimes, forecasts,
+returns, and append-only validation evidence from those flat inputs.
 
 ## Required top-level fields
 
@@ -37,6 +37,8 @@ validation evidence.
 | `falsification_gates` | yes | Predeclared gates carried from the graph. |
 | `claim_boundaries` | yes | Claim and data-use boundaries. |
 | `runtime_constraints` | yes | Hard constraints preventing graph overreach at runtime. |
+| `runtime_inputs` | runnable manifests | Local public data files used by `vali backtest --manifest`. |
+| `runtime_parameters` | runnable manifests | Methodology/runtime parameters equivalent to the TOML config contract. |
 
 ## `source_graph`
 
@@ -45,13 +47,16 @@ validation evidence.
 - `graph_id`;
 - `graph_version`;
 - `graph_hash`;
+- `graph_manifest_path`;
 - `freeze_status`;
 - `review_record`;
 - `preflight_report_hash`; and
 - `preflight_schema_version`.
 
-A future compiler must verify that the preflight report's `graph_hash` matches
-the graph hash used for compilation. Mismatches are blocking errors.
+The compiler verifies that the preflight report's `graph_hash` matches the graph
+hash used for compilation. Mismatches are blocking errors. The runtime verifies
+that `graph_manifest_path` still hashes to `source_graph.graph_hash` before
+appending validation evidence.
 
 ## `p_side`
 
@@ -139,6 +144,45 @@ falsification analysis. It must not tune rolling windows, standardization
 windows, regime settings, entry thresholds, exit thresholds, confirmation
 periods, position sizing, or execution timing.
 
+## Runtime inputs and parameters
+
+`vali backtest --manifest` consumes a flat compiled manifest. It does not read
+the rich graph at signal time. Runnable manifests must include `runtime_inputs`
+with local public data files:
+
+- `events`;
+- `quotes`;
+- `features`; and
+- optional `trades`.
+
+The A-side feature manifest used by the engine is derived from
+`a_side.features`. The runtime adapter maps each flat feature into the existing
+frozen feature-manifest columns:
+
+- `feature_id`;
+- `transformation`;
+- `polarity`;
+- `availability_lag_days`;
+- `missing_policy`;
+- `max_age_days`;
+- `required`;
+- `source`.
+
+`expected_lead_days` is intentionally ignored during this conversion.
+
+Runnable manifests must also include `runtime_parameters`, the flat equivalent
+of the existing TOML sections:
+
+- `run`;
+- `market`;
+- optional `features`;
+- optional `signal`;
+- optional `regime`; and
+- optional `backtest`.
+
+This keeps the legacy TOML workflow backward compatible while allowing the KG
+handoff path to run from a single flat manifest.
+
 ## Example
 
 ```json
@@ -150,6 +194,7 @@ periods, position sizing, or execution timing.
     "graph_id": "example_graph:hormuz_normalization:v1",
     "graph_version": "v1",
     "graph_hash": "sha256:example",
+    "graph_manifest_path": "configs/knowledge_graph/examples/hormuz_normalization/graph_manifest.v1.json",
     "freeze_status": "frozen",
     "review_record": "REVIEW_RECORD.v1.json",
     "preflight_report_hash": "sha256:preflight-example",
@@ -232,18 +277,43 @@ periods, position sizing, or execution timing.
     "no_dynamic_query_selection": true,
     "lag_metadata_usage": "documentation_and_falsification_only",
     "lag_metadata_constraint": "VALI engine MUST NOT use expected_lead_days to tune rolling windows or entry/exit timing"
+  },
+  "runtime_inputs": {
+    "events": "data/events.csv",
+    "quotes": "data/quotes.csv",
+    "features": "data/features.csv",
+    "trades": null
+  },
+  "runtime_parameters": {
+    "run": {
+      "parameter_freeze_date": "2026-06-23",
+      "methodology_version": "1.0.1"
+    },
+    "market": {
+      "max_spread": 0.1,
+      "min_depth": 100.0,
+      "max_quote_age_minutes": 30,
+      "fallback_trade_window_minutes": 120,
+      "fee_bps": 5.0,
+      "probability_epsilon": 0.0001
+    }
   }
 }
 ```
 
 ## Relationship to VALI runtime
 
-The VALI engine consumes flat inputs only after a future implementation is
-approved. It remains responsible for deterministic computation of public
-Behavioral Attention `A`, public/executable Priced Conviction `P`, attention
-velocity `gA`, price velocity `gP`, signed divergence `S_t`, divergence
-magnitude `M_t`, regimes, walk-forward validation, and execution-aware
-simulation.
+The VALI engine consumes flat manifest inputs through
+`vali backtest --manifest`. It remains responsible for deterministic
+computation of public Behavioral Attention `A`, public/executable Priced
+Conviction `P`, attention velocity `gA`, price velocity `gP`, signed divergence
+`S_t`, divergence magnitude `M_t`, regimes, walk-forward validation, and
+execution-aware simulation.
+
+After a manifest-backed run completes, validation evidence is appended as a
+separate `ValidationEvidence` file. Evidence references the graph hash and
+compiled manifest ID. It does not mutate frozen graph files and does not become
+an automatic decision driver.
 
 The compiled manifest must not contain learned weights, private data,
 proprietary order flow, credentials, live trading authorization, order
