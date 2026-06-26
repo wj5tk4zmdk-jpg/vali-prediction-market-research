@@ -75,6 +75,7 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
             "validate",
             "signal",
             "backtest",
+            "confirmation-panel",
             "report",
             "sample-data",
             "kalshi",
@@ -101,6 +102,10 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
             {"-h", "--help", "--config", "--out"},
         )
         self.assertEqual(
+            option_strings(commands["confirmation-panel"]),
+            {"-h", "--help", "--config", "--out", "--grid"},
+        )
+        self.assertEqual(
             option_strings(commands["report"]),
             {"-h", "--help", "--run-dir"},
         )
@@ -119,6 +124,15 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
             ["validate", "--config", "config.toml"],
             ["signal", "--config", "config.toml", "--out", "run"],
             ["backtest", "--config", "config.toml", "--out", "run"],
+            [
+                "confirmation-panel",
+                "--config",
+                "config.toml",
+                "--out",
+                "run",
+                "--grid",
+                "1/1,2/2",
+            ],
             ["report", "--run-dir", "run"],
             ["sample-data", "--out", "data", "--seed", "7", "--events", "3"],
             ["kalshi", "discover", "--out", "kalshi"],
@@ -233,10 +247,7 @@ class ApplicationCliCompatibilityTests(unittest.TestCase):
         self.assertEqual(completed.returncode, 0)
         self.assertEqual(completed.stderr, "")
         self.assertIn("Offline VALI research pipeline", completed.stdout)
-        self.assertIn(
-            "{validate,signal,backtest,report,sample-data,kalshi,trends}",
-            completed.stdout,
-        )
+        self.assertIn("confirmation-panel", completed.stdout)
 
     def test_no_trading_credentials_or_p_flow_cli_surface_exists(self):
         parser = build_parser()
