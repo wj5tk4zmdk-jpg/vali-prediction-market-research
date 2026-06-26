@@ -112,7 +112,8 @@ class KnowledgeGraphHandoffCommandTests(unittest.TestCase):
             {-1, 1},
         )
         self.assertEqual(payload["p_side"]["markets"][0]["depth_availability"], "unknown")
-        self.assertIn("not wired to vali backtest --manifest", payload["compile_note"])
+        self.assertIn("Add explicit runtime_inputs", payload["compile_note"])
+        self.assertIn("runtime_parameters", payload["compile_note"])
 
     def test_compile_rejects_mismatched_preflight_graph_hash(self):
         with TemporaryDirectory() as temporary:

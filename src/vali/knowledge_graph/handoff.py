@@ -593,8 +593,9 @@ def build_compiled_manifest(
         "preflight_status": report.get("overall_status", "unknown"),
         "preflight_warnings": report.get("warnings", []),
         "compile_note": (
-            "Scaffolded manifest only; not validation eligible and not wired to "
-            "vali backtest --manifest."
+            "Scaffolded manifest only; not validation eligible. Add explicit "
+            "runtime_inputs and runtime_parameters before using vali backtest "
+            "--manifest."
         ),
     }
 
