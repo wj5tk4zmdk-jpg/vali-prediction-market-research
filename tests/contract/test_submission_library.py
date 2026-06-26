@@ -20,6 +20,7 @@ PUBLIC_FRESH_CLONE_DOCS = (
 PAGES = {
     "KALSHI_QUANT_RESEARCHER_CASE_STUDY.html": "KALSHI_QUANT_RESEARCHER_CASE_STUDY.md",
     "EMPIRICAL_VALIDATION_PLAN.html": "../operational/5A_EMPIRICAL_VALIDATION_PLAN.md",
+    "REGIME_CONFIRMATION_PANEL.html": "REGIME_CONFIRMATION_PANEL.md",
     "DATA_AVAILABILITY_AUDIT.html": (
         "../../experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md"
     ),
@@ -78,6 +79,7 @@ def test_explorer_routes_all_reviewer_documents_to_html_counterparts():
     document_hrefs = {href for href in parser.hrefs if not href.startswith("#")}
     assert set(PAGES).issubset(document_hrefs)
     assert all(not href.casefold().endswith(".md") for href in document_hrefs)
+    assert "REGIME_CONFIRMATION_PANEL.html" in document_hrefs
 
 
 def test_all_library_pages_exist_with_unique_navigation_and_accessible_controls():
@@ -128,6 +130,8 @@ def test_each_page_preserves_its_markdown_source_link_and_claim_boundary():
     for filename, source_href in PAGES.items():
         text, parser = _parse(SUBMISSION / filename)
         assert source_href in parser.hrefs
+        md_hrefs = [href for href in parser.hrefs if href.casefold().split("#", 1)[0].endswith(".md")]
+        assert md_hrefs == [source_href]
         folded = text.casefold()
         for boundary in (
             "no empirical alpha claim",
@@ -139,6 +143,32 @@ def test_each_page_preserves_its_markdown_source_link_and_claim_boundary():
             "p_flow",
         ):
             assert boundary in folded
+
+
+def test_confirmation_panel_is_linked_and_preserves_execution_sensitivity_boundaries():
+    guide_text, guide_parser = _parse(SUBMISSION / "REVIEWER_GUIDE.html")
+    panel_text, panel_parser = _parse(SUBMISSION / "REGIME_CONFIRMATION_PANEL.html")
+    assert "REGIME_CONFIRMATION_PANEL.html" in guide_parser.hrefs
+    folded = (guide_text + "\n" + panel_text).casefold()
+    for phrase in (
+        "execution sensitivity",
+        "not a new signal",
+        "not classifier tuning",
+        "not alpha evidence",
+        "1/1",
+        "1/2",
+        "2/1",
+        "2/2",
+        "3/3",
+        "delayed-exit summary",
+        "per-trade decomposition",
+        "delayed_exits_total",
+        "delayed_exits_helped",
+        "delayed_exits_hurt",
+        "net_delay_pnl",
+    ):
+        assert phrase in folded
+    assert "REGIME_CONFIRMATION_PANEL.md" in panel_parser.hrefs
 
 
 def test_library_has_no_external_resources_analytics_or_absolute_local_paths():

@@ -470,7 +470,7 @@
           <article class="pipeline-step"><h3>Divergence</h3><p>`S_t = z(gA_t) − z(gP_t)` preserves direction; `M_t = |S_t|` records magnitude.</p></article>
           <article class="pipeline-step"><h3>Regimes</h3><p>Lead/lag correlation classifies attention-leading, market-leading, coupled, or unstable states.</p></article>
           <article class="pipeline-step"><h3>Walk-forward folds</h3><p>Meetings remain intact; calibration and baselines learn only from earlier resolved events.</p></article>
-          <article class="pipeline-step"><h3>Execution gate</h3><p>Bid/ask, fees, closures, and observed depth constrain any simulated execution claim.</p></article>
+          <article class="pipeline-step"><h3>Execution gate</h3><p>Bid/ask, fees, closures, observed depth, and optional confirmation overlays constrain any simulated execution claim.</p></article>
           <article class="pipeline-step"><h3>Constrained report</h3><p>Metrics, exclusions, caveats, hashes, and honest null outcomes remain visible.</p></article>
         </div>
       </div>
@@ -488,7 +488,7 @@
           <details class="guardrail"><summary>Frozen variables</summary><p>The active feature universe, query order, polarity, transformation, lag, missingness policy, thresholds, and horizons are fixed before evaluation.</p></details>
           <details class="guardrail"><summary>Required baselines</summary><ul><li>Market-implied probability</li><li>Prior historical frequency</li><li>Sticky/no-change prior</li><li>Seeded permutation</li><li>Price-only velocity</li></ul></details>
           <details class="guardrail"><summary>Falsification gates</summary><p>Fail if value is post-hoc, disappears out of sample, depends on one event, follows price rather than leading it, or relies on composition drift.</p></details>
-          <details class="guardrail"><summary>Execution evidence</summary><p>Historical volume and open interest never substitute for order-book depth. Capacity and tradability remain disabled without observed executable snapshots.</p></details>
+          <details class="guardrail"><summary>Execution evidence</summary><p>Historical volume and open interest never substitute for order-book depth. Capacity and tradability remain disabled without observed executable snapshots. Regime-confirmation panels are execution sensitivity, not a new signal, not classifier tuning, and not alpha evidence.</p></details>
           <details class="guardrail"><summary>Public-data boundary</summary><p>No private Kalshi data, proprietary order flow, client logs, pending orders, credentialed trading, order submission, live trading, or `P_flow`.</p></details>
         </div>
       </div>
@@ -576,6 +576,7 @@
         <div class="tour-grid">
           <a class="tour-card" href="KALSHI_QUANT_RESEARCHER_CASE_STUDY.html"><small>3-minute read</small><h3>Case study</h3><p>The problem, approach, engineering work, result, and relevance to Kalshi.</p></a>
           <a class="tour-card" href="EMPIRICAL_VALIDATION_PLAN.html"><small>Research design</small><h3>Pre-analysis plan</h3><p>Hypotheses, baselines, metrics, falsification gates, and acceptance thresholds.</p></a>
+          <a class="tour-card" href="REGIME_CONFIRMATION_PANEL.html"><small>Execution sensitivity</small><h3>Confirmation panel</h3><p>The `1/1`, `1/2`, `2/1`, `2/2`, `3/3` grid, delayed-exit summary, and claim boundary.</p></a>
           <a class="tour-card" href="DATA_AVAILABILITY_AUDIT.html"><small>Evidence audit</small><h3>Data availability</h3><p>What exists locally, what is fixture-only, and why 5C is blocked.</p></a>
           <a class="tour-card" href="ATTENTION_DATA_ACQUISITION_PROTOCOL.html"><small>Remediation</small><h3>Attention protocol</h3><p>Acceptable sources, required provenance, revision semantics, and coverage gates.</p></a>
           <a class="tour-card" href="KALSHI_RECONSTRUCTION_LEDGER.html"><small>Market data</small><h3>Kalshi ledger</h3><p>Quotes, trades, depth, fixtures, mixed captures, and reconstruction decisions.</p></a>
@@ -642,11 +643,11 @@
 
       const modules = {
         application: { path: "vali.application · vali.cli", title: "Application & CLI", description: "A thin orchestration boundary keeps collection, validation, research runs, and report generation distinct.", invariants: ["Stable public commands", "No credential or order surface", "Read-only provider routing", "Research/report separation"] },
-        research: { path: "vali.research", title: "Research", description: "Walk-forward folds, calibration, sensitivity analysis, and pipeline orchestration operate on validated point-in-time inputs.", invariants: ["Meeting-grouped folds", "Prior-only calibration", "Predeclared sensitivity", "Honest baseline comparison"] },
+        research: { path: "vali.research", title: "Research", description: "Walk-forward folds, calibration, confirmation panels, sensitivity analysis, and pipeline orchestration operate on validated point-in-time inputs.", invariants: ["Meeting-grouped folds", "Prior-only calibration", "Predeclared sensitivity", "Honest baseline comparison"] },
         domain: { path: "vali.domain", title: "Domain math", description: "Pure deterministic functions implement attention composition, conviction transforms, velocities, divergence, and regime classification.", invariants: ["S_t keeps sign", "M_t is magnitude only", "Positive lag means attention leads", "No labels or I/O"] },
         data: { path: "vali.data · vali.configuration", title: "Data & configuration", description: "Typed contracts enforce schemas, provenance, availability, event identity, public-data boundaries, and frozen parameters.", invariants: ["Outcome-label isolation", "Observation + availability time", "Frozen manifest hash", "Public inputs only"] },
         providers: { path: "vali.providers.*_components", title: "Providers", description: "Read-only Kalshi and offline-ready Google Trends components separate transport, contracts, archiving, normalization, and audit logic.", invariants: ["Immutable raw archives", "No unofficial Trends scraping", "No order endpoints", "Explicit mapping exclusions"] },
-        execution: { path: "vali.execution", title: "Execution", description: "Simulation-only logic applies liquidity gates, bid/ask selection, provisional fees, depth caps, exit handling, and settlement.", invariants: ["Observed depth only", "Failed exits remain visible", "Fees are explicit", "No live order management"] },
+        execution: { path: "vali.execution", title: "Execution", description: "Simulation-only logic applies liquidity gates, bid/ask selection, provisional fees, depth caps, exit handling, settlement, and optional confirmation overlays.", invariants: ["Observed depth only", "Failed exits remain visible", "Fees are explicit", "No live order management"] },
         artifacts: { path: "vali.artifacts", title: "Artifacts", description: "Metrics, manifests, serialization, report reconstruction, exclusions, and research warnings make every run inspectable.", invariants: ["Input/config hashes", "CSV + Parquet mirrors", "Reconstructable reports", "No hidden exclusions"] },
         tests: { path: "tests · docs · AGENTS.md", title: "Tests & governance", description: "Unit, contract, leakage, and integration suites lock methodology behavior while governance documents constrain future work.", invariants: ["Deterministic fixtures", "Leakage proofs", "Compatibility facades", "Null results are valid"] }
       };

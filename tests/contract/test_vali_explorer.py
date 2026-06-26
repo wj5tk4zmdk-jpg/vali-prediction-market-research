@@ -95,6 +95,7 @@ def test_explorer_exists_with_required_sections_and_unique_ids():
 def test_internal_navigation_targets_exist_and_repository_links_are_relative():
     _, parser = _parse()
     ids = set(parser.ids)
+    assert "REGIME_CONFIRMATION_PANEL.html" in parser.hrefs
     for href in parser.hrefs:
         parsed = urlparse(href)
         assert not parsed.scheme
@@ -151,6 +152,9 @@ def test_explorer_preserves_claim_boundaries_and_current_blocker():
         "order submission",
         "proprietary order flow",
         "`p_flow`",
+        "not a new signal",
+        "not classifier tuning",
+        "not alpha evidence",
     ):
         assert boundary in folded
     for disallowed in (

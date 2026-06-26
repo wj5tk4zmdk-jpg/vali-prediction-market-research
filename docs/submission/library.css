@@ -259,6 +259,11 @@ button, input, select { font: inherit; }
 .section-body p { color: #3e504b; }
 .section-body strong { color: var(--ink); }
 .section-body a { color: color-mix(in srgb, var(--accent) 70%, #064139); font-weight: 750; text-underline-offset: 3px; }
+.md-reference {
+  display: inline;
+  color: #3e504b;
+  font-weight: 700;
+}
 .section-body code, .doc-intro code {
   padding: 2px 5px;
   border-radius: 5px;

@@ -15,6 +15,7 @@ README = ROOT / "README.md"
 SUBMISSION = ROOT / "docs" / "submission"
 CASE_STUDY = SUBMISSION / "KALSHI_QUANT_RESEARCHER_CASE_STUDY.md"
 GUIDE = SUBMISSION / "REVIEWER_GUIDE.md"
+CONFIRMATION_PANEL = SUBMISSION / "REGIME_CONFIRMATION_PANEL.md"
 BLURBS = SUBMISSION / "RESUME_BLURBS.md"
 ARCHITECTURE = SUBMISSION / "ARCHITECTURE_MAP.md"
 VALIDATION_REPORT = ROOT / "FINAL_VALIDATION_REPORT.md"
@@ -39,6 +40,7 @@ def _read(path: Path) -> str:
 def test_submission_documents_exist():
     assert CASE_STUDY.is_file()
     assert GUIDE.is_file()
+    assert CONFIRMATION_PANEL.is_file()
     assert BLURBS.is_file()
     assert ARCHITECTURE.is_file()
     assert CLEAN_CLONE_RECORD.is_file()
@@ -58,11 +60,12 @@ def test_readme_exposes_status_quickstart_and_canonical_experiment():
     assert "./.venv/bin/python -m pytest -q" in readme
     assert FROZEN_HASH in readme
     assert "docs/submission/REVIEWER_GUIDE.md" in readme
+    assert "docs/submission/REGIME_CONFIRMATION_PANEL.md" in readme
 
 
 def test_submission_pack_covers_research_discipline_and_blocker():
     combined = "\n".join(
-        _read(path) for path in (README, CASE_STUDY, GUIDE, BLURBS)
+        _read(path) for path in (README, CASE_STUDY, GUIDE, CONFIRMATION_PANEL, BLURBS)
     ).casefold()
     for concept in (
         "public-data-only",
@@ -70,6 +73,7 @@ def test_submission_pack_covers_research_discipline_and_blocker():
         "walk-forward",
         "falsification gates",
         "point-in-time attention history",
+        "execution sensitivity",
     ):
         assert concept in combined
 
@@ -77,7 +81,7 @@ def test_submission_pack_covers_research_discipline_and_blocker():
 def test_submission_pack_makes_no_affirmative_operational_claims():
     combined = "\n".join(
         _read(path)
-        for path in (README, CASE_STUDY, GUIDE, BLURBS, ARCHITECTURE)
+        for path in (README, CASE_STUDY, GUIDE, CONFIRMATION_PANEL, BLURBS, ARCHITECTURE)
     )
     folded = combined.casefold()
     for required_boundary in (
@@ -177,7 +181,7 @@ def test_submission_pack_makes_no_affirmative_operational_claims():
 
 
 def test_submission_facing_docs_contain_no_local_absolute_path():
-    for path in (README, CASE_STUDY, GUIDE, BLURBS, ARCHITECTURE):
+    for path in (README, CASE_STUDY, GUIDE, CONFIRMATION_PANEL, BLURBS, ARCHITECTURE):
         text = _read(path)
         assert "C:\\Users\\" not in text
         assert "C:/Users/" not in text

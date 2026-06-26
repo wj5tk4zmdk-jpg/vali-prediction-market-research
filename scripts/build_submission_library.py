@@ -52,6 +52,18 @@ PAGES = (
         "Predeclared before evaluation",
     ),
     Page(
+        "confirmation-panel",
+        "Regime Confirmation Panel",
+        "Confirmation panel",
+        "Execution sensitivity",
+        "How VALI compares unbuffered and buffered regime-confirmation overlays without changing the raw classifier or making alpha claims.",
+        "docs/submission/REGIME_CONFIRMATION_PANEL.md",
+        "REGIME_CONFIRMATION_PANEL.html",
+        "#2f7f9f",
+        "#dff1f6",
+        "EM-2 robustness tool",
+    ),
+    Page(
         "data-audit",
         "Data Availability Audit",
         "Data audit",
@@ -128,7 +140,19 @@ def inline(value: str) -> str:
 
     value = re.sub(r"`([^`]+)`", stash_code, value)
     value = escape(value, quote=False)
-    value = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', value)
+
+    def render_link(match: re.Match[str]) -> str:
+        label = match.group(1)
+        href = match.group(2)
+        escaped_href = escape(href, quote=True)
+        if href.split("#", 1)[0].casefold().endswith(".md"):
+            return (
+                f'<span class="md-reference">{label} '
+                f'<code>{escaped_href}</code></span>'
+            )
+        return f'<a href="{escaped_href}">{label}</a>'
+
+    value = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", render_link, value)
     value = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", value)
     value = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", value)
     for index, code in enumerate(code_values):

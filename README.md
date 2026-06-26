@@ -36,6 +36,8 @@ decision to stop when the empirical data are not yet sufficient.
   falsification gates.
 - Execution-aware simulation boundaries that disable capacity claims when
   historical depth is absent.
+- `vali confirmation-panel` execution-sensitivity report comparing unbuffered
+  and buffered regime-confirmation overlays without changing the raw classifier.
 - Decomposed domain, data, configuration, research, artifact, execution,
   provider, and application/CLI layers.
 - Read-only public Kalshi KXFED adapter and offline-ready official Google Trends
@@ -99,6 +101,13 @@ The help command does not contact a provider.
 Canonical experiment config:
 [`configs/experiments/fed_easing_v1.toml`](configs/experiments/fed_easing_v1.toml)
 
+Execution-sensitivity panel:
+[`docs/submission/REGIME_CONFIRMATION_PANEL.html`](docs/submission/REGIME_CONFIRMATION_PANEL.html)
+
+The panel documents `vali confirmation-panel`, the default `1/1`, `1/2`,
+`2/1`, `2/2`, `3/3` grid, delayed-exit summary, and per-trade decomposition.
+It is not a new signal, not classifier tuning, and not alpha evidence.
+
 Environment and dependency guidance:
 [`ENVIRONMENT.md`](ENVIRONMENT.md)
 
@@ -109,12 +118,13 @@ For a 2–5 minute review, start with:
 1. [`docs/submission/VALI_EXPLORER.html`](docs/submission/VALI_EXPLORER.html)
 2. [`docs/submission/REVIEWER_GUIDE.md`](docs/submission/REVIEWER_GUIDE.md)
 3. [`docs/submission/KALSHI_QUANT_RESEARCHER_CASE_STUDY.md`](docs/submission/KALSHI_QUANT_RESEARCHER_CASE_STUDY.md)
-4. [`docs/submission/ARCHITECTURE_MAP.md`](docs/submission/ARCHITECTURE_MAP.md)
-5. [`V0_1_RELEASE_CANDIDATE.md`](V0_1_RELEASE_CANDIDATE.md)
-6. [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)
-7. [`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md)
-8. [`docs/submission/APPLICATION_SUBMISSION_NOTE.md`](docs/submission/APPLICATION_SUBMISSION_NOTE.md)
-9. [`docs/submission/FINAL_REVIEWER_CHECKLIST.md`](docs/submission/FINAL_REVIEWER_CHECKLIST.md)
+4. [`docs/submission/REGIME_CONFIRMATION_PANEL.md`](docs/submission/REGIME_CONFIRMATION_PANEL.md)
+5. [`docs/submission/ARCHITECTURE_MAP.md`](docs/submission/ARCHITECTURE_MAP.md)
+6. [`V0_1_RELEASE_CANDIDATE.md`](V0_1_RELEASE_CANDIDATE.md)
+7. [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)
+8. [`docs/submission/CLEAN_CLONE_INSTALL_TEST.md`](docs/submission/CLEAN_CLONE_INSTALL_TEST.md)
+9. [`docs/submission/APPLICATION_SUBMISSION_NOTE.md`](docs/submission/APPLICATION_SUBMISSION_NOTE.md)
+10. [`docs/submission/FINAL_REVIEWER_CHECKLIST.md`](docs/submission/FINAL_REVIEWER_CHECKLIST.md)
 
 ## Repository tour
 
@@ -124,6 +134,7 @@ For a 2–5 minute review, start with:
 | Data honesty | [`experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md`](experiments/fed_easing_kxfed_v1/DATA_AVAILABILITY_AUDIT.md) | Shows why fixture readiness is not empirical readiness. |
 | Attention blocker | [`experiments/fed_easing_kxfed_v1/ATTENTION_DATA_ACQUISITION_PROTOCOL.md`](experiments/fed_easing_kxfed_v1/ATTENTION_DATA_ACQUISITION_PROTOCOL.md) | Defines acceptable provenance, retrieval, revision, and coverage requirements. |
 | Kalshi data | [`experiments/fed_easing_kxfed_v1/KALSHI_RECONSTRUCTION_LEDGER.md`](experiments/fed_easing_kxfed_v1/KALSHI_RECONSTRUCTION_LEDGER.md) | Separates quotes, trades, depth evidence, fixtures, and mixed quarantined captures. |
+| Execution sensitivity | [`docs/submission/REGIME_CONFIRMATION_PANEL.md`](docs/submission/REGIME_CONFIRMATION_PANEL.md) | Explains the confirmation overlay grid, delayed-exit summary, and why the report is robustness analysis rather than alpha evidence. |
 | Falsifiability | [`docs/operational/FALSIFICATION_GATES.md`](docs/operational/FALSIFICATION_GATES.md) | Specifies conditions that invalidate or falsify the research result. |
 | Governance | [`REPOSITORY_POLICY.md`](REPOSITORY_POLICY.md) | Defines public-data, compatibility, data-tier, and artifact rules. |
 | Artifact provenance | [`ARTIFACT_INVENTORY.md`](ARTIFACT_INVENTORY.md) | Preserves generated and quarantined material rather than silently deleting it. |
