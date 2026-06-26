@@ -34,6 +34,19 @@ def build_run_manifest(config: ValiConfig) -> dict[str, Any]:
         "config_path": str(config.source_path) if config.source_path else None,
         "config_sha256": sha256_file(config.source_path) if config.source_path else None,
         "input_sha256": {name: sha256_file(path) for name, path in paths.items()},
+        "execution_sensitivity": {
+            "entry_regime_confirmation_periods": (
+                config.backtest.entry_regime_confirmation_periods
+            ),
+            "exit_regime_confirmation_periods": (
+                config.backtest.exit_regime_confirmation_periods
+            ),
+            "default_1_preserves_baseline_behavior": (
+                config.backtest.entry_regime_confirmation_periods == 1
+                and config.backtest.exit_regime_confirmation_periods == 1
+            ),
+            "paired_baseline_delta_analysis": "not_computed_in_em_1",
+        },
         "research_warning": WARNING,
     }
 

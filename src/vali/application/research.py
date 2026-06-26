@@ -7,6 +7,7 @@ from typing import Any
 
 from ..config import ValiConfig
 from ..pipeline import run_backtest_pipeline, run_signal_pipeline
+from ..research.regime_confirmation import run_confirmation_panel
 from ..sample import make_synthetic_dataset
 
 
@@ -39,6 +40,19 @@ def run_research_command(args: Any) -> None:
                     "signal_rows": len(result.signals),
                     "forecast_rows": len(result.forecasts),
                     "trade_rows": len(result.trades),
+                },
+                indent=2,
+            )
+        )
+    elif args.command == "confirmation-panel":
+        result = run_confirmation_panel(config, args.out, args.grid)
+        print(
+            json.dumps(
+                {
+                    "output_dir": str(result.output_dir),
+                    "arms": len(result.panel),
+                    "delayed_exit_rows": len(result.delayed_exits),
+                    "report": str(result.report_path),
                 },
                 indent=2,
             )

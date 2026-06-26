@@ -82,6 +82,15 @@ def validate_backtest_config(config: BacktestConfig) -> None:
         raise ConfigError("backtest holding/settlement settings are invalid")
     if config.calibration_l2 < 0:
         raise ConfigError("backtest.calibration_l2 cannot be negative")
+    confirmation_periods = (
+        config.entry_regime_confirmation_periods,
+        config.exit_regime_confirmation_periods,
+    )
+    if any(
+        not isinstance(period, int) or isinstance(period, bool) or period < 1
+        for period in confirmation_periods
+    ):
+        raise ConfigError("backtest regime confirmation periods must be positive")
 
 
 def validate_vali_config(config: ValiConfig) -> None:

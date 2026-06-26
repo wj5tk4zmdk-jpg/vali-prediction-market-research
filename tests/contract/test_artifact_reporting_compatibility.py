@@ -144,6 +144,15 @@ class ArtifactReportingCompatibilityTests(unittest.TestCase):
             self.assertEqual(legacy_pipeline_sha256(config_path), sha256_file(config_path))
             self.assertEqual(legacy_pipeline_manifest(config), build_run_manifest(config))
             self.assertEqual(
+                build_run_manifest(config)["execution_sensitivity"],
+                {
+                    "entry_regime_confirmation_periods": 1,
+                    "exit_regime_confirmation_periods": 1,
+                    "default_1_preserves_baseline_behavior": True,
+                    "paired_baseline_delta_analysis": "not_computed_in_em_1",
+                },
+            )
+            self.assertEqual(
                 set(build_run_manifest(config)),
                 {
                     "package_version",
@@ -152,6 +161,7 @@ class ArtifactReportingCompatibilityTests(unittest.TestCase):
                     "config_path",
                     "config_sha256",
                     "input_sha256",
+                    "execution_sensitivity",
                     "research_warning",
                 },
             )

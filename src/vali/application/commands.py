@@ -31,6 +31,13 @@ def build_parser() -> argparse.ArgumentParser:
         subparser.add_argument("--config", required=True, type=Path)
         if command != "validate":
             subparser.add_argument("--out", required=True, type=Path)
+    confirmation = subparsers.add_parser(
+        "confirmation-panel",
+        help="Paired regime-confirmation execution sensitivity report",
+    )
+    confirmation.add_argument("--config", required=True, type=Path)
+    confirmation.add_argument("--out", required=True, type=Path)
+    confirmation.add_argument("--grid", default=None)
     report = subparsers.add_parser("report")
     report.add_argument("--run-dir", required=True, type=Path)
     sample = subparsers.add_parser("sample-data")

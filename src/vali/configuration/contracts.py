@@ -85,6 +85,8 @@ class BacktestConfig:
     max_holding_days: int = 14
     days_before_settlement: int = 1
     calibration_l2: float = 1.0
+    entry_regime_confirmation_periods: int = 1
+    exit_regime_confirmation_periods: int = 1
 
     def validate(self) -> None:
         from .validation import validate_backtest_config

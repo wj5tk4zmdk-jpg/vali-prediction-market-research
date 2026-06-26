@@ -19,10 +19,16 @@ open interest cannot substitute for depth. Fee models must be identified and
 versioned. Mandatory exits, closures, failed execution, settlement, and snapshot
 completeness must be represented explicitly.
 
+Regime confirmation may be applied only as an optional execution/backtest
+sensitivity overlay. It does not alter the regime classifier, create a new
+signal, or support an alpha claim by itself. The default one-period setting is
+the baseline. Longer confirmation windows must be predeclared, disclosed in run
+manifests and metrics, and compared with an independently run unbuffered
+baseline before interpreting trade-count, spread, or fee effects.
+
 ## Consequences
 
 Liquidity, fees, closures, and execution validation are methodology-critical,
 not cosmetic reporting adjustments. Capacity and net-return claims remain
 disabled whenever execution evidence is incomplete. Current generic basis-point
 fees and permissive completeness gating are documented migration issues.
-

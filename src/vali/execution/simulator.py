@@ -85,6 +85,12 @@ def simulate_trades(
         exit_fee = 0.0
         exit_reason = "settlement"
         mandatory_exit_failed = False
+        exit_required_streak = config.backtest.exit_regime_confirmation_periods
+        exit_streak = 0
+        exit_streak_started_at: pd.Timestamp | None = None
+        exit_regime_confirmed = False
+        exit_confirmation_streak = 0
+        exit_confirmation_delay_days = 0.0
 
         later = history.loc[
             (history["cutoff_at"] > entry["cutoff_at"])
@@ -106,8 +112,10 @@ def simulate_trades(
                 1 - config.backtest.stop_loss_fraction
             ):
                 reason = "stop_loss"
-            elif row["regime"] != "attention_leading":
+            elif exit_required_streak == 1 and row["regime"] != "attention_leading":
                 reason = "regime_change"
+                exit_regime_confirmed = True
+                exit_confirmation_streak = 1
             elif (
                 abs(float(row["signed_divergence"]))
                 <= config.signal.exit_threshold
@@ -117,6 +125,21 @@ def simulate_trades(
                 reason = "max_holding_period"
             elif row["cutoff_at"] >= latest_entry:
                 reason = "pre_settlement"
+            elif exit_required_streak > 1 and row["regime"] != "attention_leading":
+                if exit_streak == 0:
+                    exit_streak_started_at = row["cutoff_at"]
+                exit_streak += 1
+                if exit_streak >= exit_required_streak:
+                    reason = "regime_change"
+                    exit_regime_confirmed = True
+                    exit_confirmation_streak = exit_streak
+                    if exit_streak_started_at is not None:
+                        exit_confirmation_delay_days = (
+                            row["cutoff_at"] - exit_streak_started_at
+                        ).total_seconds() / 86400
+            else:
+                exit_streak = 0
+                exit_streak_started_at = None
             if reason:
                 exit_at = row["cutoff_at"]
                 exit_probability = current_probability
@@ -146,6 +169,10 @@ def simulate_trades(
                 "exit_at": exit_at,
                 "exit_probability": exit_probability,
                 "exit_reason": exit_reason,
+                "exit_regime_confirmation_periods": exit_required_streak,
+                "exit_regime_confirmed": exit_regime_confirmed,
+                "exit_confirmation_streak": exit_confirmation_streak,
+                "exit_confirmation_delay_days": exit_confirmation_delay_days,
                 "outcome": int(event.outcome),
                 "entry_fee": entry_fee,
                 "exit_fee": exit_fee,
