@@ -1,0 +1,66 @@
+{
+  "schema_version": "codex_project.v1",
+  "name": "vali-prediction-market-research",
+  "package": {
+    "project_name": "vali-research",
+    "source_root": "src",
+    "python_package": "vali",
+    "requires_python": ">=3.12",
+    "cli": "vali"
+  },
+  "test_commands": {
+    "fresh_clone": [
+      "python -m venv .venv",
+      ".venv python -m pip install -e .[dev]",
+      ".venv python -m pytest -q"
+    ],
+    "workspace": [
+      ".\\work\\.venv\\Scripts\\python.exe -m pytest -q"
+    ]
+  },
+  "primary_paths": {
+    "governance": "AGENTS.md",
+    "source": "src/vali",
+    "tests": "tests",
+    "configs": "configs",
+    "knowledge_graph": "src/vali/knowledge_graph",
+    "kg_docs": "docs/knowledge_graph",
+    "submission_docs": "docs/submission",
+    "reports": "reports"
+  },
+  "core_boundaries": {
+    "public_data_only": true,
+    "no_p_flow": true,
+    "no_private_data": true,
+    "no_proprietary_order_flow": true,
+    "no_credentials": true,
+    "no_live_trading": true,
+    "no_order_submission": true,
+    "no_alpha_claim": true,
+    "no_trading_readiness_claim": true,
+    "expected_lag_metadata_runtime_tuning": false
+  },
+  "important_cli_commands": [
+    "vali validate",
+    "vali signal",
+    "vali backtest",
+    "vali confirmation-panel",
+    "vali kalshi discover",
+    "vali kalshi backfill",
+    "vali kalshi snapshot",
+    "vali trends plan",
+    "vali trends backfill",
+    "vali trends collect",
+    "vali trends status",
+    "vali kg preflight",
+    "vali kg compile",
+    "vali kg evidence-summary",
+    "vali kg review-packet",
+    "vali kg supersede"
+  ],
+  "current_blockers": [
+    "Canonical empirical validation is blocked pending point-in-time attention history.",
+    "Historical depth cannot be inferred from volume or open interest.",
+    "Hormuz KG draft is compileable but not runnable without runtime_inputs and runtime_parameters."
+  ]
+}

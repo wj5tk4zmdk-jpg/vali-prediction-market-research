@@ -47,3 +47,10 @@ This file applies to the entire repository.
 - Do not silently alter formulas, sign conventions, fee assumptions, mapping
   rules, or test expectations.
 
+## Codex project layer
+
+- `.codex/PROJECT.md` is the Codex-facing project card for future sessions.
+- `.codex/playbooks/` contains task-specific operating guides.
+- `.codex/tasks/README.md` contains a reusable task brief template.
+- These files are navigational aids only; this `AGENTS.md` file remains the
+  repository-wide governance authority.
